@@ -2,13 +2,32 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="base_service" />
-        <module name="base_plugins" />
+        <module name="rule_engine" />
+        <module name="mqtt_server" />
+        <module name="base_plugins_kafka" />
+        <module name="base_plugins_db" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="base_plugins_common" target="1.8" />
+      <module name="base_service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="base_plugins" options="-parameters" />
+      <module name="base_plugins_common" options="-parameters" />
+      <module name="base_plugins_db" options="-parameters" />
+      <module name="base_plugins_kafka" options="-parameters" />
+      <module name="base_service" options="-parameters" />
+      <module name="base_services" options="" />
+      <module name="mqtt_server" options="-parameters" />
+      <module name="rule_engine" options="-parameters" />
+    </option>
   </component>
 </project>

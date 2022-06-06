@@ -10,12 +10,82 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>base_plugins</module>
-        <module>base_service</module>
+        <module>base_services</module>
     </modules>
+    <description>MiddleGround 是基于SpringCloud旨向应用于监测的中台微服务框架</description>
+
+    <!-- 继承了 Spring Boot 的 Parent，表示这是一个 Spring Boot 工程 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <boot.version>2.3.1.RELEASE</boot.version>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Spring Settings -->
+        <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
+        <alibaba.cloud.version>2.2.1.RELEASE</alibaba.cloud.version>
+        <spring-boot-admin.version>2.1.6</spring-boot-admin.version>
+        <spring-boot-admin-server.version>2.2.2</spring-boot-admin-server.version>
+        <sentinel.version>1.8.0</sentinel.version>
+        <mysql.connect.version>8.0.22</mysql.connect.version>
+        <alibaba.druid.version>1.1.10</alibaba.druid.version>
+        <baomidou.mybatis-plus.version>3.3.2</baomidou.mybatis-plus.version>
+        <baomidou.mybatis-plus-extension.version>3.4.1</baomidou.mybatis-plus-extension.version>
+        <fastjson.version>1.2.75</fastjson.version>
+        <swagger.version>1.5.20</swagger.version>
+        <jackson.version>2.9.0</jackson.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--springboot 2.2.2 +spring cloud Hoxton.SR1 + spring cloud alibaba 三个必不可少-->
+            <!--引入spring-cloud-alibaba 2.1.0.RELEASE依赖-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring boot 2.2.2-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.2.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring cloud Hoxton.SR1-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <!--编译插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

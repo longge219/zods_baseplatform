@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_db/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_kafka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/mqtt_server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/rule_engine/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rule_engine/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

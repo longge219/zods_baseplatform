@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>base_plugins</artifactId>
+    <artifactId>base_services</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>base_plugins_db</module>
-        <module>base_plugins_kafka</module>
+        <module>mqtt_server</module>
+        <module>rule_engine</module>
     </modules>
 
     <properties>
