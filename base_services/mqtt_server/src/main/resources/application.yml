@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  application:
+    name: mqtt_server
+  profiles:
+    active: dev
+
+logging:
+  config: classpath:logback-spring.xml
+
+# mybatis 配置
+mybatis-plus:
+  type-aliases-package: com.zods.mqtt.sever.business.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+topic:
+  deviceDataTypeOneTopic: DEVICE_DATA_TYPE_ONE_TOPIC #普通设备上报数据类型1主题
+  deviceDataTypeTwoTopic: DEVICE_DATA_TYPE_TWO_TOPIC #普通设备上报数据类型2主题
+  deviceDataTypeThreeTopic: DEVICE_DATA_TYPE_THREE_TOPIC #普通设备上报数据类型3主题
+  cmdDownWardsTopic: CMD_DOWN_WARDS_TOPIC #下行指令主题
+  cmdDownWardsResponseTopic: CMD_DOWN_WARDS_RESPONSE_TOPIC #下行响应主题
+  firmwareUpgradeTopic: CMD_FIRMWARE_UPGRADE_TOPIC #平台下发升级固件主题
+  firmwareSupportSizeTopic: CMD_FIRMWARE_SUPPORTSIZE_TOPIC #设备发送待升级固件大小主题
+

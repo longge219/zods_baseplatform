@@ -1,0 +1,990 @@
+2022-06-07 19:00:54.353 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Starting MqttServerLauncher on DESKTOP-G7OLLF5 with PID 920 (started by admin in E:\定制项目\零壹数海\2022年项目\智慧YQ-改版\代码空间\zods_baseplatform)
+2022-06-07 19:00:54.356 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - The following profiles are active: dev
+2022-06-07 19:00:54.444 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-07 19:00:54.445 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-07 19:00:57.226 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-07 19:00:57.964 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-07 19:00:57.984 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-07 19:00:57.985 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-07 19:00:57.986 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2022-06-07 19:00:57.990 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded APR based Apache Tomcat Native library [1.2.31] using APR version [1.7.0].
+2022-06-07 19:00:57.990 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2022-06-07 19:00:57.990 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-07 19:00:57.996 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1l  24 Aug 2021]
+2022-06-07 19:00:58.241 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-07 19:00:58.242 [restartedMain] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3797 ms
+2022-06-07 19:00:58.437 [restartedMain] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-07 19:00:58.797 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-07 19:00:59.104 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-06-07 19:00:59.131 [restartedMain] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-06-07 19:00:59.149 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-07 19:08:08.685 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Starting MqttServerLauncher on DESKTOP-G7OLLF5 with PID 14752 (started by admin in E:\定制项目\零壹数海\2022年项目\智慧YQ-改版\代码空间\zods_baseplatform)
+2022-06-07 19:08:08.689 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - The following profiles are active: dev
+2022-06-07 19:08:08.767 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-07 19:08:08.768 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-07 19:08:10.746 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-07 19:08:11.204 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-07 19:08:11.217 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-07 19:08:11.218 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-07 19:08:11.218 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2022-06-07 19:08:11.221 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded APR based Apache Tomcat Native library [1.2.31] using APR version [1.7.0].
+2022-06-07 19:08:11.221 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2022-06-07 19:08:11.221 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-07 19:08:11.224 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1l  24 Aug 2021]
+2022-06-07 19:08:11.353 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-07 19:08:11.354 [restartedMain] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2586 ms
+2022-06-07 19:08:11.536 [restartedMain] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-07 19:08:11.760 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-07 19:08:11.928 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-06-07 19:08:11.934 [restartedMain] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-06-07 19:08:11.953 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-07 19:09:59.148 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Starting MqttServerLauncher on DESKTOP-G7OLLF5 with PID 3764 (started by admin in E:\定制项目\零壹数海\2022年项目\智慧YQ-改版\代码空间\zods_baseplatform)
+2022-06-07 19:09:59.155 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - The following profiles are active: dev
+2022-06-07 19:09:59.261 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-07 19:09:59.262 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-07 19:10:00.366 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-07 19:10:39.163 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Starting MqttServerLauncher on DESKTOP-G7OLLF5 with PID 10468 (started by admin in E:\定制项目\零壹数海\2022年项目\智慧YQ-改版\代码空间\zods_baseplatform)
+2022-06-07 19:10:39.171 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - The following profiles are active: dev
+2022-06-07 19:10:39.272 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-07 19:10:39.272 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-07 19:10:40.514 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-07 19:14:50.442 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Starting MqttServerLauncher on DESKTOP-G7OLLF5 with PID 14096 (started by admin in E:\定制项目\零壹数海\2022年项目\智慧YQ-改版\代码空间\zods_baseplatform)
+2022-06-07 19:14:50.447 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - The following profiles are active: dev
+2022-06-07 19:14:50.600 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-07 19:14:50.600 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-07 19:14:53.394 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-07 19:14:53.839 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-07 19:14:53.855 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-07 19:14:53.856 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-07 19:14:53.857 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2022-06-07 19:14:53.860 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded APR based Apache Tomcat Native library [1.2.31] using APR version [1.7.0].
+2022-06-07 19:14:53.860 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2022-06-07 19:14:53.860 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-07 19:14:53.864 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1l  24 Aug 2021]
+2022-06-07 19:14:53.990 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-07 19:14:53.991 [restartedMain] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3390 ms
+2022-06-07 19:14:54.233 [restartedMain] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-07 19:14:54.552 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-07 19:14:54.788 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-06-07 19:14:54.794 [restartedMain] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-06-07 19:14:54.812 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-07 19:21:58.658 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Starting MqttServerLauncher on DESKTOP-G7OLLF5 with PID 13540 (started by admin in E:\定制项目\零壹数海\2022年项目\智慧YQ-改版\代码空间\zods_baseplatform)
+2022-06-07 19:21:58.666 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - The following profiles are active: dev
+2022-06-07 19:21:58.832 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-07 19:21:58.832 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-07 19:22:01.098 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-07 19:22:01.614 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-07 19:22:01.627 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-07 19:22:01.628 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-07 19:22:01.630 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2022-06-07 19:22:01.634 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded APR based Apache Tomcat Native library [1.2.31] using APR version [1.7.0].
+2022-06-07 19:22:01.634 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2022-06-07 19:22:01.634 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-07 19:22:01.638 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1l  24 Aug 2021]
+2022-06-07 19:22:01.765 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-07 19:22:01.766 [restartedMain] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2934 ms
+2022-06-07 19:22:01.990 [restartedMain] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-07 19:22:02.246 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-07 19:22:04.840 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-06-07 19:22:04.995 [BOSS_1] INFO  c.z.m.sever.protocol.server.NettyBootstrapServer - 服务端启动成功【10.10.254.88:6621】
+2022-06-07 19:22:06.049 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2022-06-07 19:22:06.057 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-06-07 19:22:06.343 [restartedMain] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [10.10.254.138:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 120000
+	retries = 5
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2022-06-07 19:22:06.541 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:22:06.544 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:22:06.544 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654600926536
+2022-06-07 19:22:10.200 [restartedMain] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = earliest
+	bootstrap.servers = [10.10.254.138:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = IOM_FIRMWARE_UPGRADE_GROUP
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 100
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2022-06-07 19:22:10.305 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:22:10.306 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:22:10.306 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654600930305
+2022-06-07 19:22:10.309 [restartedMain] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Subscribed to topic(s): CMD_FIRMWARE_UPGRADE_TOPIC
+2022-06-07 19:22:10.313 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-06-07 19:22:10.328 [restartedMain] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [10.10.254.138:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 120000
+	retries = 5
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2022-06-07 19:22:10.332 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:22:10.333 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:22:10.333 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654600930332
+2022-06-07 19:22:10.367 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Cluster ID: YK41TjJqTMCgzOAC8jpc_A
+2022-06-07 19:22:10.368 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Discovered group coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:22:10.373 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Revoking previously assigned partitions []
+2022-06-07 19:22:10.374 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_FIRMWARE_UPGRADE_GROUP: partitions revoked: []
+2022-06-07 19:22:10.374 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] (Re-)joining group
+2022-06-07 19:22:10.384 [restartedMain] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = earliest
+	bootstrap.servers = [10.10.254.138:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = IOM_CMD_DOWNWARDS_GROUP
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 100
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2022-06-07 19:22:10.457 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:22:10.457 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:22:10.458 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654600930457
+2022-06-07 19:22:10.458 [restartedMain] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Subscribed to topic(s): CMD_DOWN_WARDS_TOPIC
+2022-06-07 19:22:10.458 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-06-07 19:22:10.468 [restartedMain] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [10.10.254.138:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 120000
+	retries = 5
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2022-06-07 19:22:10.471 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:22:10.472 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:22:10.472 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654600930471
+2022-06-07 19:22:10.476 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] (Re-)joining group
+2022-06-07 19:22:10.476 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Cluster ID: YK41TjJqTMCgzOAC8jpc_A
+2022-06-07 19:22:10.477 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Discovered group coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:22:10.478 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Revoking previously assigned partitions []
+2022-06-07 19:22:10.478 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_CMD_DOWNWARDS_GROUP: partitions revoked: []
+2022-06-07 19:22:10.478 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] (Re-)joining group
+2022-06-07 19:22:10.482 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] (Re-)joining group
+2022-06-07 19:22:10.503 [restartedMain] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = earliest
+	bootstrap.servers = [10.10.254.138:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = IOM_FIRMWARE_SUPPORT_GROUP
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 100
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2022-06-07 19:22:10.509 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:22:10.515 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:22:10.516 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654600930509
+2022-06-07 19:22:10.517 [restartedMain] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Subscribed to topic(s): CMD_FIRMWARE_SUPPORTSIZE_TOPIC
+2022-06-07 19:22:10.517 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-06-07 19:22:10.533 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Cluster ID: YK41TjJqTMCgzOAC8jpc_A
+2022-06-07 19:22:10.534 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Discovered group coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:22:10.536 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Revoking previously assigned partitions []
+2022-06-07 19:22:10.536 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_FIRMWARE_SUPPORT_GROUP: partitions revoked: []
+2022-06-07 19:22:10.536 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] (Re-)joining group
+2022-06-07 19:22:10.539 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] (Re-)joining group
+2022-06-07 19:22:10.550 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-06-07 19:22:10.616 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-07 19:22:10.629 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Started MqttServerLauncher in 13.437 seconds (JVM running for 14.358)
+2022-06-07 19:22:11.895 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Successfully joined group with generation 244
+2022-06-07 19:22:11.905 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Setting newly assigned partitions: CMD_FIRMWARE_SUPPORTSIZE_TOPIC-0
+2022-06-07 19:22:11.922 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Setting offset for partition CMD_FIRMWARE_SUPPORTSIZE_TOPIC-0 to the committed offset FetchPosition{offset=237, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=10.10.254.138:9092 (id: 0 rack: null), epoch=0}}
+2022-06-07 19:22:11.932 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_FIRMWARE_SUPPORT_GROUP: partitions assigned: [CMD_FIRMWARE_SUPPORTSIZE_TOPIC-0]
+2022-06-07 19:22:12.381 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Successfully joined group with generation 490
+2022-06-07 19:22:12.382 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Setting newly assigned partitions: CMD_DOWN_WARDS_TOPIC-0
+2022-06-07 19:22:12.384 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Setting offset for partition CMD_DOWN_WARDS_TOPIC-0 to the committed offset FetchPosition{offset=4489, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=10.10.254.138:9092 (id: 0 rack: null), epoch=0}}
+2022-06-07 19:22:12.386 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_CMD_DOWNWARDS_GROUP: partitions assigned: [CMD_DOWN_WARDS_TOPIC-0]
+2022-06-07 19:22:13.351 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Successfully joined group with generation 248
+2022-06-07 19:22:13.352 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Setting newly assigned partitions: CMD_FIRMWARE_UPGRADE_TOPIC-0
+2022-06-07 19:22:13.354 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Setting offset for partition CMD_FIRMWARE_UPGRADE_TOPIC-0 to the committed offset FetchPosition{offset=245, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=10.10.254.138:9092 (id: 0 rack: null), epoch=0}}
+2022-06-07 19:22:13.357 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_FIRMWARE_UPGRADE_GROUP: partitions assigned: [CMD_FIRMWARE_UPGRADE_TOPIC-0]
+2022-06-07 19:22:18.424 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Member consumer-2-6154d906-2e28-46ad-8603-4d01582cbf7a sending LeaveGroup request to coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:22:18.424 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Member consumer-3-a413e7ec-7f94-4d1d-9f3f-ab44a281d225 sending LeaveGroup request to coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:22:18.424 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Member consumer-1-080dc4c7-ae61-4c39-b56b-ab56f5e89de6 sending LeaveGroup request to coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:22:18.425 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Unsubscribed all topics or patterns and assigned partitions
+2022-06-07 19:22:18.425 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Unsubscribed all topics or patterns and assigned partitions
+2022-06-07 19:22:18.425 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Unsubscribed all topics or patterns and assigned partitions
+2022-06-07 19:22:18.425 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2022-06-07 19:22:18.425 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2022-06-07 19:22:18.425 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2022-06-07 19:22:18.432 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer$ListenerConsumer - IOM_FIRMWARE_UPGRADE_GROUP: Consumer stopped
+2022-06-07 19:22:18.433 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer$ListenerConsumer - IOM_FIRMWARE_SUPPORT_GROUP: Consumer stopped
+2022-06-07 19:22:18.434 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer$ListenerConsumer - IOM_CMD_DOWNWARDS_GROUP: Consumer stopped
+2022-06-07 19:22:18.438 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-06-07 19:49:33.398 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Starting MqttServerLauncher on DESKTOP-G7OLLF5 with PID 7500 (started by admin in E:\定制项目\零壹数海\2022年项目\智慧YQ-改版\代码空间\zods_baseplatform)
+2022-06-07 19:49:33.402 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - The following profiles are active: dev
+2022-06-07 19:49:33.486 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-07 19:49:33.495 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-07 19:49:33.764 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-07 19:54:36.588 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Starting MqttServerLauncher on DESKTOP-G7OLLF5 with PID 5428 (started by admin in E:\定制项目\零壹数海\2022年项目\智慧YQ-改版\代码空间\zods_baseplatform)
+2022-06-07 19:54:36.595 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - The following profiles are active: dev
+2022-06-07 19:54:36.681 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-07 19:54:36.681 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-07 19:54:39.579 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-07 19:54:40.003 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-07 19:54:40.017 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-07 19:54:40.018 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-07 19:54:40.018 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.29]
+2022-06-07 19:54:40.022 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - Loaded APR based Apache Tomcat Native library [1.2.31] using APR version [1.7.0].
+2022-06-07 19:54:40.022 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2022-06-07 19:54:40.022 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-07 19:54:40.025 [restartedMain] INFO  org.apache.catalina.core.AprLifecycleListener - OpenSSL successfully initialized [OpenSSL 1.1.1l  24 Aug 2021]
+2022-06-07 19:54:40.190 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-07 19:54:40.190 [restartedMain] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3509 ms
+2022-06-07 19:54:40.430 [restartedMain] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2022-06-07 19:54:40.713 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-06-07 19:54:42.905 [restartedMain] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-06-07 19:54:43.622 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-06-07 19:54:43.892 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-06-07 19:54:43.989 [restartedMain] INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2022-06-07 19:54:45.017 [BOSS_1] INFO  c.z.m.sever.protocol.server.NettyBootstrapServer - 服务端启动成功【10.10.254.88:6621】
+2022-06-07 19:54:45.210 [restartedMain] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [10.10.254.138:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 120000
+	retries = 5
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2022-06-07 19:54:45.408 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:54:45.411 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:54:45.411 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654602885403
+2022-06-07 19:54:45.930 [restartedMain] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = earliest
+	bootstrap.servers = [10.10.254.138:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = IOM_FIRMWARE_UPGRADE_GROUP
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 100
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2022-06-07 19:54:46.069 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:54:46.069 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:54:46.070 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654602886069
+2022-06-07 19:54:46.073 [restartedMain] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Subscribed to topic(s): CMD_FIRMWARE_UPGRADE_TOPIC
+2022-06-07 19:54:46.077 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-06-07 19:54:46.099 [restartedMain] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [10.10.254.138:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 120000
+	retries = 5
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2022-06-07 19:54:46.133 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Cluster ID: YK41TjJqTMCgzOAC8jpc_A
+2022-06-07 19:54:46.134 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Discovered group coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:54:46.138 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Revoking previously assigned partitions []
+2022-06-07 19:54:46.138 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_FIRMWARE_UPGRADE_GROUP: partitions revoked: []
+2022-06-07 19:54:46.139 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] (Re-)joining group
+2022-06-07 19:54:46.153 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] (Re-)joining group
+2022-06-07 19:54:46.167 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:54:46.168 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:54:46.168 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654602886167
+2022-06-07 19:54:46.191 [restartedMain] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = earliest
+	bootstrap.servers = [10.10.254.138:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = IOM_CMD_DOWNWARDS_GROUP
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 100
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2022-06-07 19:54:46.196 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:54:46.196 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:54:46.196 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654602886196
+2022-06-07 19:54:46.196 [restartedMain] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Subscribed to topic(s): CMD_DOWN_WARDS_TOPIC
+2022-06-07 19:54:46.197 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-06-07 19:54:46.208 [restartedMain] INFO  org.apache.kafka.clients.admin.AdminClientConfig - AdminClientConfig values: 
+	bootstrap.servers = [10.10.254.138:9092]
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 300000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 120000
+	retries = 5
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2022-06-07 19:54:46.214 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:54:46.215 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:54:46.215 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654602886214
+2022-06-07 19:54:46.230 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Cluster ID: YK41TjJqTMCgzOAC8jpc_A
+2022-06-07 19:54:46.230 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Discovered group coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:54:46.231 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Revoking previously assigned partitions []
+2022-06-07 19:54:46.231 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_CMD_DOWNWARDS_GROUP: partitions revoked: []
+2022-06-07 19:54:46.231 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] (Re-)joining group
+2022-06-07 19:54:46.236 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] (Re-)joining group
+2022-06-07 19:54:46.268 [restartedMain] INFO  org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 1000
+	auto.offset.reset = earliest
+	bootstrap.servers = [10.10.254.138:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = IOM_FIRMWARE_SUPPORT_GROUP
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 100
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2022-06-07 19:54:46.273 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka version: 2.3.1
+2022-06-07 19:54:46.274 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: 18a913733fb71c01
+2022-06-07 19:54:46.274 [restartedMain] INFO  org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1654602886273
+2022-06-07 19:54:46.274 [restartedMain] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Subscribed to topic(s): CMD_FIRMWARE_SUPPORTSIZE_TOPIC
+2022-06-07 19:54:46.274 [restartedMain] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService
+2022-06-07 19:54:46.278 [restartedMain] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2022-06-07 19:54:46.286 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Cluster ID: YK41TjJqTMCgzOAC8jpc_A
+2022-06-07 19:54:46.287 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Discovered group coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:54:46.288 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Revoking previously assigned partitions []
+2022-06-07 19:54:46.288 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_FIRMWARE_SUPPORT_GROUP: partitions revoked: []
+2022-06-07 19:54:46.288 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] (Re-)joining group
+2022-06-07 19:54:46.291 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] (Re-)joining group
+2022-06-07 19:54:46.368 [restartedMain] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-06-07 19:54:46.476 [restartedMain] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2022-06-07 19:54:46.524 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-06-07 19:54:46.597 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-07 19:54:46.605 [restartedMain] INFO  com.zods.mqtt.sever.MqttServerLauncher - Started MqttServerLauncher in 11.179 seconds (JVM running for 12.135)
+2022-06-07 19:54:46.889 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Successfully joined group with generation 246
+2022-06-07 19:54:46.899 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Setting newly assigned partitions: CMD_FIRMWARE_SUPPORTSIZE_TOPIC-0
+2022-06-07 19:54:46.917 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Setting offset for partition CMD_FIRMWARE_SUPPORTSIZE_TOPIC-0 to the committed offset FetchPosition{offset=237, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=10.10.254.138:9092 (id: 0 rack: null), epoch=0}}
+2022-06-07 19:54:46.923 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_FIRMWARE_SUPPORT_GROUP: partitions assigned: [CMD_FIRMWARE_SUPPORTSIZE_TOPIC-0]
+2022-06-07 19:54:47.201 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Successfully joined group with generation 492
+2022-06-07 19:54:47.203 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Setting newly assigned partitions: CMD_DOWN_WARDS_TOPIC-0
+2022-06-07 19:54:47.205 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Setting offset for partition CMD_DOWN_WARDS_TOPIC-0 to the committed offset FetchPosition{offset=4489, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=10.10.254.138:9092 (id: 0 rack: null), epoch=0}}
+2022-06-07 19:54:47.207 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_CMD_DOWNWARDS_GROUP: partitions assigned: [CMD_DOWN_WARDS_TOPIC-0]
+2022-06-07 19:54:48.278 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Successfully joined group with generation 250
+2022-06-07 19:54:48.279 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Setting newly assigned partitions: CMD_FIRMWARE_UPGRADE_TOPIC-0
+2022-06-07 19:54:48.281 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Setting offset for partition CMD_FIRMWARE_UPGRADE_TOPIC-0 to the committed offset FetchPosition{offset=245, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=10.10.254.138:9092 (id: 0 rack: null), epoch=0}}
+2022-06-07 19:54:48.283 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.s.kafka.listener.KafkaMessageListenerContainer - IOM_FIRMWARE_UPGRADE_GROUP: partitions assigned: [CMD_FIRMWARE_UPGRADE_TOPIC-0]
+2022-06-07 19:56:07.234 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-07 19:56:07.234 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-07 19:56:07.251 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 17 ms
+2022-06-07 19:56:23.087 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Member consumer-2-9bbb27ab-0561-461c-9f9a-ff98e3593c4b sending LeaveGroup request to coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:56:23.087 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Member consumer-3-1790a573-f4bc-4933-b87c-197ffbe0248f sending LeaveGroup request to coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:56:23.087 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.a.k.c.consumer.internals.AbstractCoordinator - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Member consumer-1-a2e91c46-80e9-4951-ac20-a7cc2cb3f596 sending LeaveGroup request to coordinator 10.10.254.138:9092 (id: 2147483647 rack: null)
+2022-06-07 19:56:23.088 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-3, groupId=IOM_FIRMWARE_SUPPORT_GROUP] Unsubscribed all topics or patterns and assigned partitions
+2022-06-07 19:56:23.088 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-1, groupId=IOM_FIRMWARE_UPGRADE_GROUP] Unsubscribed all topics or patterns and assigned partitions
+2022-06-07 19:56:23.088 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2022-06-07 19:56:23.088 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2022-06-07 19:56:23.088 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  org.apache.kafka.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-2, groupId=IOM_CMD_DOWNWARDS_GROUP] Unsubscribed all topics or patterns and assigned partitions
+2022-06-07 19:56:23.089 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService
+2022-06-07 19:56:23.095 [org.springframework.kafka.KafkaListenerEndpointContainer#2-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer$ListenerConsumer - IOM_FIRMWARE_UPGRADE_GROUP: Consumer stopped
+2022-06-07 19:56:23.099 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer$ListenerConsumer - IOM_FIRMWARE_SUPPORT_GROUP: Consumer stopped
+2022-06-07 19:56:23.096 [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] INFO  o.s.k.l.KafkaMessageListenerContainer$ListenerConsumer - IOM_CMD_DOWNWARDS_GROUP: Consumer stopped
+2022-06-07 19:56:23.102 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'

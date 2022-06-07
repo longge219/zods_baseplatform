@@ -1,0 +1,93 @@
+spring:
+  datasource:
+    url: jdbc:mysql://10.10.254.138:3306/iom?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2b8
+    username: root
+    password: Aa.123456
+  #热部署
+  devtools:
+    restart:
+      #热部署生效
+      enabled: true
+      #设置重启目录
+      additional-paths: src/main/java
+      #classpath目录下的WEB-INF文件夹内容修改不重启
+      exclude: WEB-INF/**
+  lifecycle:
+    timeout-per-shutdown-phase: 30s #设置缓冲期，最大等待时间
+  kafka:
+    bootstrap-servers: 10.10.254.138:9092
+    consumer:
+      group-id: GC-ADMIN-API
+      max-poll-records: 100  #批量消费一次最大拉取的数据量
+      enable-auto-commit: false #是否开启自动提交
+      auto-commit-interval: 1S  #自动提交的时间间隔 在spring boot 2.X 版本中这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
+      auto-offset-reset: earliest  #最早未被消费的offset
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer #键的反序列化方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer #com.orieange.platform.server.base.kafaka.seralizer.KafkaDeseralizer #值的反序列化方式
+    producer:
+      batch-size: 16384 #当有多个消息需要被发送到同一个分区时，生产者会把它们放在同一个批次里。该参数指定了一个批次可以使用的内存大小，按照字节数计算。
+      buffer-memory: 33554432 #设置生产者内存缓冲区的大小。
+      retries: 0 #发生错误后，消息重发的次数
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer #com.orieange.platform.server.base.kafaka.seralizer.KafkaSeralizer
+      #ack: 0 #生产者在成功写入消息之前不会等待任何来自服务器的响应。
+      # acks=1 ： 只要集群的首领节点收到消息，生产者就会收到一个来自服务器成功响应。
+      # acks=all ：只有当所有参与复制的节点全部收到消息时，生产者才会收到一个来自服务器的成功响应。
+      acks: 1
+    listener:
+      concurrency: 1 #设置消费的线程数
+      poll-timeout: 1500  #自动提交设置，如果消息队列中没有消息，等待timeout毫秒后，调用poll()方法。如果队列中有消息，立即消费消息，每次消费的消息的多少可以通过max.poll.records配置。
+      ack-mode: manual #listener负责ack，但是背后也是批量上去
+    template:
+      default-topic: REPORT_DATA_TEST
+
+mqttserver:
+  properties:
+    serverName: xcbd-mqtt-server #服务名
+    port: 6621 #端口
+    keepalive: true #Socket参数，连接保活，默认值为False。启用该功能时，TCP会主动探测空闲连接的有效性。可以将此功能视为TCP的心跳机制，需要注意的是：默认的心跳间隔是7200s即2小时。Netty默认关闭该功能
+    reuseaddr: true #地址复用，默认值False。有四种情况可以使用：(1).当有一个有相同本地地址和端口的socket1处于TIME_WAIT状态时，而你希望启动的程序的socket2要占用该地址和端口，比如重启服务且保持先前端口。(2).有多块网卡或用IP Alias技术的机器在同一端口启动多个进程，但每个进程绑定的本地IP地址不能相同。(3).单个进程绑定相同的端口到多个socket上，但每个socket绑定的ip地址不同。(4).完全相同的地址和端口的重复绑定。但这只用于UDP的多播，不用于TCP。
+    tcpNodelay: true #TCP参数，立即发送数据，默认值为True（Netty默认为True而操作系统默认为False）。该值设置Nagle算法的启用，改算法将小的碎片数据连接成更大的报文来最小化所发送的报文的数量，如果需要发送一些较小的报文，则需要禁用该算法。Netty默认禁用该算法，从而最小化报文传输延时。
+    sndbuf: 10485760 # Socket参数，TCP数据发送缓冲区大小。
+    revbuf: 10485760 # Socket参数，TCP数据接收缓冲区大小。
+    read: 180 # 读超时时间
+    write: 180 # 写超时时间
+    readAndWrite: 180 # 读写超时时间
+    backlog: 1024 #  Socket参数，服务端接受连接的队列长度，如果队列已满，客户端连接将被拒绝
+    ssl: false # 使用ssl加密
+    initalDelay: 10 # mqtt qos1 qos2 消息 重发延迟
+    protocol: MQTT  # 协议类型
+    period: 10 # mqtt qos1 qos2 消息 重发周期
+    jksFile:  /securesocket.jks # ssl 加密 jks文件地址
+    jksStorePassword: mu$tch8ng3 # 读取jks密码
+    jksCertificatePassword: inc0rrect # 读取私钥密码
+    bossThread: 1  #用于处理客户端的连接请求
+    workThread: 2  #用于处理与各个客户端连接的IO操作
+#######################mqtt客户端code,以及mqtt服务器地址
+mqttclient:
+  properties:
+    appCode: mqtt-client
+    mqttServerIp: tcp://127.0.0.1:6621
+    connectionTimeout: 0
+    keepAliveInterval: 20
+#######################【文件对象服务器-minio】#########################
+minio:
+  endpointWrite: 10.10.254.138
+  endpointRead: 10.10.254.138
+  port: 9000
+  # accessKey类似于用户ID，用于唯一标识你的账户
+  accessKey: medicine
+  # secretKey是你账户的密码
+  secretKey: medicine
+  # 如果是true，则用的是https而不是http,默认值是true
+  secure: false
+  bucketName: iom
+  # 默认配置7天=10080s
+  urlExpires: 10080
+
+  #######################【swagger】#########################
+swagger:
+  service:
+    url: http://swagger.io/
+    title: 数据上报api文档
+    des: Http方式数据上报api文档
