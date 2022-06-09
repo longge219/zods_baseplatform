@@ -1,0 +1,168 @@
+2022-06-08 17:18:58[,][INFO][PropertySourceBootstrapConfiguration-initialize]-Located property source: [BootstrapPropertySource {name='bootstrapProperties-platform-gateway-dev.json'}, BootstrapPropertySource {name='bootstrapProperties-platform-gateway.json'}]
+2022-06-08 17:18:58[,][INFO][GatewayApplication-logStartupProfileInfo]-The following profiles are active: dev
+2022-06-08 17:18:59[,][WARN][EndpointId-logWarning]-Endpoint ID 'nacos-discovery' contains invalid characters, please migrate to a valid format.
+2022-06-08 17:18:59[,][WARN][EndpointId-logWarning]-Endpoint ID 'nacos-config' contains invalid characters, please migrate to a valid format.
+2022-06-08 17:18:59[,][WARN][EndpointId-logWarning]-Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2022-06-08 17:18:59[,][INFO][GenericScope-setSerializationId]-BeanFactory id=4e8d918a-d0af-35a4-86be-e7bffd458d7c
+2022-06-08 17:19:00[,][INFO][PostProcessorRegistrationDelegate$BeanPostProcessorChecker-postProcessAfterInitialization]-Bean 'org.hibernate.validator.internal.constraintvalidators.bv.notempty.NotEmptyValidatorForCharSequence' of type [org.hibernate.validator.internal.constraintvalidators.bv.notempty.NotEmptyValidatorForCharSequence] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-08 17:19:00[,][INFO][PostProcessorRegistrationDelegate$BeanPostProcessorChecker-postProcessAfterInitialization]-Bean 'org.hibernate.validator.internal.constraintvalidators.bv.NotNullValidator' of type [org.hibernate.validator.internal.constraintvalidators.bv.NotNullValidator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-08 17:19:00[,][INFO][PostProcessorRegistrationDelegate$BeanPostProcessorChecker-postProcessAfterInitialization]-Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-08 17:19:00[,][INFO][PostProcessorRegistrationDelegate$BeanPostProcessorChecker-postProcessAfterInitialization]-Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-08 17:19:00[,][INFO][PostProcessorRegistrationDelegate$BeanPostProcessorChecker-postProcessAfterInitialization]-Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-08 17:19:00[,][INFO][PostProcessorRegistrationDelegate$BeanPostProcessorChecker-postProcessAfterInitialization]-Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactiveLoadBalancerConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-08 17:19:00[,][INFO][PostProcessorRegistrationDelegate$BeanPostProcessorChecker-postProcessAfterInitialization]-Bean 'deferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-06-08 17:19:01[,][INFO][ClientWorker-addCacheDataIfAbsent]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [subscribe] xc_routes+XC_GATEWAY+7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+2022-06-08 17:19:01[,][INFO][CacheData-addListener]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [add-listener] ok, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c, dataId=xc_routes, group=XC_GATEWAY, cnt=1
+2022-06-08 17:19:01[,][INFO][ClientWorker-parseUpdateDataIdResponse]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [polling-resp] config changed. dataId=xc_routes, group=XC_GATEWAY, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+2022-06-08 17:19:01[,][INFO][ClientWorker-run]-get changedGroupKeys:[xc_routes+XC_GATEWAY+7147c5f4-48d7-4ed8-a67a-42ed6966b40c]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [After]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Before]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Between]
+2022-06-08 17:19:01[,][INFO][JVMUtil-<clinit>]-isMultiInstance:false
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Cookie]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Header]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Host]
+2022-06-08 17:19:01[,][INFO][ClientWorker-run]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [data-received] dataId=xc_routes, group=XC_GATEWAY, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c, md5=07f9b2a663f7c78e530cd8d347af92ef, content=[
+  {
+    "id": "mcloud-auth-server",
+    "uri": "lb://mcloud-auth-server",
+    "predicates": [..., type=text
+2022-06-08 17:19:01[,][INFO][NacosRouteDefinitionRepository-receiveConfigInfo]-自动更新配置...
+[
+  {
+    "id": "mcloud-auth-server",
+    "uri": "lb://mcloud-auth-server",
+    "predicates": [
+      {
+        "name": "Path",
+        "args": {
+          "pattern": "/api/auth/**"
+        }
+      }
+    ]
+  },
+    {
+    "id": "mcloud-register-center",
+    "uri": "lb://mcloud-register-center",
+    "predicates": [
+      
+            {
+        "name": "Path",
+        "args": {
+          "pattern": "/api/register/**"
+        }
+      }
+    ]
+  },
+    {
+    "id": "mcloud-app",
+    "uri": "lb://mcloud-app",
+    "predicates": [
+      
+            {
+        "name": "Path",
+        "args": {
+          "pattern": "/api/app/**"
+        }
+      }
+    ]
+  },
+    {
+    "id": "mcloud-oss",
+    "uri": "lb://mcloud-oss",
+    "predicates": [
+      
+            {
+        "name": "Path",
+        "args": {
+          "pattern": "/api/oss/**"
+        }
+      }
+    ]
+  }
+]
+
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Method]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Path]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Query]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [ReadBodyPredicateFactory]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [RemoteAddr]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [Weight]
+2022-06-08 17:19:01[,][INFO][RouteDefinitionRouteLocator-lambda$initFactories$2]-Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2022-06-08 17:19:01[,][INFO][SentinelSCGAutoConfiguration-sentinelGatewayFilter]-[Sentinel SpringCloudGateway] register SentinelGatewayFilter with order: -2147483648
+2022-06-08 17:19:02[,][WARN][URLConfigurationSource-<init>]-No URLs will be polled as dynamic configuration sources.
+2022-06-08 17:19:02[,][INFO][URLConfigurationSource-<init>]-To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-06-08 17:19:02[,][WARN][URLConfigurationSource-<init>]-No URLs will be polled as dynamic configuration sources.
+2022-06-08 17:19:02[,][INFO][URLConfigurationSource-<init>]-To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-06-08 17:19:02[,][INFO][naming-call]-initializer namespace from System Property :null
+2022-06-08 17:19:02[,][INFO][CacheData-run]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [notify-ok] dataId=xc_routes, group=XC_GATEWAY, md5=07f9b2a663f7c78e530cd8d347af92ef, listener=com.zods.sso.gateway.config.NacosRouteDefinitionRepository$1@7b9b768e 
+2022-06-08 17:19:02[,][INFO][CacheData-safeNotifyListener]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [notify-listener] time cost=434ms in ClientWorker, dataId=xc_routes, group=XC_GATEWAY, md5=07f9b2a663f7c78e530cd8d347af92ef, listener=com.zods.sso.gateway.config.NacosRouteDefinitionRepository$1@7b9b768e 
+2022-06-08 17:19:02[,][INFO][naming-call]-initializer namespace from System Environment :null
+2022-06-08 17:19:02[,][INFO][naming-call]-initializer namespace from System Property :null
+2022-06-08 17:19:02[,][INFO][naming-call]-initializer namespace from System Property :null
+2022-06-08 17:19:02[,][INFO][naming-call]-initializer namespace from System Environment :null
+2022-06-08 17:19:02[,][INFO][naming-call]-initializer namespace from System Property :null
+2022-06-08 17:19:03[,][INFO][EndpointLinksResolver-<init>]-Exposing 22 endpoint(s) beneath base path '/actuator'
+2022-06-08 17:19:03[,][INFO][SentinelSCGAutoConfiguration-sentinelGatewayBlockExceptionHandler]-[Sentinel SpringCloudGateway] register SentinelGatewayBlockExceptionHandler
+2022-06-08 17:19:03[,][INFO][ThreadPoolTaskScheduler-initialize]-Initializing ExecutorService 'Nacso-Watch-Task-Scheduler'
+2022-06-08 17:19:03[,][INFO][ClientWorker-addCacheDataIfAbsent]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [subscribe] gateway.json+DEFAULT_GROUP+7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+2022-06-08 17:19:03[,][INFO][CacheData-addListener]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [add-listener] ok, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c, dataId=gateway.json, group=DEFAULT_GROUP, cnt=1
+2022-06-08 17:19:03[,][INFO][ClientWorker-parseUpdateDataIdResponse]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [polling-resp] config changed. dataId=gateway.json, group=DEFAULT_GROUP, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+2022-06-08 17:19:03[,][INFO][ClientWorker-run]-get changedGroupKeys:[gateway.json+DEFAULT_GROUP+7147c5f4-48d7-4ed8-a67a-42ed6966b40c]
+2022-06-08 17:19:03[,][INFO][ClientWorker-run]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [data-received] dataId=gateway.json, group=DEFAULT_GROUP, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c, md5=2dc1311e4748a63fe1e73d42f129fdec, content=[
+{
+"limitApp": "default",
+"resource": "/api/register/user/test",
+"grade": 1,
+"count": 1,
+"str..., type=text
+2022-06-08 17:19:03[,][INFO][CacheData-safeNotifyListener]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [notify-listener] time cost=0ms in ClientWorker, dataId=gateway.json, group=DEFAULT_GROUP, md5=2dc1311e4748a63fe1e73d42f129fdec, listener=com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource$1@1c19098d 
+2022-06-08 17:19:03[,][INFO][CacheData-run]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [notify-ok] dataId=gateway.json, group=DEFAULT_GROUP, md5=2dc1311e4748a63fe1e73d42f129fdec, listener=com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource$1@1c19098d 
+2022-06-08 17:19:03[,][INFO][ClientWorker-addCacheDataIfAbsent]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [subscribe] degrade.json+DEFAULT_GROUP+7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+2022-06-08 17:19:03[,][INFO][CacheData-addListener]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [add-listener] ok, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c, dataId=degrade.json, group=DEFAULT_GROUP, cnt=1
+2022-06-08 17:19:03[,][INFO][ClientWorker-parseUpdateDataIdResponse]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [polling-resp] config changed. dataId=degrade.json, group=DEFAULT_GROUP, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+2022-06-08 17:19:03[,][INFO][ClientWorker-run]-get changedGroupKeys:[degrade.json+DEFAULT_GROUP+7147c5f4-48d7-4ed8-a67a-42ed6966b40c]
+2022-06-08 17:19:04[,][INFO][ClientWorker-run]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [data-received] dataId=degrade.json, group=DEFAULT_GROUP, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c, md5=71b8201a47a445c990f0861388ad367a, content=[
+	{
+		"resource": "/api/auth/oauth/logout",
+		"grade": 0,
+		"count": 1,
+		"timeWindow": 1
+	}..., type=text
+2022-06-08 17:19:04[,][INFO][CacheData-safeNotifyListener]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [notify-listener] time cost=0ms in ClientWorker, dataId=degrade.json, group=DEFAULT_GROUP, md5=71b8201a47a445c990f0861388ad367a, listener=com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource$1@2a3a2aa 
+2022-06-08 17:19:04[,][INFO][CacheData-run]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [notify-ok] dataId=degrade.json, group=DEFAULT_GROUP, md5=71b8201a47a445c990f0861388ad367a, listener=com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource$1@2a3a2aa 
+2022-06-08 17:19:04[,][INFO][NettyWebServer-start]-Netty started on port(s): 9001
+2022-06-08 17:19:04[,][INFO][naming-addBeatInfo]-[BEAT] adding beat: {"cluster":"DEFAULT","ip":"10.10.254.88","metadata":{"user.name":"admin","preserved.register.source":"SPRING_CLOUD","management.context-path":"/actuator","user.password":"123456"},"period":5000,"port":9001,"scheduled":false,"serviceName":"DEFAULT_GROUP@@platform-gateway","stopped":false,"weight":1.0} to beat map.
+2022-06-08 17:19:04[,][INFO][naming-registerService]-[REGISTER-SERVICE] 7147c5f4-48d7-4ed8-a67a-42ed6966b40c registering service DEFAULT_GROUP@@platform-gateway with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"ip":"10.10.254.88","ipDeleteTimeout":30000,"metadata":{"user.name":"admin","preserved.register.source":"SPRING_CLOUD","management.context-path":"/actuator","user.password":"123456"},"port":9001,"weight":1.0}
+2022-06-08 17:19:04[,][INFO][NacosServiceRegistry-register]-nacos registry, DEFAULT_GROUP platform-gateway 10.10.254.88:9001 register finished
+2022-06-08 17:19:04[,][INFO][GatewayApplication-logStarted]-Started GatewayApplication in 8.128 seconds (JVM running for 9.796)
+2022-06-08 17:19:04[,][INFO][ClientWorker-addCacheDataIfAbsent]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [subscribe] platform-gateway.json+XC_GATEWAY+7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+2022-06-08 17:19:04[,][INFO][CacheData-addListener]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [add-listener] ok, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c, dataId=platform-gateway.json, group=XC_GATEWAY, cnt=1
+2022-06-08 17:19:04[,][INFO][ClientWorker-addCacheDataIfAbsent]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [subscribe] platform-gateway-dev.json+XC_GATEWAY+7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+2022-06-08 17:19:04[,][INFO][CacheData-addListener]-[fixed-10.10.254.138_8848-7147c5f4-48d7-4ed8-a67a-42ed6966b40c] [add-listener] ok, tenant=7147c5f4-48d7-4ed8-a67a-42ed6966b40c, dataId=platform-gateway-dev.json, group=XC_GATEWAY, cnt=1
+2022-06-08 17:19:04[,][INFO][naming-processServiceJSON]-new ips(1) service: DEFAULT_GROUP@@platform-gateway -> [{"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"10.10.254.88#9001#DEFAULT#DEFAULT_GROUP@@platform-gateway","ip":"10.10.254.88","ipDeleteTimeout":30000,"metadata":{"user.name":"admin","preserved.register.source":"SPRING_CLOUD","management.context-path":"/actuator","user.password":"123456"},"port":9001,"serviceName":"DEFAULT_GROUP@@platform-gateway","weight":1.0}]
+2022-06-08 17:19:04[,][INFO][naming-processServiceJSON]-current ips:(1) service: DEFAULT_GROUP@@platform-gateway -> [{"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"10.10.254.88#9001#DEFAULT#DEFAULT_GROUP@@platform-gateway","ip":"10.10.254.88","ipDeleteTimeout":30000,"metadata":{"user.name":"admin","preserved.register.source":"SPRING_CLOUD","management.context-path":"/actuator","user.password":"123456"},"port":9001,"serviceName":"DEFAULT_GROUP@@platform-gateway","weight":1.0}]
+2022-06-08 17:19:05[,][INFO][naming-run]-received push data: {"type":"dom","data":"{\"metadata\":{},\"dom\":\"DEFAULT_GROUP@@platform-gateway\",\"cacheMillis\":10000,\"useSpecifiedURL\":false,\"hosts\":[{\"valid\":true,\"marked\":false,\"metadata\":{\"user.name\":\"admin\",\"preserved.register.source\":\"SPRING_CLOUD\",\"management.context-path\":\"/actuator\",\"user.password\":\"123456\"},\"instanceId\":\"10.10.254.88#9001#DEFAULT#DEFAULT_GROUP@@platform-gateway\",\"port\":9001,\"healthy\":true,\"ip\":\"10.10.254.88\",\"clusterName\":\"DEFAULT\",\"weight\":1.0,\"ephemeral\":true,\"serviceName\":\"DEFAULT_GROUP@@platform-gateway\",\"enabled\":true}],\"name\":\"DEFAULT_GROUP@@platform-gateway\",\"checksum\":\"913736f40b770e0a2d824ee7d39c502f\",\"lastRefTime\":1654679945161,\"env\":\"\",\"clusters\":\"\"}","lastRefTime":26544599071849557} from /10.10.254.138
+2022-06-08 17:19:12[,][ERROR][naming-run]-[NA] failed to backup file on startup.
+java.lang.IllegalStateException: failed to create cache dir: C:\Users\admin/nacos/naming/7147c5f4-48d7-4ed8-a67a-42ed6966b40c/failover
+	at com.alibaba.nacos.client.naming.backups.FailoverReactor$2.run(FailoverReactor.java:79)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+2022-06-08 17:19:31[,][INFO][ClientWorker-run]-get changedGroupKeys:[]
+2022-06-08 17:19:31[,][INFO][ClientWorker-run]-get changedGroupKeys:[]
+2022-06-08 17:19:33[,][INFO][ClientWorker-run]-get changedGroupKeys:[]
+2022-06-08 17:19:33[,][INFO][ClientWorker-run]-get changedGroupKeys:[]
+2022-06-08 17:19:41[,][INFO][ThreadPoolTaskScheduler-shutdown]-Shutting down ExecutorService 'Nacso-Watch-Task-Scheduler'
+2022-06-08 17:19:41[,][INFO][NacosServiceRegistry-deregister]-De-registering from Nacos Server now...
+2022-06-08 17:19:41[,][INFO][naming-removeBeatInfo]-[BEAT] removing beat: DEFAULT_GROUP@@platform-gateway:10.10.254.88:9001 from beat map.
+2022-06-08 17:19:41[,][INFO][naming-deregisterService]-[DEREGISTER-SERVICE] 7147c5f4-48d7-4ed8-a67a-42ed6966b40c deregistering service DEFAULT_GROUP@@platform-gateway with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceIdGenerator":"simple","ip":"10.10.254.88","ipDeleteTimeout":30000,"metadata":{},"port":9001,"weight":1.0}
+2022-06-08 17:19:41[,][INFO][NacosServiceRegistry-deregister]-De-registration finished.
+2022-06-08 17:19:42[,][INFO][naming-run]-received push data: {"type":"dom","data":"{\"metadata\":{},\"dom\":\"DEFAULT_GROUP@@platform-gateway\",\"cacheMillis\":10000,\"useSpecifiedURL\":false,\"hosts\":[],\"name\":\"DEFAULT_GROUP@@platform-gateway\",\"checksum\":\"ca7ce45cd89c43bd8f668a24fe02a5cb\",\"lastRefTime\":1654679982604,\"env\":\"\",\"clusters\":\"\"}","lastRefTime":26544636515143495} from /10.10.254.138
+2022-06-08 17:19:42[,][INFO][naming-processServiceJSON]-removed ips(1) service: DEFAULT_GROUP@@platform-gateway -> [{"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"10.10.254.88#9001#DEFAULT#DEFAULT_GROUP@@platform-gateway","ip":"10.10.254.88","ipDeleteTimeout":30000,"metadata":{"user.name":"admin","preserved.register.source":"SPRING_CLOUD","management.context-path":"/actuator","user.password":"123456"},"port":9001,"serviceName":"DEFAULT_GROUP@@platform-gateway","weight":1.0}]
+2022-06-08 17:19:42[,][INFO][naming-processServiceJSON]-current ips:(0) service: DEFAULT_GROUP@@platform-gateway -> []

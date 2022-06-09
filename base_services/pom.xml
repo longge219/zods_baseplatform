@@ -15,5 +15,6 @@
         <module>rule_engine</module>
         <module>large_screen</module>
         <module>workflow_engine</module>
+        <module>sso_server</module>
     </modules>
 </project>

@@ -7,29 +7,37 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="rule_engine" />
+        <module name="sso_gateway" />
+        <module name="sso_admin" />
+        <module name="base_plugins_kafka" />
+        <module name="base_plugins_redis" />
+        <module name="base_plugins_auth" />
+        <module name="base_plugins_flink" />
+        <module name="base_plugins_exception" />
         <module name="large_screen" />
         <module name="base_plugins_minio" />
         <module name="base_plugins_drool" />
-        <module name="base_plugins_kafka" />
         <module name="mqtt_server" />
-        <module name="base_plugins_redis" />
-        <module name="rule-engine" />
         <module name="workflow_engine" />
+        <module name="sso_auth" />
         <module name="base_plugins_db" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="base_plugins_common" target="1.8" />
       <module name="base_service" target="1.8" />
-      <module name="rule_engine" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="base_plugins" options="" />
+      <module name="base_plugins_auth" options="-parameters" />
       <module name="base_plugins_common" options="-parameters" />
       <module name="base_plugins_db" options="-parameters" />
       <module name="base_plugins_drool" options="-parameters" />
+      <module name="base_plugins_exception" options="-parameters" />
+      <module name="base_plugins_flink" options="-parameters" />
       <module name="base_plugins_kafka" options="-parameters" />
       <module name="base_plugins_minio" options="-parameters" />
       <module name="base_plugins_redis" options="-parameters" />
@@ -37,8 +45,11 @@
       <module name="base_services" options="" />
       <module name="large_screen" options="-parameters" />
       <module name="mqtt_server" options="-parameters" />
-      <module name="rule-engine" options="-parameters" />
       <module name="rule_engine" options="-parameters" />
+      <module name="sso_admin" options="-parameters" />
+      <module name="sso_auth" options="-parameters" />
+      <module name="sso_gateway" options="-parameters" />
+      <module name="sso_server" options="" />
       <module name="workflow_engine" options="-parameters" />
     </option>
   </component>

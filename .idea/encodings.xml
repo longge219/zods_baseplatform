@@ -2,9 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://D:/program/maven3.3.3/repository/org/springframework/boot/spring-boot-starter-parent/2.2.2.RELEASE/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_db/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_drool/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_exception/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_flink/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_kafka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_minio/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_redis/src/main/java" charset="UTF-8" />
@@ -16,9 +19,15 @@
     <file url="file://$PROJECT_DIR$/base_services/rule_engine/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/sso_server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/sso_server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/sso_server/sso_admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/sso_server/sso_auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/sso_server/sso_gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/workflow_engine/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rule_engine/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sso_gateway/src/main/java" charset="UTF-8" />
   </component>
 </project>

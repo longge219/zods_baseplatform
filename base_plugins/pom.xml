@@ -17,6 +17,9 @@
         <module>base_plugins_redis</module>
         <module>base_plugins_drool</module>
         <module>base_plugins_minio</module>
+        <module>base_plugins_auth</module>
+        <module>base_plugins_exception</module>
+        <module>base_plugins_flink</module>
     </modules>
 
     <properties>

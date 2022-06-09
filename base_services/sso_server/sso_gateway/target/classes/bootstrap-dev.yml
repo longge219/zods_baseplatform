@@ -1,0 +1,79 @@
+server:
+  port: 9001
+spring:
+  security:
+    # 登陆所需的账号密码
+    user:
+      name: admin
+      password: 123456
+  application:
+    name: platform-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.10.254.138:8848
+        namespace: 7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+        metadata:
+          management:
+            context-path: /actuator
+          user.name: admin
+          user.password: 123456
+      config:
+        group: ${gateway.dynamicRoute.group}
+        file-extension: json
+        server-addr: 10.10.254.138:8848
+        namespace: 7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+    sentinel:
+      transport:
+        dashboard: 10.30.0.51:9100 #sentinel控制台访问路径
+        #        dashboard: 127.0.0.1:9100 #sentinel控制台访问路径
+        port: 8721
+      eager: true #心跳启动
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 10.10.254.138:8848
+            dataId: gateway.json
+            groupId: DEFAULT_GROUP
+            rule-type: flow
+            namespace: 7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+        ds2:
+          nacos:
+            server-addr: 10.10.254.138:8848
+            dataId: degrade.json
+            groupId: DEFAULT_GROUP
+            rule-type: degrade
+            namespace: 7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+    loadbalancer:
+      retry:
+        enabled: true
+  main:
+    allow-bean-definition-overriding: true
+  # 自定义的配置项，用于设置路由信息所载的配置文件，比如这里是 group + dataId
+gateway:
+  dynamicRoute:
+    enabled: true
+    dataType: nacos
+    dataId: 'xc_routes'
+    group: 'XC_GATEWAY'
+
+###############服务健康健康######################
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  logfile:
+    enabled: true         #可在线查看日志
+########################################################
+logging:
+  #  方便Spring Boot Admin页面上实时查看日志
+  config: classpath:logback-spring.xml
+  file: ${user.dir}/platform-logs/${spring.application.name}/${spring.application.name}.log

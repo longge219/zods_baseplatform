@@ -46,6 +46,8 @@
         <cronutils.version>9.1.5</cronutils.version>
         <minio.version>8.1.0</minio.version>
         <commons-lang3.version>3.5</commons-lang3.version>
+        <flink.version>1.14.2</flink.version>
+        <scala.binary.version>2.12</scala.binary.version>
     </properties>
 
     <dependencyManagement>
