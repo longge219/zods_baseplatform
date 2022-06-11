@@ -1,0 +1,76 @@
+{
+  "groups": [
+    {
+      "name": "com.zods.electronic.server",
+      "type": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "com.zods.electronic.server.backlog",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.electronic.server.port",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties"
+    },
+    {
+      "name": "com.zods.electronic.server.read",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.electronic.server.read-and-write",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.electronic.server.reuseaddr",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "com.zods.electronic.server.revbuf",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.electronic.server.server",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties"
+    },
+    {
+      "name": "com.zods.electronic.server.sndbuf",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.electronic.server.tcp-nodelay",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "com.zods.electronic.server.work-thread",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.electronic.server.write",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": 0
+    }
+  ],
+  "hints": []
+}

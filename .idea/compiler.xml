@@ -8,12 +8,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="rule_engine" />
+        <module name="smart_camp_iot" />
         <module name="sso_gateway" />
         <module name="sso_admin" />
         <module name="base_plugins_kafka" />
+        <module name="smart_camp_platform" />
         <module name="base_plugins_redis" />
         <module name="base_plugins_auth" />
         <module name="base_plugins_flink" />
+        <module name="hik_server" />
+        <module name="base_plugins_utils" />
         <module name="base_plugins_exception" />
         <module name="large_screen" />
         <module name="base_plugins_minio" />
@@ -27,6 +31,7 @@
     <bytecodeTargetLevel>
       <module name="base_plugins_common" target="1.8" />
       <module name="base_service" target="1.8" />
+      <module name="smart_iot" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -41,11 +46,18 @@
       <module name="base_plugins_kafka" options="-parameters" />
       <module name="base_plugins_minio" options="-parameters" />
       <module name="base_plugins_redis" options="-parameters" />
+      <module name="base_plugins_utils" options="-parameters" />
       <module name="base_service" options="-parameters" />
-      <module name="base_services" options="" />
+      <module name="base_services" options="-parameters" />
+      <module name="cust_platform" options="" />
+      <module name="hik_server" options="-parameters" />
       <module name="large_screen" options="-parameters" />
       <module name="mqtt_server" options="-parameters" />
       <module name="rule_engine" options="-parameters" />
+      <module name="smart_camp" options="" />
+      <module name="smart_camp_iot" options="-parameters" />
+      <module name="smart_camp_platform" options="-parameters" />
+      <module name="smart_iot" options="-parameters" />
       <module name="sso_admin" options="-parameters" />
       <module name="sso_auth" options="-parameters" />
       <module name="sso_gateway" options="-parameters" />

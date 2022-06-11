@@ -11,9 +11,11 @@
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_kafka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_minio/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_services/hik_server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/large_screen/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/mqtt_server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/rule_engine/src/main/java" charset="UTF-8" />
@@ -25,7 +27,15 @@
     <file url="file://$PROJECT_DIR$/base_services/sso_server/sso_auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/sso_server/sso_gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/workflow_engine/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cust_platform/smart_camp/smart_camp_iot/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cust_platform/smart_camp/smart_camp_platform/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cust_platform/smart_camp/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cust_platform/smart_camp/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cust_platform/smart_iot/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cust_platform/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cust_platform/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rule_engine/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart_camp/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sso_gateway/src/main/java" charset="UTF-8" />

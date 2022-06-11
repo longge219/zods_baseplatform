@@ -41,12 +41,13 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- Mysql -->
+        <!-- Mysql
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connect.version}</version>
         </dependency>
+        -->
         <!-- alibaba的druid数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>

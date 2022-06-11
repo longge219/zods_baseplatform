@@ -34,9 +34,7 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
     private NioEventLoopGroup workGroup; //处理与各个客户端连接的 IO 操作线程池
 
 
-    /**
-     * 启动服务
-     */
+    /**启动服务*/
     @Override
     public void start() throws Exception {
         initEventPool();//初始化EnentPool

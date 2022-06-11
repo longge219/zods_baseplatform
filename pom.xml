@@ -11,6 +11,7 @@
     <modules>
         <module>base_plugins</module>
         <module>base_services</module>
+        <module>cust_platform</module>
     </modules>
     <description>MiddleGround 是基于SpringCloud旨向应用于监测的中台微服务框架</description>
 
@@ -48,6 +49,8 @@
         <commons-lang3.version>3.5</commons-lang3.version>
         <flink.version>1.14.2</flink.version>
         <scala.binary.version>2.12</scala.binary.version>
+        <activiti.version>7.1.0.M6</activiti.version>
+        <netty.version>4.1.10.Final</netty.version>
     </properties>
 
     <dependencyManagement>

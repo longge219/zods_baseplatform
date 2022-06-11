@@ -1,0 +1,10 @@
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  application:
+    name: electronic-server
+  profiles:
+    active: dev
+logging:
+  config: classpath:logback-spring.xml

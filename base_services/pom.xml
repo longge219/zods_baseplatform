@@ -16,5 +16,6 @@
         <module>large_screen</module>
         <module>workflow_engine</module>
         <module>sso_server</module>
+        <module>hik_server</module>
     </modules>
 </project>
