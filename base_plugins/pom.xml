@@ -21,6 +21,7 @@
         <module>base_plugins_exception</module>
         <module>base_plugins_flink</module>
         <module>base_plugins_utils</module>
+        <module>base_plugins_zods</module>
     </modules>
 
     <properties>

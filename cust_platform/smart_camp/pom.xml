@@ -14,6 +14,7 @@
     <modules>
         <module>smart_camp_platform</module>
         <module>smart_camp_iot</module>
+        <module>smart_camp_dataprocess</module>
     </modules>
 
 </project>

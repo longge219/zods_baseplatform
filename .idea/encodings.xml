@@ -12,6 +12,7 @@
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_minio/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_redis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_utils/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base_plugins/base_plugins_zods/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_plugins/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_service/src/main/java" charset="UTF-8" />
@@ -27,6 +28,7 @@
     <file url="file://$PROJECT_DIR$/base_services/sso_server/sso_auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/sso_server/sso_gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base_services/workflow_engine/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cust_platform/smart_camp/smart_camp_dataprocess/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cust_platform/smart_camp/smart_camp_iot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cust_platform/smart_camp/smart_camp_platform/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cust_platform/smart_camp/src/main/java" charset="UTF-8" />

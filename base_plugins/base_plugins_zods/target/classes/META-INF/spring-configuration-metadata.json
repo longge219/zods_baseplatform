@@ -1,0 +1,63 @@
+{
+  "groups": [
+    {
+      "name": "spring.gaea",
+      "type": "com.zods.plugins.zods.GaeaProperties",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties"
+    },
+    {
+      "name": "spring.gaea.security",
+      "type": "com.zods.plugins.zods.GaeaProperties$Security",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties",
+      "sourceMethod": "getSecurity()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.gaea.request-info-service-ids",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties"
+    },
+    {
+      "name": "spring.gaea.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties",
+      "defaultValue": "anji-plus"
+    },
+    {
+      "name": "spring.gaea.security.jwt-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties$Security",
+      "defaultValue": "anji_plus_gaea_p@ss1234"
+    },
+    {
+      "name": "spring.gaea.security.jwt-token-timeout",
+      "type": "java.lang.Long",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties$Security",
+      "defaultValue": 120
+    },
+    {
+      "name": "spring.gaea.security.permit-all",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties$Security",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.gaea.security.scan-annotation",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties$Security",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.gaea.security.while-list",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties$Security"
+    },
+    {
+      "name": "spring.gaea.subscribes",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.plugins.zods.GaeaProperties"
+    }
+  ],
+  "hints": []
+}
