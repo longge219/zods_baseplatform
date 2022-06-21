@@ -4,13 +4,12 @@ import com.zods.largescreen.common.constant.QueryEnum;
 import com.zods.largescreen.common.curd.params.PageParam;
 import lombok.Data;
 import java.io.Serializable;
-
-
 /**
-* @desc DataSource 数据集查询输入类
-* @author Raod
-* @date 2021-03-18 12:09:57.728203200
-**/
+ * @author jianglong
+ * @version 1.0
+ * @Description 数据集查询输入类
+ * @createDate 2022-06-21
+ */
 @Data
 public class DataSourceParam extends PageParam implements Serializable{
 

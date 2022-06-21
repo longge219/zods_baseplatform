@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 请求返回对象
  * @createDate 2022-06-20
  */
 public final class ResponseBean implements Serializable {

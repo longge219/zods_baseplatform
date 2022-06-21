@@ -11,7 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @EnabledGaeaConfiguration
 @SpringBootApplication
-@MapperScan(basePackages = {"com.zods.largescreen.modules.*.dao", "com.zods.largescreen.modules.*.**.dao", "com.zods.largescreen.*.module.*.dao"})
+@MapperScan(basePackages = {
+        "com.zods.largescreen.modules.*.dao",
+        "com.zods.largescreen.modules.*.**.dao",
+        "com.zods.largescreen.*.module.*.dao"})
 public class ReportApplication {
     public static void main( String[] args ) {
         SpringApplication.run(ReportApplication.class);

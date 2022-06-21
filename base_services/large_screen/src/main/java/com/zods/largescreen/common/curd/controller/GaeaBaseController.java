@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 基础controller
  * @createDate 2022-06-20
  */
 public abstract class GaeaBaseController<P extends PageParam, T extends BaseEntity, D extends BaseDTO> extends BaseController {
@@ -34,14 +34,21 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
 
     public abstract D getDTO();
 
+    public List<D> pageResultHandler(List<D> list) {
+        return list;
+    }
+
+    public D detailResultHandler(D detail) {
+        return detail;
+    }
+
+    protected D resultDtoHandle(D d) {
+        return d;
+    }
+
     @GetMapping({"/pageList"})
-    @Permission(
-            code = "query",
-            name = "查询"
-    )
-    @GaeaAuditLog(
-            pageTitle = "查询"
-    )
+    @Permission(code = "query", name = "查询")
+    @GaeaAuditLog(pageTitle = "分页查询")
     public ResponseBean pageList(P param) {
         IPage<T> iPage = this.getService().page(param);
         List<T> records = iPage.getRecords();
@@ -52,13 +59,6 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
         return this.responseSuccessWithData(pageDto);
     }
 
-    public List<D> pageResultHandler(List<D> list) {
-        return list;
-    }
-
-    public D detailResultHandler(D detail) {
-        return detail;
-    }
 
     @GetMapping({"/{id}"})
     @AccessKey
@@ -73,18 +73,11 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
         return responseBean;
     }
 
-    protected D resultDtoHandle(D d) {
-        return d;
-    }
+
 
     @PostMapping
-    @Permission(
-            code = "insert",
-            name = "新增"
-    )
-    @GaeaAuditLog(
-            pageTitle = "新增"
-    )
+    @Permission(code = "insert", name = "新增")
+    @GaeaAuditLog(pageTitle = "新增")
     public ResponseBean insert(@Validated @RequestBody D dto) {
         this.logger.info("{}新增服务开始，参数：{}", this.getClass().getSimpleName(), GaeaUtils.toJSONString(dto));
         ResponseBean responseBean = this.responseSuccess();
@@ -96,13 +89,8 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
     }
 
     @PutMapping
-    @Permission(
-            code = "update",
-            name = "更新"
-    )
-    @GaeaAuditLog(
-            pageTitle = "修改"
-    )
+    @Permission(code = "update", name = "更新")
+    @GaeaAuditLog(pageTitle = "修改")
     public ResponseBean update(@Validated @RequestBody D dto) {
         String username = UserContentHolder.getContext().getUsername();
         this.logger.info("{}更新服务开始,更新人：{}，参数：{}", new Object[]{this.getClass().getSimpleName(), username, GaeaUtils.toJSONString(dto)});
@@ -114,13 +102,8 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
     }
 
     @DeleteMapping({"/{id}"})
-    @Permission(
-            code = "delete",
-            name = "删除"
-    )
-    @GaeaAuditLog(
-            pageTitle = "删除"
-    )
+    @Permission(code = "delete", name = "删除")
+    @GaeaAuditLog(pageTitle = "删除")
     public ResponseBean deleteById(@PathVariable("id") Long id) {
         this.logger.info("{}删除服务开始，参数ID：{}", this.getClass().getSimpleName(), id);
         this.getService().deleteById(id);
@@ -129,13 +112,8 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
     }
 
     @PostMapping({"/delete/batch"})
-    @Permission(
-            code = "delete",
-            name = "删除"
-    )
-    @GaeaAuditLog(
-            pageTitle = "批量删除"
-    )
+    @Permission(code = "delete", name = "删除")
+    @GaeaAuditLog(pageTitle = "批量删除")
     public ResponseBean deleteBatchIds(@RequestBody List<Serializable> ids) {
         this.logger.info("{}批量删除服务开始，批量参数Ids：{}", this.getClass().getSimpleName(), GaeaUtils.toJSONString(ids));
         boolean deleteCount = this.getService().deleteByIds(ids);

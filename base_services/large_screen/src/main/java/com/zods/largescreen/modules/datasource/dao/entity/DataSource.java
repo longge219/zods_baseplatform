@@ -1,4 +1,3 @@
-
 package com.zods.largescreen.modules.datasource.dao.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zods.largescreen.code.ResponseCode;
@@ -6,13 +5,12 @@ import com.zods.largescreen.common.annotation.Unique;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
 /**
-* @description 数据源 entity
-* @author Raod
-* @date 2021-03-18 12:09:57.728203200
-**/
-@TableName(keepGlobalPrefix=true, value="gaea_report_data_source")
+ * @desc 数据源 entity
+ * @author jianglong
+ * @date 2022-06-16
+ **/
+@TableName(keepGlobalPrefix=true, value="large_screen_data_source")
 @Data
 public class DataSource extends GaeaBaseEntity {
     @ApiModelProperty(value = "数据源编码")

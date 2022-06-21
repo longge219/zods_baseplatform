@@ -2,7 +2,7 @@ package com.zods.largescreen.common.annotation.valid.em;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 枚举类接口
  * @createDate 2022-06-20
  */
 public interface EnumInterface<T> {

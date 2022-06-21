@@ -41,20 +41,13 @@ public class DataSourceController extends GaeaBaseController<DataSourceParam, Da
         return new DataSourceDto();
     }
 
-    /**
-     * 获取所有数据源
-     * @return
-     */
+    /**获取所有数据源*/
     @GetMapping("/queryAllDataSource")
     public ResponseBean queryAllDataSource() {
         return responseSuccessWithData(dataSourceService.queryAllDataSource());
     }
 
-    /**
-     * 测试 连接
-     * @param connectionParam
-     * @return
-     */
+    /**测试连接*/
     @Permission( code = "query", name = "测试数据源")
     @PostMapping("/testConnection")
     public ResponseBean testConnection(@Validated @RequestBody ConnectionParam connectionParam) {

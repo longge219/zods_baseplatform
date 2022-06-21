@@ -1,4 +1,5 @@
 package com.zods.largescreen.config;
+
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,15 +7,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.flyway.FlywayProperties;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 /**
- * @author jianglong
- * @version 1.0
- * @Description business配置类
- * @createDate 2022-06-20
+ * Created by raodeming on 2021/7/5.
  */
 @Slf4j
 @Component

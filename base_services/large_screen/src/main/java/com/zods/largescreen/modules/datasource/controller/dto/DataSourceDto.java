@@ -1,19 +1,14 @@
-
 package com.zods.largescreen.modules.datasource.controller.dto;
-
 import com.zods.largescreen.common.curd.dto.GaeaBaseDTO;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Map;
-
-
 /**
-*
-* @description 数据源 dto
-* @author Raod
-* @date 2021-03-18 12:09:57.728203200
-**/
+ * @author jianglong
+ * @version 1.0
+ * @Description 数据源 dto
+ * @createDate 2022-06-21
+ */
 @Data
 public class DataSourceDto extends GaeaBaseDTO implements Serializable {
     /** 数据源编码 */
@@ -28,7 +23,12 @@ public class DataSourceDto extends GaeaBaseDTO implements Serializable {
     /** 数据源类型 DIC_NAME=SOURCE_TYPE; mysql，orace，sqlserver，elasticsearch，接口，javaBean，数据源类型字典中item-extend动态生成表单 */
      private String sourceType;
 
-    /** 数据源连接配置json：关系库{ jdbcUrl:'', username:'', password:'','driverName':''}ES-sql{ apiUrl:'http://127.0.0.1:9092/_xpack/sql?format=json','method':'POST','body':'{"query":"select 1"}' }  接口{ apiUrl:'http://ip:port/url', method:'' } javaBean{ beanNamw:'xxx' } */
+    /** 数据源连接配置json：
+     * 关系库{ jdbcUrl:'', username:'', password:'','driverName':''}
+     * ES-sql{ apiUrl:'http://127.0.0.1:9092/_xpack/sql?format=json','method':'POST','body':'{"query":"select 1"}' }
+     * 接口{ apiUrl:'http://ip:port/url', method:'' }
+     * javaBean{ beanNamw:'xxx'}
+     * */
      private String sourceConfig;
 
     /** 0--已禁用 1--已启用  DIC_NAME=ENABLE_FLAG */
@@ -68,7 +68,7 @@ public class DataSourceDto extends GaeaBaseDTO implements Serializable {
     /** 动态查询sql或者接口中的请求体 */
     private String dynSentence;
 
-    /** 传入的自定义参数，解决url中存在的动态参数*/
+    /**传入的自定义参数，解决url中存在的动态参数*/
     private Map<String, Object> contextData;
 
 }

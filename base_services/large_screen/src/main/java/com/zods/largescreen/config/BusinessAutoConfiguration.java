@@ -1,16 +1,15 @@
 package com.zods.largescreen.config;
-import com.zods.largescreen.common.cache.CacheHelper;
 import com.zods.largescreen.runner.ApplicationInitRunner;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.cache.ehcache.EhCacheCache;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 /**
- * @author jianglong
- * @version 1.0
- * @Description business配置类
- * @createDate 2022-06-20
+ * business配置类
+ * @author lr
+ * @since 2021-04-08
  */
 @Configuration
 @MapperScan(basePackages = {
@@ -28,6 +27,11 @@ public class BusinessAutoConfiguration {
         return new ApplicationInitRunner();
     }
 
+
+    @Bean
+    public EhCacheCache ehCacheCache() {
+        return (EhCacheCache) ehCacheCacheManager().getCache("reportCache");
+    }
 
     /**
      * 创建ehCacheCacheManager

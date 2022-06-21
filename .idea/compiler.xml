@@ -51,7 +51,7 @@
       <module name="base_plugins_utils" options="-parameters" />
       <module name="base_plugins_zods" options="-parameters" />
       <module name="base_service" options="-parameters" />
-      <module name="base_services" options="" />
+      <module name="base_services" options="-parameters" />
       <module name="cust_platform" options="" />
       <module name="hik_server" options="-parameters" />
       <module name="large_screen" options="-parameters" />
