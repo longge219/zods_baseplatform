@@ -1,5 +1,10 @@
 package com.zods.largescreen.enums;
-
+/**
+ * @author jianglong
+ * @version 1.0
+ * @Description
+ * @createDate 2022-06-20
+ */
 public enum SetTypeEnum {
     SQL("sql", "sql"),
     HTTP("http", "http"),

@@ -1,9 +1,9 @@
 package com.zods.largescreen.constant;
-
 /**
- * 常量
- * @author lr
- * @since 2021-03-26
+ * @author jianglong
+ * @version 1.0
+ * @Description 常量
+ * @createDate 2022-06-20
  */
 public interface BusinessConstant {
 

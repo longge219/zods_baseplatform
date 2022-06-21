@@ -1,8 +1,0 @@
-server:
-  port: 9090
-  shutdown: graceful
-spring:
-  application:
-    name: large_screen
-  profiles:
-    active: dev

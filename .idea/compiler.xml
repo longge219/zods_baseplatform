@@ -20,7 +20,6 @@
         <module name="base_plugins_utils" />
         <module name="base_plugins_exception" />
         <module name="large_screen" />
-        <module name="base_plugins_zods" />
         <module name="smart_camp_dataprocess" />
         <module name="base_plugins_minio" />
         <module name="base_plugins_drool" />
@@ -32,6 +31,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="base_plugins_common" target="1.8" />
+      <module name="base_plugins_zods" target="1.8" />
       <module name="base_service" target="1.8" />
       <module name="smart_iot" target="1.8" />
     </bytecodeTargetLevel>
@@ -51,7 +51,7 @@
       <module name="base_plugins_utils" options="-parameters" />
       <module name="base_plugins_zods" options="-parameters" />
       <module name="base_service" options="-parameters" />
-      <module name="base_services" options="-parameters" />
+      <module name="base_services" options="" />
       <module name="cust_platform" options="" />
       <module name="hik_server" options="-parameters" />
       <module name="large_screen" options="-parameters" />
@@ -67,6 +67,7 @@
       <module name="sso_gateway" options="-parameters" />
       <module name="sso_server" options="" />
       <module name="workflow_engine" options="-parameters" />
+      <module name="zods_baseplatform" options="" />
     </option>
   </component>
 </project>

@@ -1,9 +1,9 @@
 package com.zods.largescreen.enums;
-
 /**
- * @author zhouhang
- * @description EXCEL居中方式
- * @date 2021/4/26
+ * @author jianglong
+ * @version 1.0
+ * @Description EXCEL居中方式
+ * @createDate 2022-06-20
  */
 public enum ExcelCenterStyleEnum {
     /**

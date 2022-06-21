@@ -1,9 +1,10 @@
 package com.zods.largescreen.code;
 
 /**
- * 响应码
- * @author lr
- * @since 2021-02-22
+ * @author jianglong
+ * @version 1.0
+ * @Description 响应码
+ * @createDate 2022-06-20
  */
 public interface ResponseCode {
 
