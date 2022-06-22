@@ -1,4 +1,3 @@
-
 package com.zods.largescreen.modules.datasettransform.controller;
 import com.zods.largescreen.common.curd.controller.GaeaBaseController;
 import com.zods.largescreen.common.curd.service.GaeaBaseService;
@@ -10,13 +9,12 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 /**
-* @desc 数据集数据转换 controller
-* @website https://gitee.com/anji-plus/gaea
-* @author Raod
-* @date 2021-03-18 12:13:15.591309400
-**/
+ * @author jianglong
+ * @version 1.0
+ * @Description 数据集数据转换 controller
+ * @createDate 2022-06-22
+ */
 @RestController
 @Api(tags = "数据集数据转换管理")
 @RequestMapping("/dataSetTransform")

@@ -1,4 +1,4 @@
-package com.zods.largescreen.modules.datasource.config;
+package com.zods.largescreen.config;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;

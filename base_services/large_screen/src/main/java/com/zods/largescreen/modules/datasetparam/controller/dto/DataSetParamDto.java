@@ -1,18 +1,13 @@
-
 package com.zods.largescreen.modules.datasetparam.controller.dto;
-
 import com.zods.largescreen.common.curd.dto.GaeaBaseDTO;
 import lombok.Data;
-
 import java.io.Serializable;
-
-
 /**
-*
-* @description 数据集动态参数 dto
-* @author Raod
-* @date 2021-03-18 12:12:33.108033200
-**/
+ * @author jianglong
+ * @version 1.0
+ * @Description 数据集动态参数 dto
+ * @createDate 2022-06-22
+ */
 @Data
 public class DataSetParamDto extends GaeaBaseDTO implements Serializable {
     /** 数据集编码 */

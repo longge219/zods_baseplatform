@@ -1,9 +1,6 @@
-
 package com.zods.largescreen.modules.dataset.service.impl;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -34,20 +31,17 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 /**
-* @desc DataSet 数据集服务实现
-* @author Raod
-* @date 2021-03-18 12:11:31.150755900
-**/
+ * @desc 数据集 数据集服务实现
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 @Service
-//@RequiredArgsConstructor
 @Slf4j
 public class DataSetServiceImpl implements DataSetService {
 
@@ -68,12 +62,8 @@ public class DataSetServiceImpl implements DataSetService {
       return dataSetMapper;
     }
 
-    /**
-     * 单条详情
-     *
-     * @param id
-     * @return
-     */
+
+    /**通过DataSet的ID查询单条详情*/
     @Override
     public DataSetDto detailSet(Long id) {
         DataSetDto dto = new DataSetDto();
@@ -83,12 +73,7 @@ public class DataSetServiceImpl implements DataSetService {
         return getDetailSet(dto, setCode);
     }
 
-    /**
-     * 单条详情
-     *
-     * @param setCode
-     * @return
-     */
+    /**通过DataSet的ID查询单条详情*/
     @Override
     public DataSetDto detailSet(String setCode) {
         DataSetDto dto = new DataSetDto();
@@ -97,78 +82,26 @@ public class DataSetServiceImpl implements DataSetService {
         return getDetailSet(dto, setCode);
     }
 
-    public DataSetDto getDetailSet(DataSetDto dto, String setCode) {
-        //查询参数
-        List<DataSetParam> dataSetParamList = dataSetParamService.list(
-                new QueryWrapper<DataSetParam>()
-                        .lambda()
-                        .eq(DataSetParam::getSetCode, setCode)
-        );
-        List<DataSetParamDto> dataSetParamDtoList = new ArrayList<>();
-        dataSetParamList.forEach(dataSetParam -> {
-            DataSetParamDto dataSetParamDto = new DataSetParamDto();
-            GaeaBeanUtils.copyAndFormatter(dataSetParam, dataSetParamDto);
-            dataSetParamDtoList.add(dataSetParamDto);
-        });
-        dto.setDataSetParamDtoList(dataSetParamDtoList);
-
-        //数据转换
-
-        List<DataSetTransform> dataSetTransformList = dataSetTransformService.list(
-                new QueryWrapper<DataSetTransform>()
-                    .lambda()
-                    .eq(DataSetTransform::getSetCode, setCode)
-                    .orderByAsc(DataSetTransform::getOrderNum)
-        );
-        List<DataSetTransformDto> dataSetTransformDtoList = new ArrayList<>();
-        dataSetTransformList.forEach(dataSetTransform -> {
-            DataSetTransformDto dataSetTransformDto = new DataSetTransformDto();
-            GaeaBeanUtils.copyAndFormatter(dataSetTransform, dataSetTransformDto);
-            dataSetTransformDtoList.add(dataSetTransformDto);
-        });
-        dto.setDataSetTransformDtoList(dataSetTransformDtoList);
-
-        if (StringUtils.isNotBlank(dto.getCaseResult())) {
-            try {
-                JSONArray jsonArray = JSONArray.parseArray(dto.getCaseResult());
-                JSONObject jsonObject = jsonArray.getJSONObject(0);
-                dto.setSetParamList(jsonObject.keySet());
-            } catch (Exception e) {
-                log.error("error",e);
-            }
-        }
-        return dto;
-    }
 
 
-    /**
-     * 新增数据集、添加查询参数、数据转换
-     *
-     * @param dto
-     */
+    /**新增数据集、添加查询参数、数据转换*/
     @Override
     @Transactional
     public DataSetDto insertSet(DataSetDto dto) {
         List<DataSetParamDto> dataSetParamDtoList = dto.getDataSetParamDtoList();
         List<DataSetTransformDto> dataSetTransformDtoList = dto.getDataSetTransformDtoList();
-
         //1.新增数据集
         DataSet dataSet = new DataSet();
         BeanUtils.copyProperties(dto, dataSet);
         insert(dataSet);
         //2.更新查询参数
         dataSetParamBatch(dataSetParamDtoList, dto.getSetCode());
-
         //3.更新数据转换
         dataSetTransformBatch(dataSetTransformDtoList, dto.getSetCode());
         return dto;
     }
 
-    /**
-     * 更新数据集、添加查询参数、数据转换
-     *
-     * @param dto
-     */
+    /**更新数据集、添加查询参数、数据转换*/
     @Override
     @Transactional
     public void updateSet(DataSetDto dto) {
@@ -178,27 +111,20 @@ public class DataSetServiceImpl implements DataSetService {
         DataSet dataSet = new DataSet();
         BeanUtils.copyProperties(dto, dataSet);
         update(dataSet);
-
         //2.更新查询参数
         dataSetParamBatch(dataSetParamDtoList, dto.getSetCode());
-
         //3.更新数据转换
         dataSetTransformBatch(dataSetTransformDtoList, dto.getSetCode());
     }
 
 
-    /**
-     * 删除数据集、添加查询参数、数据转换
-     *
-     * @param id
-     */
+    /**删除数据集、添加查询参数、数据转换*/
     @Override
     public void deleteSet(Long id) {
         DataSet dataSet = selectOne(id);
         String setCode = dataSet.getSetCode();
         //1.删除数据集
         deleteById(id);
-
         //2.删除查询参数
         dataSetParamService.delete(
                 new QueryWrapper<DataSetParam>()
@@ -214,15 +140,63 @@ public class DataSetServiceImpl implements DataSetService {
         );
     }
 
-    /**
-     * 获取数据
-     *
-     * @param dto
-     * @return
-     */
+    /**测试 数据转换是否正确*/
+    @Override
+    public OriginalDataDto testTransform(DataSetDto dto) {
+        String dynSentence = dto.getDynSentence();
+        OriginalDataDto originalDataDto = new OriginalDataDto();
+        String sourceCode = dto.getSourceCode();
+        //1.获取数据源
+        DataSource dataSource;
+         //HTTP方式
+        if (dto.getSetType().equals(SetTypeEnum.HTTP.getCodeValue())) {
+            //http不需要数据源，兼容已有的逻辑，将http所需要的数据塞进DataSource
+            dataSource = new DataSource();
+            dataSource.setSourceConfig(dynSentence);
+            dataSource.setSourceType(JdbcConstants.HTTP);
+            String body = JSONObject.parseObject(dynSentence).getString("body");
+            if (StringUtils.isNotBlank(body)) {
+                dynSentence = body;
+            }else {
+                dynSentence = "{}";
+            }
+
+        }else {
+            //非http方式查询数据源
+            dataSource  = dataSourceService.selectOne("source_code", sourceCode);
+        }
+
+        //2.参数替换
+        //2.1参数校验
+        boolean verification = dataSetParamService.verification(dto.getDataSetParamDtoList(), null);
+        if (!verification) {
+            throw BusinessExceptionBuilder.build(ResponseCode.RULE_FIELDS_CHECK_ERROR);
+        }
+
+        dynSentence = dataSetParamService.transform(dto.getDataSetParamDtoList(), dynSentence);
+        //3.获取数据
+        DataSourceDto dataSourceDto = new DataSourceDto();
+        BeanUtils.copyProperties(dataSource, dataSourceDto);
+        dataSourceDto.setDynSentence(dynSentence);
+        dataSourceDto.setContextData(setContextData(dto.getDataSetParamDtoList()));
+
+        //获取total,判断DataSetParamDtoList中是否传入分页参数
+        Map<String, Object> collect = dto.getDataSetParamDtoList().stream().collect(Collectors.toMap(DataSetParamDto::getParamName, DataSetParamDto::getSampleItem));
+        if (collect.containsKey("pageNumber") && collect.containsKey("pageSize")) {
+            dto.setContextData(collect);
+            long total = dataSourceService.total(dataSourceDto, dto);
+            originalDataDto.setTotal(total);
+        }
+        List<JSONObject> data = dataSourceService.execute(dataSourceDto);
+        //4.数据转换
+        List<JSONObject> transform = dataSetTransformService.transform(dto.getDataSetTransformDtoList(), data);
+        originalDataDto.setData(transform);
+        return originalDataDto;
+    }
+
+    /**获取数据*/
     @Override
     public OriginalDataDto getData(DataSetDto dto) {
-
         OriginalDataDto originalDataDto = new OriginalDataDto();
         String setCode = dto.getSetCode();
         //1.获取数据集、参数替换、数据转换
@@ -275,69 +249,7 @@ public class DataSetServiceImpl implements DataSetService {
         return originalDataDto;
     }
 
-    /**
-     * @param dto
-     * @return
-     */
-    @Override
-    public OriginalDataDto testTransform(DataSetDto dto) {
-        String dynSentence = dto.getDynSentence();
-
-        OriginalDataDto originalDataDto = new OriginalDataDto();
-        String sourceCode = dto.getSourceCode();
-        //1.获取数据源
-        DataSource dataSource;
-        if (dto.getSetType().equals(SetTypeEnum.HTTP.getCodeValue())) {
-            //http不需要数据源，兼容已有的逻辑，将http所需要的数据塞进DataSource
-            dataSource = new DataSource();
-            dataSource.setSourceConfig(dynSentence);
-            dataSource.setSourceType(JdbcConstants.HTTP);
-            String body = JSONObject.parseObject(dynSentence).getString("body");
-            if (StringUtils.isNotBlank(body)) {
-                dynSentence = body;
-            }else {
-                dynSentence = "{}";
-            }
-
-        }else {
-          dataSource  = dataSourceService.selectOne("source_code", sourceCode);
-        }
-
-        //3.参数替换
-        //3.1参数校验
-        boolean verification = dataSetParamService.verification(dto.getDataSetParamDtoList(), null);
-        if (!verification) {
-            throw BusinessExceptionBuilder.build(ResponseCode.RULE_FIELDS_CHECK_ERROR);
-        }
-
-        dynSentence = dataSetParamService.transform(dto.getDataSetParamDtoList(), dynSentence);
-        //4.获取数据
-        DataSourceDto dataSourceDto = new DataSourceDto();
-        BeanUtils.copyProperties(dataSource, dataSourceDto);
-        dataSourceDto.setDynSentence(dynSentence);
-        dataSourceDto.setContextData(setContextData(dto.getDataSetParamDtoList()));
-
-        //获取total,判断DataSetParamDtoList中是否传入分页参数
-        Map<String, Object> collect = dto.getDataSetParamDtoList().stream().collect(Collectors.toMap(DataSetParamDto::getParamName, DataSetParamDto::getSampleItem));
-        if (collect.containsKey("pageNumber") && collect.containsKey("pageSize")) {
-            dto.setContextData(collect);
-            long total = dataSourceService.total(dataSourceDto, dto);
-            originalDataDto.setTotal(total);
-        }
-
-        List<JSONObject> data = dataSourceService.execute(dataSourceDto);
-        //5.数据转换
-        List<JSONObject> transform = dataSetTransformService.transform(dto.getDataSetTransformDtoList(), data);
-        originalDataDto.setData(transform);
-        return originalDataDto;
-    }
-
-
-    /**
-     * 获取所有数据集
-     *
-     * @return
-     */
+    /**获取所有数据集*/
     @Override
     public List<DataSet> queryAllDataSet() {
         LambdaQueryWrapper<DataSet> wrapper = Wrappers.lambdaQuery();
@@ -347,7 +259,52 @@ public class DataSetServiceImpl implements DataSetService {
         return dataSetMapper.selectList(wrapper);
     }
 
-    public void dataSetParamBatch(List<DataSetParamDto> dataSetParamDtoList,String setCode){
+
+    /**根据数据集dto 数据集合编号查询DataSetDto*/
+    private  DataSetDto getDetailSet(DataSetDto dto, String setCode) {
+        //查询参数查询
+        List<DataSetParam> dataSetParamList = dataSetParamService.list(
+                new QueryWrapper<DataSetParam>()
+                        .lambda()
+                        .eq(DataSetParam::getSetCode, setCode)
+        );
+        List<DataSetParamDto> dataSetParamDtoList = new ArrayList<>();
+        dataSetParamList.forEach(dataSetParam -> {
+            DataSetParamDto dataSetParamDto = new DataSetParamDto();
+            GaeaBeanUtils.copyAndFormatter(dataSetParam, dataSetParamDto);
+            dataSetParamDtoList.add(dataSetParamDto);
+        });
+        dto.setDataSetParamDtoList(dataSetParamDtoList);
+
+        //数据转换查询
+        List<DataSetTransform> dataSetTransformList = dataSetTransformService.list(
+                new QueryWrapper<DataSetTransform>()
+                        .lambda()
+                        .eq(DataSetTransform::getSetCode, setCode)
+                        .orderByAsc(DataSetTransform::getOrderNum)
+        );
+        List<DataSetTransformDto> dataSetTransformDtoList = new ArrayList<>();
+        dataSetTransformList.forEach(dataSetTransform -> {
+            DataSetTransformDto dataSetTransformDto = new DataSetTransformDto();
+            GaeaBeanUtils.copyAndFormatter(dataSetTransform, dataSetTransformDto);
+            dataSetTransformDtoList.add(dataSetTransformDto);
+        });
+        dto.setDataSetTransformDtoList(dataSetTransformDtoList);
+        if (StringUtils.isNotBlank(dto.getCaseResult())) {
+            try {
+                JSONArray jsonArray = JSONArray.parseArray(dto.getCaseResult());
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                dto.setSetParamList(jsonObject.keySet());
+            } catch (Exception e) {
+                log.error("error",e);
+            }
+        }
+        return dto;
+    }
+
+    /**批量添加修改-数据集中的查询参数*/
+    private void dataSetParamBatch(List<DataSetParamDto> dataSetParamDtoList,String setCode){
+        //先删出所有查询参数
         dataSetParamService.delete(
                 new QueryWrapper<DataSetParam>()
                         .lambda()
@@ -356,20 +313,20 @@ public class DataSetServiceImpl implements DataSetService {
         if (null == dataSetParamDtoList || dataSetParamDtoList.size() <= 0) {
             return;
         }
-//        List<DataSetParam> dataSetParamList = new ArrayList<>();
+        //单条添加查询参数
         dataSetParamDtoList.forEach(dataSetParamDto -> {
             DataSetParam dataSetParam = new DataSetParam();
             BeanUtils.copyProperties(dataSetParamDto, dataSetParam);
             dataSetParam.setSetCode(setCode);
             //不采用批量
             dataSetParamService.insert(dataSetParam);
-//            dataSetParamList.add(dataSetParam);
         });
-//        dataSetParamService.insertBatch(dataSetParamList);
 
     }
 
-    public void dataSetTransformBatch(List<DataSetTransformDto> dataSetTransformDtoList,String setCode){
+     /**批量添加修改-数据转换*/
+    private void dataSetTransformBatch(List<DataSetTransformDto> dataSetTransformDtoList,String setCode){
+        //先删出所有数据转换
         dataSetTransformService.delete(
                 new QueryWrapper<DataSetTransform>()
                         .lambda()
@@ -378,7 +335,7 @@ public class DataSetServiceImpl implements DataSetService {
         if (null == dataSetTransformDtoList || dataSetTransformDtoList.size() <= 0) {
             return;
         }
-//        List<DataSetTransform> dataSetTransformList = new ArrayList<>();
+        //单条添加数据转换
         for (int i = 0; i < dataSetTransformDtoList.size(); i++) {
             DataSetTransform dataSetTransform = new DataSetTransform();
             BeanUtils.copyProperties(dataSetTransformDtoList.get(i), dataSetTransform);
@@ -386,17 +343,11 @@ public class DataSetServiceImpl implements DataSetService {
             dataSetTransform.setSetCode(setCode);
             //不采用批量
             dataSetTransformService.insert(dataSetTransform);
-//            dataSetTransformList.add(dataSetTransform);
         }
-//        dataSetTransformService.insertBatch(dataSetTransformList);
     }
 
-    /**
-     * dataSetParamDtoList转map
-     * @param dataSetParamDtoList
-     * @return
-     */
-    public Map<String, Object> setContextData(List<DataSetParamDto> dataSetParamDtoList){
+    /**dataSetParamDtoList转map*/
+    private Map<String, Object> setContextData(List<DataSetParamDto> dataSetParamDtoList){
         Map<String, Object> map = new HashMap<>();
         if (null != dataSetParamDtoList && dataSetParamDtoList.size() > 0) {
             dataSetParamDtoList.forEach(dataSetParamDto -> map.put(dataSetParamDto.getParamName(), dataSetParamDto.getSampleItem()));

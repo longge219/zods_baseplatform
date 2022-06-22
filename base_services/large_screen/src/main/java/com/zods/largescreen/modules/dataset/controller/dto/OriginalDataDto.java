@@ -5,10 +5,11 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
-
 /**
- * Created by raodeming on 2021/3/26.
- */
+ * @desc 源数据 dto
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 @Data
 public class OriginalDataDto implements Serializable {
 

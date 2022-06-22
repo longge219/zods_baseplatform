@@ -1,4 +1,3 @@
-
 package com.zods.largescreen.modules.dashboard.service;
 import com.zods.largescreen.common.curd.service.GaeaBaseService;
 import com.zods.largescreen.modules.dashboard.controller.dto.ChartDto;
@@ -7,15 +6,13 @@ import com.zods.largescreen.modules.dashboard.controller.param.ReportDashboardPa
 import com.zods.largescreen.modules.dashboard.dao.entity.ReportDashboard;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
-* @desc ReportDashboard 大屏设计服务接口
-* @author Raod
-* @date 2021-04-12 14:52:21.761
-**/
+ * @desc ReportDashboard 大屏设计服务接口
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 public interface ReportDashboardService extends GaeaBaseService<ReportDashboardParam, ReportDashboard> {
 
     /***

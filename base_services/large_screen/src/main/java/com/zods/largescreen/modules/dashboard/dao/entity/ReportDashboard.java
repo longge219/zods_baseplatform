@@ -5,11 +5,10 @@ import com.zods.largescreen.common.annotation.Unique;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
 /**
 * @description 大屏设计 entity
-* @author Raod
-* @date 2021-04-12 14:52:21.761
+* @author jianglong
+* @date 2022-06-22
 **/
 @TableName(keepGlobalPrefix=true, value="gaea_report_dashboard")
 @Data

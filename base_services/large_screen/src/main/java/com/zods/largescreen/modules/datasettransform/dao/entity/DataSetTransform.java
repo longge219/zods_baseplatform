@@ -1,16 +1,14 @@
-
 package com.zods.largescreen.modules.datasettransform.dao.entity;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
 /**
-* @description 数据集数据转换 entity
-* @author Raod
-* @date 2021-03-18 12:13:15.591309400
-**/
+ * @author jianglong
+ * @version 1.0
+ * @Description 数据集数据转换 entity
+ * @createDate 2022-06-22
+ */
 @TableName(keepGlobalPrefix=true, value="gaea_report_data_set_transform")
 @Data
 public class DataSetTransform extends GaeaBaseEntity {

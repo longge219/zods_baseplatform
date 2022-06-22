@@ -6,10 +6,10 @@ import com.zods.largescreen.modules.dashboardwidget.service.ReportDashboardWidge
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
-* @desc ReportDashboardWidget 大屏看板数据渲染服务实现
-* @author Raod
-* @date 2021-04-12 15:12:43.724
-**/
+ * @description ReportDashboardWidget 组件服务实现
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 @Service
 //@RequiredArgsConstructor
 public class ReportDashboardWidgetServiceImpl implements ReportDashboardWidgetService {

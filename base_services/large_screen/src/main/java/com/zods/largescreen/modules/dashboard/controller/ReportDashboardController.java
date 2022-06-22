@@ -1,5 +1,4 @@
 package com.zods.largescreen.modules.dashboard.controller;
-
 import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.annotation.log.GaeaAuditLog;
 import com.zods.largescreen.common.bean.ResponseBean;
@@ -14,13 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /**
  * @desc ReportDashboard 大屏设计controller
- * @author Raod
- * @date 2021-04-12 14:52:21.761
+ * @author jianglong
+ * @date 2022-06-22
  **/
 @RestController
 @Api(tags = "大屏设计管理")

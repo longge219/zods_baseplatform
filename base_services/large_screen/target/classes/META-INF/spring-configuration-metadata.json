@@ -18,8 +18,8 @@
     },
     {
       "name": "spring.http-client.pool",
-      "type": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig"
+      "type": "com.zods.largescreen.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig"
     }
   ],
   "properties": [
@@ -126,62 +126,62 @@
     {
       "name": "spring.http-client.pool.charset",
       "type": "java.lang.String",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig",
       "defaultValue": "UTF-8"
     },
     {
       "name": "spring.http-client.pool.connect-timeout",
       "type": "java.lang.Integer",
       "description": "客户端和服务器建立连接超时，默认2s",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig",
       "defaultValue": 0
     },
     {
       "name": "spring.http-client.pool.connection-request-timout",
       "type": "java.lang.Integer",
       "description": "从连接池获取连接的超时时间,不宜过长,单位ms",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig",
       "defaultValue": 200
     },
     {
       "name": "spring.http-client.pool.keep-alive-target-host",
       "type": "java.util.Map<java.lang.String,java.lang.Integer>",
       "description": "针对不同的地址,特别设置不同的长连接保持时间",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig"
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig"
     },
     {
       "name": "spring.http-client.pool.keep-alive-time",
       "type": "java.lang.Integer",
       "description": "针对不同的地址,特别设置不同的长连接保持时间,单位 s",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig",
       "defaultValue": 60
     },
     {
       "name": "spring.http-client.pool.max-connect-per-route",
       "type": "java.lang.Integer",
       "description": "同路由的并发数",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig",
       "defaultValue": 200
     },
     {
       "name": "spring.http-client.pool.max-total-connect",
       "type": "java.lang.Integer",
       "description": "连接池的最大连接数",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig",
       "defaultValue": 1000
     },
     {
       "name": "spring.http-client.pool.read-timeout",
       "type": "java.lang.Integer",
       "description": "指客户端从服务器读取数据包的间隔超时时间,不是总读取时间，默认30s",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig",
       "defaultValue": 0
     },
     {
       "name": "spring.http-client.pool.retry-times",
       "type": "java.lang.Integer",
       "description": "重试次数,默认2次",
-      "sourceType": "com.zods.largescreen.modules.datasource.config.HttpClientPoolConfig",
+      "sourceType": "com.zods.largescreen.config.HttpClientPoolConfig",
       "defaultValue": 2
     }
   ],

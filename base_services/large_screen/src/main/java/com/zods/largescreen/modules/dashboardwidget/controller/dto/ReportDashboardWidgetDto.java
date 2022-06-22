@@ -1,18 +1,12 @@
-
 package com.zods.largescreen.modules.dashboardwidget.controller.dto;
-
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
-
 import java.io.Serializable;
-
-
 /**
-*
-* @description 大屏看板数据渲染 dto
-* @author Raod
-* @date 2021-04-12 15:12:43.724
-**/
+ * @description 大屏组件 dto
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 @Data
 public class ReportDashboardWidgetDto implements Serializable {
 

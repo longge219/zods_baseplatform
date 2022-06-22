@@ -1,5 +1,4 @@
 package com.zods.largescreen.modules.datasettransform.service.impl;
-
 import com.alibaba.fastjson.JSONObject;
 import com.zods.largescreen.code.ResponseCode;
 import com.zods.largescreen.common.exception.BusinessExceptionBuilder;
@@ -7,14 +6,15 @@ import com.zods.largescreen.modules.datasettransform.controller.dto.DataSetTrans
 import com.zods.largescreen.modules.datasettransform.service.TransformStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import java.util.List;
-
 /**
- * Created by raodeming on 2021/3/23.
+ * @author jianglong
+ * @version 1.0
+ * @Description JS转换
+ * @createDate 2022-06-22
  */
 @Component
 @Slf4j
@@ -28,8 +28,6 @@ public class JsTransformServiceImpl implements TransformStrategy {
 
     /**
      * 数据清洗转换 类型
-     *
-     * @return
      */
     @Override
     public String type() {

@@ -1,4 +1,4 @@
-package com.zods.largescreen.modules.datasource.config;
+package com.zods.largescreen.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

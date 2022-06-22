@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 对象bean转换工具类
  * @createDate 2022-06-20
  */
 public abstract class GaeaBeanUtils {

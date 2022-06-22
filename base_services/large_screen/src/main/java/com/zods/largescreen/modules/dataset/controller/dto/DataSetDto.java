@@ -1,25 +1,20 @@
-
 package com.zods.largescreen.modules.dataset.controller.dto;
-
 import com.zods.largescreen.common.curd.dto.GaeaBaseDTO;
 import com.zods.largescreen.modules.datasetparam.controller.dto.DataSetParamDto;
 import com.zods.largescreen.modules.datasettransform.controller.dto.DataSetTransformDto;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-
 /**
-*
-* @description 数据集 dto
-* @author Raod
-* @date 2021-03-18 12:11:31.150755900
-**/
+ * @desc 数据集 dto
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 @Data
 public class DataSetDto extends GaeaBaseDTO implements Serializable {
+
     /** 数据集编码 */
      private String setCode;
 

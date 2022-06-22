@@ -1,19 +1,13 @@
-
 package com.zods.largescreen.modules.dashboard.controller.dto;
-
 import com.zods.largescreen.modules.dashboardwidget.controller.dto.ReportDashboardWidgetDto;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
-
-
 /**
-*
-* @description 大屏设计 dto
-* @author Raod
-* @date 2021-04-12 14:52:21.761
-**/
+ * @description 大屏设计 dto
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 @Data
 public class ReportDashboardObjectDto implements Serializable {
 

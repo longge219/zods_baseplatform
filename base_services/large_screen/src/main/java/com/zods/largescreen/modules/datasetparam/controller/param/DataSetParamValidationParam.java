@@ -1,12 +1,12 @@
 package com.zods.largescreen.modules.datasetparam.controller.param;
-
 import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-
 /**
- * Created by raodeming on 2021/3/24.
+ * @author jianglong
+ * @version 1.0
+ * @Description DataSetParam 数据集动态参数校验查询输入类
+ * @createDate 2022-06-22
  */
 @Data
 public class DataSetParamValidationParam implements Serializable {

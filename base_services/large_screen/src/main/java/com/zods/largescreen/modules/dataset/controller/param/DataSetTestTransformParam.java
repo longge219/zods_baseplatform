@@ -2,16 +2,13 @@ package com.zods.largescreen.modules.dataset.controller.param;
 import com.zods.largescreen.modules.datasetparam.controller.dto.DataSetParamDto;
 import com.zods.largescreen.modules.datasettransform.controller.dto.DataSetTransformDto;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
-
-
 /**
-* @desc DataSet 数据集查询输入类
-* @author Raod
-* @date 2021-03-18 12:11:31.150755900
-**/
+ * @desc 数据集动态查询输入类 dto
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 @Data
 public class DataSetTestTransformParam implements Serializable{
 
@@ -27,7 +24,7 @@ public class DataSetTestTransformParam implements Serializable{
     /** 请求参数集合 */
     private List<DataSetParamDto> dataSetParamDtoList;
 
-    /** 数据转换集合 */
+    /** 数据转换集合SQL HTTP */
     private List<DataSetTransformDto> dataSetTransformDtoList;
 
 }

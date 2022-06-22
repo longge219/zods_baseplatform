@@ -1,15 +1,14 @@
-
 package com.zods.largescreen.modules.datasetparam.dao.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
 /**
-* @description 数据集动态参数 entity
-* @author Raod
-* @date 2021-03-18 12:12:33.108033200
-**/
+ * @author jianglong
+ * @version 1.0
+ * @Description 数据集动态参数 entity
+ * @createDate 2022-06-22
+ */
 @TableName(keepGlobalPrefix=true, value="gaea_report_data_set_param")
 @Data
 public class DataSetParam extends GaeaBaseEntity {
