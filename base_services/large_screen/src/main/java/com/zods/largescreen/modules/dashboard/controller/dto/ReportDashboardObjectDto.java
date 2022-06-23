@@ -13,14 +13,11 @@ public class ReportDashboardObjectDto implements Serializable {
 
     /** 报表编码 */
     private String reportCode;
-    /**
-     * 报表编码
-     */
+
+    /**报表编码*/
     private ReportDashboardDto dashboard;
 
-    /**
-     * 大屏画布中的组件
-     */
+    /**大屏画布中的组件*/
     private List<ReportDashboardWidgetDto> widgets;
 
 }

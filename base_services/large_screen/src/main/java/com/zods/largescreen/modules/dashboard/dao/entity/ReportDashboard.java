@@ -10,7 +10,7 @@ import lombok.Data;
 * @author jianglong
 * @date 2022-06-22
 **/
-@TableName(keepGlobalPrefix=true, value="gaea_report_dashboard")
+@TableName(keepGlobalPrefix=true, value="large_scrren_report_dashboard")
 @Data
 public class ReportDashboard extends GaeaBaseEntity {
     @ApiModelProperty(value = "报表编码")

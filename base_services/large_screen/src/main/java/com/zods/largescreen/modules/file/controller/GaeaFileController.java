@@ -12,22 +12,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
- * (GaeaFile)实体类
- *
- * @author peiyanni
- * @since 2021-02-18 14:48:33
- */
+ * @desc 文件管理-Controller
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @RestController
 @RequestMapping("/file")
 @Api(value = "/file", tags = "")
 public class GaeaFileController extends BaseController<GaeaFileParam, GaeaFile, GaeaFileDTO> {
     @Autowired
     private GaeaFileService gaeaFileService;
+
+    /**获取当前Controller数据库实体Entity*/
+    @Override
+    public GaeaFile getEntity() {
+        return new GaeaFile();
+    }
+
+    /**获取当前Controller数据传输DTO*/
+    @Override
+    public GaeaFileDTO getDTO() {
+        return new GaeaFileDTO();
+    }
+
+    /**获取实际服务类*/
+    @Override
+    public GaeaBaseService<GaeaFileParam, GaeaFile> getService() {
+        return gaeaFileService;
+    }
 
     @PostMapping("/upload")
     @Permission(code = "upload", name = "文件上传")
@@ -40,33 +55,7 @@ public class GaeaFileController extends BaseController<GaeaFileParam, GaeaFile, 
         return gaeaFileService.download(request, response, fileId);
     }
 
-    /**
-     * 获取实际服务类
-     *
-     * @return
-     */
-    @Override
-    public GaeaBaseService<GaeaFileParam, GaeaFile> getService() {
-        return gaeaFileService;
-    }
 
-    /**
-     * 获取当前Controller数据库实体Entity
-     *
-     * @return
-     */
-    @Override
-    public GaeaFile getEntity() {
-        return new GaeaFile();
-    }
 
-    /**
-     * 获取当前Controller数据传输DTO
-     *
-     * @return
-     */
-    @Override
-    public GaeaFileDTO getDTO() {
-        return new GaeaFileDTO();
-    }
+
 }

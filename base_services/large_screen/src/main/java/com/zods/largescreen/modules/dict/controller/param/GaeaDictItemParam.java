@@ -3,15 +3,12 @@ import com.zods.largescreen.common.annotation.Query;
 import com.zods.largescreen.common.constant.QueryEnum;
 import com.zods.largescreen.common.curd.params.PageParam;
 import lombok.Data;
-
 import java.io.Serializable;
-
 /**
- * 数据字典项(GaeaDictItem)param
- *
- * @author lirui
- * @since 2021-03-10 13:05:59
- */
+ * @desc 数据字典项 请求参数
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Data
 public class GaeaDictItemParam extends PageParam implements Serializable {
 

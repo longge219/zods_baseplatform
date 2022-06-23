@@ -10,7 +10,7 @@ import lombok.Data;
  * @author jianglong
  * @date 2022-06-22
  **/
-@TableName(keepGlobalPrefix=true, value="gaea_report_data_set")
+@TableName(keepGlobalPrefix=true, value="large_scrren_report_data_set")
 @Data
 public class DataSet extends GaeaBaseEntity {
     @ApiModelProperty(value = "数据集编码")

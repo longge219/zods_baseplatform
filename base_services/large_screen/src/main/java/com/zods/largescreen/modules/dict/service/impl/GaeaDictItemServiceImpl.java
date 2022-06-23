@@ -14,19 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 /**
- * 数据字典项(GaeaDictItem)ServiceImpl
- *
- * @author lirui
- * @since 2021-03-10 13:05:59
- */
+ * @desc 数据字典项(GaeaDictItem)ServiceImpl
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Service
 public class GaeaDictItemServiceImpl implements GaeaDictItemService {
     @Autowired
@@ -63,11 +60,9 @@ public class GaeaDictItemServiceImpl implements GaeaDictItemService {
         if (CollectionUtils.isEmpty(entities)) {
             return;
         }
-
         Map<String, Map<String, String>> dictItemMap = entities.stream()
                 .collect(Collectors.groupingBy(item -> item.getLocale() + GaeaConstant.REDIS_SPLIT +item.getDictCode(),
                                 Collectors.toMap(GaeaDictItem::getItemValue, GaeaDictItem::getItemName,(v1,v2)-> v2)));
-
         switch (operationEnum) {
             case DELETE_BATCH:
                 //遍历并保持到Redis中
@@ -81,14 +76,17 @@ public class GaeaDictItemServiceImpl implements GaeaDictItemService {
         }
     }
 
+    /**
+     * 根据字典编码获取字典项
+     * @param dictCode 字典编码
+     * @return MAP<key,value> key 字典选项编码；value:字典选项值
+     */
     @Override
     public Map<String, String> getItemMap(String dictCode) {
         Locale locale = LocaleContextHolder.getLocale();
-
         LambdaQueryWrapper<GaeaDictItem> wrapper = Wrappers.lambdaQuery();
         wrapper.eq(GaeaDictItem::getDictCode, dictCode);
         wrapper.eq(GaeaDictItem::getLocale, locale.getLanguage());
-
         List<GaeaDictItem> list = list(wrapper);
         Map<String, String> data = list.stream().collect(Collectors.toMap(GaeaDictItem::getItemValue, GaeaDictItem::getItemName, (v1, v2) -> v2));
         return data;

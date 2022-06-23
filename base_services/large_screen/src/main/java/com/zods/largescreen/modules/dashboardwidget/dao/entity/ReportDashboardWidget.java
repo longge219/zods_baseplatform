@@ -8,7 +8,7 @@ import lombok.Data;
 * @author jianglong
 * @date 2022-06-22
 **/
-@TableName(keepGlobalPrefix=true, value="gaea_report_dashboard_widget")
+@TableName(keepGlobalPrefix=true, value="large_scrren_report_dashboard_widget")
 @Data
 public class ReportDashboardWidget extends GaeaBaseEntity {
     @ApiModelProperty(value = "报表编码")
@@ -29,6 +29,7 @@ public class ReportDashboardWidget extends GaeaBaseEntity {
     @ApiModelProperty(value = "组件的大小位置属性json")
     private String position;
 
+    /**options配置项*/
     private String options;
 
     @ApiModelProperty(value = "自动刷新间隔秒")

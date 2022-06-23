@@ -1,20 +1,17 @@
 package com.zods.largescreen.modules.dict.dao.entity;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zods.largescreen.code.ResponseCode;
 import com.zods.largescreen.common.annotation.Unique;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
-
 import java.io.Serializable;
-
 /**
- * (GaeaDict)实体类
- *
- * @author lr
- * @since 2021-02-23 10:01:02
- */
-@TableName(keepGlobalPrefix=true, value = "gaea_dict")
+ * @desc GaeaDict 字典实体类
+ * @author jianglong
+ * @date 2022-06-23
+ **/
+@TableName(keepGlobalPrefix=true, value = "large_scrren_dict")
 public class GaeaDict extends GaeaBaseEntity implements Serializable {
+
     /**
      * 字典名称
      */

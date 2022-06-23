@@ -1,4 +1,4 @@
-package com.zods.largescreen.modules.reportexcel.util;
+package com.zods.largescreen.util.excel;
 
 public class MSExcelUtil {
     public static final short EXCEL_COLUMN_WIDTH_FACTOR = 256;

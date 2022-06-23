@@ -1,23 +1,18 @@
 package com.zods.largescreen.modules.dashboard.service.impl;
-
 import com.alibaba.fastjson.JSONObject;
 import com.zods.largescreen.modules.dashboard.controller.dto.ChartDto;
-import com.zods.largescreen.modules.dashboard.service.ChartStrategy;
+import com.zods.largescreen.modules.dashboard.service.ChartStrategyService;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
-
 /**
- * 折柱图
- * Created by raodeming on 2021/4/26.
- */
+ * @desc 折柱图
+ * @author jianglong
+ * @date 2022-06-22
+ **/
 @Component
-public class BarLineChartServiceImpl implements ChartStrategy {
-    /**
-     * 图表类型
-     *
-     * @return
-     */
+public class BarLineChartServiceImpl implements ChartStrategyService {
+
+    /**图表类型*/
     @Override
     public String type() {
         return "widget-barlinechart";
@@ -25,10 +20,9 @@ public class BarLineChartServiceImpl implements ChartStrategy {
 
     /**
      * 针对每种图表类型做单独的数据转换解析
-     *
-     * @param dto
-     * @param data
-     * @return
+     * @param dto 图表dto
+     * @param data 图表数集结果
+     * @return object
      */
     @Override
     public Object transform(ChartDto dto, List<JSONObject> data) {

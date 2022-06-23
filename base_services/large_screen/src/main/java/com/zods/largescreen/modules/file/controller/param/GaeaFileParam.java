@@ -2,15 +2,12 @@ package com.zods.largescreen.modules.file.controller.param;
 import com.zods.largescreen.common.annotation.Query;
 import com.zods.largescreen.common.constant.QueryEnum;
 import com.zods.largescreen.common.curd.params.PageParam;
-
 import java.io.Serializable;
-
 /**
- * (GaeaFile)param
- *
- * @author peiyanni
- * @since 2021-02-18 14:48:29
- */
+ * @desc 文件-查询请求参数
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 public class GaeaFileParam extends PageParam implements Serializable {
 
     /** 模糊查询 */

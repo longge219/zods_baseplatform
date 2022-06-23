@@ -19,18 +19,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 /**
 * @desc ReportShare 报表分享服务实现
-* @author Raod
-* @date 2021-08-18 13:37:26.663
+* @author jianglong
+* @date 2022-06-23
 **/
 @Service
 public class ReportShareServiceImpl implements ReportShareService {
 
-    /**
-     * 默认跳转路由为aj的页面
-     */
+    /**默认跳转路由为aj的页面*/
     private static final String SHARE_FLAG = "#/aj/";
 
     private static final String SHARE_URL = "#";
@@ -44,28 +41,33 @@ public class ReportShareServiceImpl implements ReportShareService {
     }
 
     @Override
+    public void processBeforeOperation(ReportShare entity, BaseOperationEnum operationEnum) throws BusinessException {
+        switch (operationEnum) {
+            case INSERT:
+                init(entity);
+                break;
+            default:
+
+                break;
+        }
+    }
+
+    /***
+     * 查询详情
+     * @param id 主键ID
+     * @return ReportShare
+     */
+    @Override
     public ReportShare getDetail(Long id) {
         ReportShare reportShare = this.selectOne(id);
         return reportShare;
     }
 
-    @Override
-    public ReportShareDto insertShare(ReportShareDto dto) {
-        //设置分享码
-        if (dto.isSharePasswordFlag()) {
-            dto.setSharePassword(UuidUtil.getRandomPwd(4));
-        }
-
-        ReportShareDto reportShareDto = new ReportShareDto();
-        ReportShare entity = new ReportShare();
-        BeanUtils.copyProperties(dto, entity);
-        insert(entity);
-        //将分享链接返回
-        reportShareDto.setShareUrl(entity.getShareUrl());
-        reportShareDto.setSharePassword(dto.getSharePassword());
-        return reportShareDto;
-    }
-
+    /***
+     * 查询详情
+     * @param shareCode 分项编号
+     * @return ReportShare
+     */
     @Override
     public ReportShare detailByCode(String shareCode) {
         LambdaQueryWrapper<ReportShare> wrapper = Wrappers.lambdaQuery();
@@ -84,22 +86,30 @@ public class ReportShareServiceImpl implements ReportShareService {
         return reportShare;
     }
 
+    /***
+     * 添加分项
+     * @param dto 报表分享 dto
+     * @return ReportShareDto
+     */
     @Override
-    public void processBeforeOperation(ReportShare entity, BaseOperationEnum operationEnum) throws BusinessException {
-        switch (operationEnum) {
-            case INSERT:
-                init(entity);
-                break;
-            default:
-
-                break;
+    public ReportShareDto insertShare(ReportShareDto dto) {
+        //设置分享码
+        if (dto.isSharePasswordFlag()) {
+            dto.setSharePassword(UuidUtil.getRandomPwd(4));
         }
+
+        ReportShareDto reportShareDto = new ReportShareDto();
+        ReportShare entity = new ReportShare();
+        BeanUtils.copyProperties(dto, entity);
+        insert(entity);
+        //将分享链接返回
+        reportShareDto.setShareUrl(entity.getShareUrl());
+        reportShareDto.setSharePassword(dto.getSharePassword());
+        return reportShareDto;
     }
 
-    /**
-     * 新增初始化
-     * @param entity
-     */
+
+    /**新增初始化*/
     private void init(ReportShare entity) {
         //前端地址  window.location.href https://report.anji-plus.com/index.html#/report/bigscreen
         //截取#之前的内容
@@ -113,7 +123,6 @@ public class ReportShareServiceImpl implements ReportShareService {
         } else {
             entity.setShareUrl(entity.getShareUrl() + SHARE_FLAG + shareCode);
         }
-
         entity.setShareValidTime(DateUtil.getFutureDateTmdHms(entity.getShareValidType()));
         entity.setShareToken(JwtUtil.createToken(entity.getReportCode(), shareCode, entity.getSharePassword(), entity.getShareValidTime()));
     }

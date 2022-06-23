@@ -1,15 +1,14 @@
-package com.zods.largescreen.modules.file.util;
-
+package com.zods.largescreen.util;
 import lombok.extern.slf4j.Slf4j;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
 /**
- * Created by raodeming on 2021/7/8.
- */
+ * @desc 文件操作工具类
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Slf4j
 public class FileUtils {
     public static byte[] readFileToByteArray(File file) {

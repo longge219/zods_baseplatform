@@ -22,8 +22,8 @@ import com.zods.largescreen.modules.reportexcel.controller.dto.ReportExcelDto;
 import com.zods.largescreen.modules.reportexcel.dao.ReportExcelMapper;
 import com.zods.largescreen.modules.reportexcel.dao.entity.ReportExcel;
 import com.zods.largescreen.modules.reportexcel.service.ReportExcelService;
-import com.zods.largescreen.modules.reportexcel.util.CellType;
-import com.zods.largescreen.modules.reportexcel.util.XlsUtil;
+import com.zods.largescreen.util.excel.CellType;
+import com.zods.largescreen.util.excel.XlsUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,13 +36,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
-
 /**
- * TODO
- *
- * @author chenkening
- * @date 2021/4/13 15:14
- */
+ * @desc  Excel报表-服务接口实现
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Service
 public class ReportExcelServiceImpl implements ReportExcelService {
 
@@ -67,28 +65,13 @@ public class ReportExcelServiceImpl implements ReportExcelService {
     @Autowired
     private GaeaFileMapper gaeaFileMapper;
 
-
     @Override
     public GaeaBaseMapper<ReportExcel> getMapper() {
         return reportExcelMapper;
     }
 
-    @Override
-    public ReportExcelDto detailByReportCode(String reportCode) {
-        QueryWrapper<ReportExcel> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("report_code", reportCode);
-        ReportExcel reportExcel = reportExcelMapper.selectOne(queryWrapper);
-        if (reportExcel != null) {
-            ReportExcelDto dto = new ReportExcelDto();
-            BeanUtils.copyProperties(reportExcel, dto);
-            return dto;
-        }
-        return null;
-    }
-
     /**
      * 操作前处理
-     *
      * @param entity        前端传递的对象
      * @param operationEnum 操作类型
      * @throws BusinessException 阻止程序继续执行或回滚事务
@@ -105,7 +88,27 @@ public class ReportExcelServiceImpl implements ReportExcelService {
     }
 
     /**
+     * 根据报表编码查询详情
+     * @param reportCode
+     * @return ReportExcelDto
+     */
+    @Override
+    public ReportExcelDto detailByReportCode(String reportCode) {
+        QueryWrapper<ReportExcel> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("report_code", reportCode);
+        ReportExcel reportExcel = reportExcelMapper.selectOne(queryWrapper);
+        if (reportExcel != null) {
+            ReportExcelDto dto = new ReportExcelDto();
+            BeanUtils.copyProperties(reportExcel, dto);
+            return dto;
+        }
+        return null;
+    }
+
+    /**
      * 报表预览
+     * @param reportExcelDto
+     * @return ReportExcelDto
      */
     @Override
     public ReportExcelDto preview(ReportExcelDto reportExcelDto) {
@@ -116,7 +119,6 @@ public class ReportExcelServiceImpl implements ReportExcelService {
         Report report = reportMapper.selectOne(queryWrapper);
         GaeaAssert.notNull(reportExcel, ResponseCode.RULE_CONTENT_NOT_EXIST, "reportExcel");
         String setParam = reportExcelDto.getSetParam();
-
         GaeaBeanUtils.copyAndFormatter(reportExcel, reportExcelDto);
         if (StringUtils.isNotBlank(setParam)) {
             reportExcelDto.setSetParam(setParam);
@@ -125,10 +127,15 @@ public class ReportExcelServiceImpl implements ReportExcelService {
         // 数据集解析
         String jsonStr = analysisReportData(reportExcelDto);
         reportExcelDto.setJsonStr(jsonStr);
-//        reportExcelDto.setTotal(jsonObject.getJSONObject("rows").size());
+       //reportExcelDto.setTotal(jsonObject.getJSONObject("rows").size());
         return reportExcelDto;
     }
 
+    /**
+     * 导出为excel
+     * @param reportExcelDto
+     * @return Boolean
+     */
     @Override
     public Boolean exportExcel(ReportExcelDto reportExcelDto) {
         String reportCode = reportExcelDto.getReportCode();
@@ -137,6 +144,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
         if (exportType.equals(ExportTypeEnum.GAEA_TEMPLATE_EXCEL.getCodeValue())) {
             ReportExcelDto report = detailByReportCode(reportCode);
             reportExcelDto.setJsonStr(report.getJsonStr());
+            //解析报表数据，动态插入列表数据和对象数据
             String jsonStr = analysisReportData(reportExcelDto);
             List<JSONObject> lists=(List<JSONObject> ) JSON.parse(jsonStr);
             OutputStream out;
@@ -144,17 +152,14 @@ public class ReportExcelServiceImpl implements ReportExcelService {
                 String fileId = UUID.randomUUID().toString();
                 String filePath = dictPath + File.separator + fileId + ".xlsx";
                 String urlPath = fileDownloadPath + File.separator + fileId;
-
                 GaeaFile gaeaFile = new GaeaFile();
                 gaeaFile.setFilePath(filePath);
                 gaeaFile.setFileId(fileId);
                 gaeaFile.setUrlPath(urlPath);
                 gaeaFile.setFileType("xlsx");
                 gaeaFile.setFileInstruction(reportCode + ".xlsx");
-
                 out = new FileOutputStream(filePath);
                 XlsUtil.exportXlsFile(out, true, lists);
-
                 gaeaFileMapper.insert(gaeaFile);
                 logger.info("导出成功：{}", gaeaFile);
             } catch (IOException e) {
@@ -164,17 +169,14 @@ public class ReportExcelServiceImpl implements ReportExcelService {
         return true;
     }
 
-    /**
-     * 解析报表数据，动态插入列表数据和对象数据
-     */
+    /**解析报表数据，动态插入列表数据和对象数据*/
     private String analysisReportData(ReportExcelDto reportExcelDto) {
-
         String jsonStr = reportExcelDto.getJsonStr();
         String setParam = reportExcelDto.getSetParam();
         List<JSONObject> dbObjectList = (List<JSONObject>) JSON.parse(jsonStr);
-
         if (dbObjectList != null && dbObjectList.size() > 0) {
             for (int x = 0; x < dbObjectList.size(); x++) {
+                //解析单sheet celldata
                 analysisSheetCellData(dbObjectList.get(x), setParam);
             }
         }
@@ -184,15 +186,13 @@ public class ReportExcelServiceImpl implements ReportExcelService {
 
     /**
      * 解析单sheet data
-     *
      * @param dbObject
+     * @param setParma
      */
     private void analysisSheet(JSONObject dbObject, String setParma) {
         //data是一个二维数组
         if (dbObject.containsKey("data") && null != dbObject.get("data")) {
             List<JSONArray> data = (List<JSONArray>) dbObject.get("data");
-
-
             //行
             for (int r = 0; r < data.size(); r++) {
                 JSONArray jsonArray = data.get(r);
@@ -228,25 +228,16 @@ public class ReportExcelServiceImpl implements ReportExcelService {
 
                         }
                     }
-
-
-
                 }
             }
-
-
             System.out.println("aaaa");
-
-
         }
-
-
     }
 
     /**
      * 解析单sheet celldata
-     *
      * @param dbObject
+     * @param setParam
      */
     private void analysisSheetCellData(JSONObject dbObject, String setParam) {
         //清空data值
@@ -280,7 +271,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * 开始解析并渲染 cellData
      * @param cellObject
      */
-    public void analysisCellData(JSONObject cellObject,String setParam,Map<Integer,Integer> colAddCntMap,String cellStr,
+    private void analysisCellData(JSONObject cellObject,String setParam,Map<Integer,Integer> colAddCntMap,String cellStr,
                                  JSONObject merge,JSONObject dbObject,Map<String,JSONObject> cellDataMap){
         //获取行号
         Integer cellR = cellObject.getInteger("r");
@@ -320,7 +311,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * @param dbObject
      * @param colAddCntMap
      */
-    public void handleDynamicCellObject(DataSetDto dataSet,String v,String cellStr,int cnt,int r,int c,
+    private void handleDynamicCellObject(DataSetDto dataSet,String v,String cellStr,int cnt,int r,int c,
                                         JSONObject merge,JSONObject dbObject,Map<Integer,Integer> colAddCntMap){
         //获取动态数据
         OriginalDataDto originalDataDto = dataSetService.getData(dataSet);
@@ -375,7 +366,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * @param colAddCntMap
      * @param cellType
      */
-    public void handleStaticCellObject(String cellStr,JSONObject dbObject,int cnt,int r,int c,
+    private void handleStaticCellObject(String cellStr,JSONObject dbObject,int cnt,int r,int c,
                                        Map<String,JSONObject> cellDataMap,String setParam,
                                        JSONObject merge,Map<Integer,Integer> colAddCntMap,CellType cellType){
         //转字符串，解决深拷贝问题
@@ -430,7 +421,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * @param cnt
      * @param merge
      */
-    public void initCellPosition(JSONObject addCellData,int cnt,JSONObject merge){
+    private void initCellPosition(JSONObject addCellData,int cnt,JSONObject merge){
         addCellData.put("r", cnt + addCellData.getInteger("r"));//行数增加
         //是否是合并单元格
         JSONObject mc = addCellData.getJSONObject("v").getJSONObject("mc");
@@ -445,7 +436,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * @param merge
      * @param mc
      */
-    public void initCellMerge(JSONObject merge,JSONObject mc){
+    private void initCellMerge(JSONObject merge,JSONObject mc){
         merge.put((mc.getInteger("r"))+"_"+mc.getString("c"),mc);
     }
 
@@ -458,7 +449,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * @param cellType
      * @return
      */
-    public int getRightDynamicCellRows(JSONObject addCellData,Map<String,JSONObject> cellDataMap,String setParam,int sumRows,CellType cellType){
+    private int getRightDynamicCellRows(JSONObject addCellData,Map<String,JSONObject> cellDataMap,String setParam,int sumRows,CellType cellType){
         //1、获取此单元格右侧关联的所有单元格
         List<JSONObject> rightCellList = getRightDynamicCell(addCellData,cellDataMap,cellType);
         //2、循环获取每个单元格的扩展行数
@@ -499,7 +490,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * @param cellType
      * @return
      */
-    public List<JSONObject> getRightDynamicCell(JSONObject addCellData,Map<String,JSONObject> cellDataMap,CellType cellType){
+    private List<JSONObject> getRightDynamicCell(JSONObject addCellData,Map<String,JSONObject> cellDataMap,CellType cellType){
         //静态数据合并单元格需要根据右侧的单元格进行自动向下扩展
         //1、先获取右侧一列的关联的单元格，根据自身的位置，以及自己合并的合并的信息推断
         //如果自己位置是 2，5，并且本身合并 行数2，列数3，则需要推断出两个单元格的位置
@@ -536,7 +527,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * @param cellObject
      * @return
      */
-    public CellType getCellType(JSONObject cellObject){
+    private CellType getCellType(JSONObject cellObject){
         JSONObject cellV1 = cellObject.getJSONObject("v");
         if (null != cellV1 && cellV1.containsKey("v") && StringUtils.isNotBlank(cellV1.getString("v"))) {
             String cellV2 = cellObject.getJSONObject("v").getString("v");
@@ -573,7 +564,7 @@ public class ReportExcelServiceImpl implements ReportExcelService {
      * @param cellDataList
      * @return
      */
-    public Map<String,JSONObject> cellDataList2Map(List<JSONObject> cellDataList){
+    private Map<String,JSONObject> cellDataList2Map(List<JSONObject> cellDataList){
         Map<String,JSONObject> cellDataMap = new HashMap<>();
         for (JSONObject cellData : cellDataList) {
             String r = cellData.getString("r");

@@ -1,16 +1,16 @@
-package com.zods.largescreen.modules.file.util;
-
+package com.zods.largescreen.util;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-
+/**
+ * @desc 字符串pattern工具类
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 public class StringPatternUtil {
 
 
     /**
-     *
      * <p>Discription:[查找源sourceStr中是否包含pattern，返回boolean]</p>
      * @author
      * @update:[日期YYYY-MM-DD] [更改人姓名]

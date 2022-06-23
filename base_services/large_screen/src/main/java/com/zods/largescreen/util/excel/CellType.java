@@ -1,4 +1,4 @@
-package com.zods.largescreen.modules.reportexcel.util;
+package com.zods.largescreen.util.excel;
 
 /**
  * 单元格类型

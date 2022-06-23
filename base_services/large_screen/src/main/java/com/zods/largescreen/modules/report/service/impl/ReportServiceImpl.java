@@ -8,12 +8,11 @@ import com.zods.largescreen.modules.report.dao.entity.Report;
 import com.zods.largescreen.modules.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 /**
- *
- * @author chenkening
- * @date 2021/3/26 10:35
- */
+ * @desc Report 报表服务接口实现
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Service
 public class ReportServiceImpl implements ReportService {
 
@@ -30,12 +29,10 @@ public class ReportServiceImpl implements ReportService {
     public void delReport(ReportDto reportDto) {
         deleteById(reportDto.getId());
         //删除gaea_report_excel、gaea_report_dashboard、gaea_report_dashboard_widget
-        //...
     }
 
     /**
      * 下载次数+1
-     *
      * @param reportCode
      */
     @Override

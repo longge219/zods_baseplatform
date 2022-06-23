@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 /**
- * TODO
- *
- * @author chenkening
- * @date 2021/3/26 10:19
- */
+ * @desc Report 报表-Controller
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @RestController
 @Api(tags = "报表数据管理")
 @Permission(code = "reportManage", name = "报表管理")

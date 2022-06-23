@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
 /**
- * @description 大屏设计 dto
+ * @description 表表设计 dto
  * @author jianglong
  * @date 2022-06-22
  **/

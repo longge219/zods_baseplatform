@@ -3,15 +3,12 @@ import com.zods.largescreen.common.curd.dto.GaeaBaseDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
 import java.io.Serializable;
-
 /**
- * (GaeaDict)实体类
- *
- * @author lr
- * @since 2021-02-23 10:01:02
- */
+ * @desc 数据字典 DTO
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @ApiModel(value = "")
 @Data
 public class GaeaDictDTO extends GaeaBaseDTO implements Serializable {

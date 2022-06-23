@@ -1,13 +1,11 @@
 package com.zods.largescreen.modules.file.controller.dto;
 import com.zods.largescreen.common.curd.dto.GaeaBaseDTO;
 import lombok.Data;
-
 /**
- * (GaeaFile)实体类
- *
- * @author peiyanni
- * @since 2021-02-18 14:48:27
- */
+ * @desc 文件-Dto
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Data
 public class GaeaFileDTO extends GaeaBaseDTO {
 

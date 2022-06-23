@@ -1,15 +1,12 @@
 package com.zods.largescreen.modules.report.controller.dto;
-
 import com.zods.largescreen.common.curd.dto.GaeaBaseDTO;
 import lombok.Data;
-
 import java.io.Serializable;
-
 /**
- *
- * @author chenkening
- * @date 2021/3/26 10:34
- */
+ * @desc 报表-Dto
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Data
 public class ReportDto extends GaeaBaseDTO implements Serializable {
 

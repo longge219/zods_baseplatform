@@ -13,11 +13,10 @@ import com.zods.largescreen.modules.reportshare.service.ReportShareService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 /**
- * @author Raod
+ * @author jianglong
  * @desc 报表分享 controller
- * @date 2021-08-18 13:37:26.663
+ * @date 2022-06-23
  **/
 @RestController
 @Api(tags = "报表分享管理")

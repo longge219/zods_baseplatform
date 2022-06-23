@@ -5,14 +5,12 @@ import com.zods.largescreen.common.annotation.Unique;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
 /**
- * TODO
- *
- * @author chenkening
- * @date 2021/3/26 10:20
- */
-@TableName(keepGlobalPrefix=true, value="gaea_report")
+ * @desc Report 报表实体类
+ * @author jianglong
+ * @date 2022-06-23
+ **/
+@TableName(keepGlobalPrefix=true, value="large_scrren_report")
 @Data
 public class Report extends GaeaBaseEntity {
 

@@ -6,12 +6,13 @@ import lombok.Data;
 import java.util.Date;
 /**
 * @description 报表分享 entity
-* @author Raod
-* @date 2021-08-18 13:37:26.663
+* @author jianglong
+* @date 2022-06-23
 **/
-@TableName(keepGlobalPrefix=true, value="gaea_report_share")
+@TableName(keepGlobalPrefix=true, value="large_scrren_report_share")
 @Data
 public class ReportShare extends GaeaBaseEntity {
+
     /** 分享编码，系统生成，默认UUID */
     private String shareCode;
 

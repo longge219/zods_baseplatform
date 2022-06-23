@@ -34,8 +34,8 @@ public class ReportDashboardController {
 
     /**
      * 预览、查询大屏详情
-     * @param reportCode
-     * @return
+     * @param reportCode 报表编码
+     * @return ResponseBean 返回封装对象
      */
     @GetMapping({"/{reportCode}"})
     @Permission(code = "view", name = "查看大屏")
@@ -45,8 +45,8 @@ public class ReportDashboardController {
 
     /**
      * 保存大屏设计
-     * @param dto
-     * @return
+     * @param dto 大屏设计dto
+     * @return ResponseBean 返回封装对象
      */
     @PostMapping
     @Permission(code = "design", name = "设计大屏")
@@ -59,8 +59,8 @@ public class ReportDashboardController {
 
     /**
      * 获取去单个图层数据
-     * @param dto
-     * @return
+     * @param dto 图表dto
+     * @return ResponseBean 返回封装对象
      */
     @PostMapping("/getData")
     @Permission(code = "view", name = "查看大屏")
@@ -71,7 +71,7 @@ public class ReportDashboardController {
 
     /**
      * 导出大屏
-     * @param reportCode
+     * @param reportCode 大屏报表编号
      * @return
      */
     @GetMapping("/export")
@@ -84,7 +84,7 @@ public class ReportDashboardController {
     /**
      * 导入大屏
      * @param file  导入的zip文件
-     * @param reportCode
+     * @param reportCode 大屏报表编号
      * @return
      */
     @PostMapping("/import/{reportCode}")

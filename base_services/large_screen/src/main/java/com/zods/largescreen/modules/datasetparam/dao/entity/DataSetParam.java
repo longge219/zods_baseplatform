@@ -9,7 +9,7 @@ import lombok.Data;
  * @Description 数据集动态参数 entity
  * @createDate 2022-06-22
  */
-@TableName(keepGlobalPrefix=true, value="gaea_report_data_set_param")
+@TableName(keepGlobalPrefix=true, value="large_scrren_report_data_set_param")
 @Data
 public class DataSetParam extends GaeaBaseEntity {
     @ApiModelProperty(value = "数据集编码")

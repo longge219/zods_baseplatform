@@ -9,9 +9,9 @@ import com.zods.largescreen.common.exception.BusinessExceptionBuilder;
 import com.zods.largescreen.modules.file.dao.GaeaFileMapper;
 import com.zods.largescreen.modules.file.entity.GaeaFile;
 import com.zods.largescreen.modules.file.service.GaeaFileService;
-import com.zods.largescreen.modules.file.util.FileUtils;
-import com.zods.largescreen.modules.file.util.StringPatternUtil;
 import com.zods.largescreen.util.FileUtil;
+import com.zods.largescreen.util.FileUtils;
+import com.zods.largescreen.util.StringPatternUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -33,13 +32,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
 /**
- * (GaeaFile)ServiceImpl
- *
- * @author peiyanni
- * @since 2021-02-18 14:48:26
- */
+ * @desc 文件管理-service实现
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Service
 @Slf4j
 public class GaeaFileServiceImpl implements GaeaFileService {
@@ -65,6 +62,34 @@ public class GaeaFileServiceImpl implements GaeaFileService {
     }
 
 
+    /**
+     * 文件上传
+     * @param multipartFile  文件
+     * @return GaeaFile 对象
+     */
+    @Override
+    public GaeaFile upload(MultipartFile multipartFile) {
+        return upload(multipartFile, null, null);
+    }
+
+    /**
+     * 文件上传
+     * @param file 二选一
+     * @param customFileName 自定义文件名
+     * @return GaeaFile 对象
+     */
+    @Override
+    public GaeaFile upload(File file, String customFileName) {
+        return upload(null, file, customFileName);
+    }
+
+    /**
+     * 文件上传
+     * @param multipartFile  文件
+     * @param file 文件
+     * @param customFileName 自定义文件名，默认给null
+     * @return GaeaFile 对象
+     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public GaeaFile upload(MultipartFile multipartFile, File file, String customFileName) {
@@ -129,28 +154,12 @@ public class GaeaFileServiceImpl implements GaeaFileService {
     }
 
     /**
-     * 文件上传
-     *
-     * @param multipartFile 文件
-     * @return
+     * 根据fileId显示图片或者下载文件
+     * @param request 请求request对象
+     * @param response 返回response对象
+     * @param fileId 文件ID
+     * @return 返回下载文件流
      */
-    @Override
-    public GaeaFile upload(MultipartFile multipartFile) {
-        return upload(multipartFile, null, null);
-    }
-
-    /**
-     * 文件上传
-     *
-     * @param file           文件
-     * @param customFileName 自定义文件名
-     * @return
-     */
-    @Override
-    public GaeaFile upload(File file, String customFileName) {
-        return upload(null, file, customFileName);
-    }
-
     @Override
     public ResponseEntity<byte[]> download(HttpServletRequest request, HttpServletResponse response, String fileId) {
         try {
@@ -199,7 +208,6 @@ public class GaeaFileServiceImpl implements GaeaFileService {
     /**
      * 批处理操作后续处理
      * 删除本地已经存在的文件
-     *
      * @param entities
      * @param operationEnum 操作类型
      * @throws BusinessException 阻止程序继续执行或回滚事务

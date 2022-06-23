@@ -17,16 +17,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
 import java.util.*;
 import java.util.stream.Collectors;
-
 /**
- * (GaeaDict)ServiceImpl
- *
- * @author lr
- * @since 2021-02-23 10:01:02
- */
+ * @desc 数据字典-serviceImpl
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Service
 public class GaeaDictServiceImpl implements GaeaDictService {
 
@@ -44,22 +41,16 @@ public class GaeaDictServiceImpl implements GaeaDictService {
         return  gaeaDictMapper;
     }
 
-    /**
-     * 刷新全部缓存
-     * @param dictCodes
-     */
+    /**刷新全部缓存*/
     @Override
     public void refreshCache(List<String> dictCodes) {
-
         //查询指定字典项
         List<GaeaDictItem> gaeaDictItems = findItems(dictCodes);
-
         //对数据字典项进行分组，分组key=语言标识:字典编码
         Map<String, Map<String, String>> dictItemMap = gaeaDictItems.stream()
                 .collect(Collectors
                         .groupingBy(item -> item.getLocale() + GaeaConstant.REDIS_SPLIT +item.getDictCode(),
                                 Collectors.toMap(GaeaDictItem::getItemValue, GaeaDictItem::getItemName,(v1,v2)-> v2)));
-
         //遍历并保持到Redis中
         dictItemMap.entrySet().stream().forEach(entry -> {
             String key = GaeaKeyConstant.DICT_PREFIX  + entry.getKey();
@@ -71,18 +62,15 @@ public class GaeaDictServiceImpl implements GaeaDictService {
     /**
      * 根据国际化语言查询指定字典编码下拉列表
      * 先从Redis中获取
-     * @param dictCode 字典名称
+     * @param dictCode 字典编码
      * @param language 语言
      * @return
      */
     @Override
     public List<KeyValue> select(String dictCode, String language) {
-
         //缓存字典Key
         String dictKey = GaeaKeyConstant.DICT_PREFIX  + language + GaeaConstant.REDIS_SPLIT + dictCode;
-
         Map<String, String> dictMap = redisCacheHelper.hashGet(dictKey);
-
         //当查询的字典为空时
         if (CollectionUtils.isEmpty(dictMap)) {
             LambdaQueryWrapper<GaeaDictItem> wrapper = Wrappers.lambdaQuery();
@@ -90,9 +78,7 @@ public class GaeaDictServiceImpl implements GaeaDictService {
                     .eq(GaeaDictItem::getEnabled, Enabled.YES.getValue())
                     .eq(GaeaDictItem::getLocale, language)
                     .orderByAsc(GaeaDictItem::getSort);
-
             List<GaeaDictItem> list = gaeaDictItemMapper.selectList(wrapper);
-
             List<KeyValue> keyValues = list.stream()
                     .map(dictItemEntity -> new KeyValue(dictItemEntity.getItemValue(), dictItemEntity.getItemName(), dictItemEntity.getItemExtend()))
                     .collect(Collectors.toList());
@@ -102,14 +88,11 @@ public class GaeaDictServiceImpl implements GaeaDictService {
             refreshCache(dictCodes);
             return keyValues;
         }
-
         List<KeyValue> keyValues = GaeaUtils.formatKeyValue(dictMap);
-
         //添加扩展字段
         LambdaQueryWrapper<GaeaDictItem> gaeaDictItemWrapper = Wrappers.lambdaQuery();
         gaeaDictItemWrapper.eq(GaeaDictItem::getDictCode, dictCode);
         gaeaDictItemWrapper.isNotNull(GaeaDictItem::getItemExtend);
-
         Map<String, String> extendMap = gaeaDictItemMapper.selectList(gaeaDictItemWrapper).stream()
                 .filter(gaeaDictItem -> StringUtils.isNotBlank(gaeaDictItem.getItemExtend()))
                 .collect(Collectors.toMap(GaeaDictItem::getItemValue, GaeaDictItem::getItemExtend, (v1, v2) -> v2));
@@ -119,9 +102,14 @@ public class GaeaDictServiceImpl implements GaeaDictService {
         return keyValues;
     }
 
+    /**
+     * 查询字典的item
+     * 先从Redis中获取
+     * @param dictCodes 字典编码集合
+     * @return GaeaDictItem集合
+     */
     @Override
     public List<GaeaDictItem> findItems(List<String> dictCodes) {
-
         LambdaQueryWrapper<GaeaDictItem> gaeaDictItemQueryWrapper = Wrappers.lambdaQuery();
         gaeaDictItemQueryWrapper.eq(GaeaDictItem::getEnabled, Enabled.YES.getValue());
         if (!CollectionUtils.isEmpty(dictCodes)) {
@@ -130,33 +118,36 @@ public class GaeaDictServiceImpl implements GaeaDictService {
         return gaeaDictItemMapper.selectList(gaeaDictItemQueryWrapper);
     }
 
-
+    /**
+     * 获取所有 typecode
+     * @param system
+     * @param language 语言
+     * @return
+     */
     @Override
     public Collection<KeyValue> selectTypeCode(String system, String language) {
-
         //缓存字典Key
         String dictKey = GaeaKeyConstant.DICT_PREFIX + language + GaeaConstant.REDIS_SPLIT + system;
-
         Map<String, String> dictMap = redisCacheHelper.hashGet(dictKey);
-
         //当查询的字典为空时
         if (CollectionUtils.isEmpty(dictMap)) {
             LambdaQueryWrapper<GaeaDict> wrapper = Wrappers.lambdaQuery();
             //wrapper.eq(GaeaDict::getLocale, language).orderByAsc(GaeaDict::getSort);
-
             List<GaeaDict> list = getMapper().selectList(wrapper);
-
             Set<KeyValue> keyValues = list.stream()
                     .map(dictItemEntity -> new KeyValue(dictItemEntity.getDictCode(),
                             dictItemEntity.getDictName()))
                     .collect(Collectors.toSet());
             return keyValues;
         }
-
         return GaeaUtils.formatKeyValue(dictMap);
     }
 
-
+    /**
+     * 获取所有数据字典
+     * @param language 语言
+     * @return
+     */
     @Override
     public Map<String, List<KeyValue>> all(String language) {
         LambdaQueryWrapper<GaeaDictItem> wrapper = Wrappers.lambdaQuery();

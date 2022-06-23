@@ -2,13 +2,11 @@ package com.zods.largescreen.modules.dict.dao;
 import com.zods.largescreen.common.curd.mapper.GaeaBaseMapper;
 import com.zods.largescreen.modules.dict.dao.entity.GaeaDictItem;
 import org.apache.ibatis.annotations.Mapper;
-
 /**
- * 数据字典项(GaeaDictItem)Mapper
- *
- * @author lirui
- * @since 2021-03-09 15:52:41
- */
+ * @desc 数据字典项(GaeaDictItem)Dao
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Mapper
 public interface GaeaDictItemMapper extends GaeaBaseMapper<GaeaDictItem> {
 

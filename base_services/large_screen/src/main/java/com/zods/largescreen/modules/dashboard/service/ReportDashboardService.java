@@ -15,25 +15,24 @@ import javax.servlet.http.HttpServletResponse;
  **/
 public interface ReportDashboardService extends GaeaBaseService<ReportDashboardParam, ReportDashboard> {
 
-    /***
-     * 查询详情
-     *
-     * @param reportCode
+    /**
+     * 预览、查询大屏详情
+     * @param reportCode 报表编码
+     * @return ReportDashboardObjectDto 报表DTO
      */
     ReportDashboardObjectDto getDetail(String reportCode);
 
     /***
      * 保存大屏设计
-     *
-     * @param dto
+     * @param dto 大屏设计dto
      */
     void insertDashboard(ReportDashboardObjectDto dto);
 
 
     /**
      * 获取单个图表数据
-     * @param dto
-     * @return
+     * @param dto 图表dto
+     * @return 返回结果集对象
      */
     Object getChartData(ChartDto dto);
 

@@ -1,5 +1,4 @@
 package com.zods.largescreen.modules.dashboardwidget.controller;
-
 import com.zods.largescreen.common.annotation.Permission;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;

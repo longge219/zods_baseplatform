@@ -41,6 +41,7 @@ public class ReportExcelController extends GaeaBaseController<ReportExcelParam, 
         return new ReportExcelDto();
     }
 
+
     @GetMapping("/detailByReportCode/{reportCode}")
     @Permission(code = "query", name = "详情")
     @GaeaAuditLog(pageTitle = "详情")
@@ -62,16 +63,8 @@ public class ReportExcelController extends GaeaBaseController<ReportExcelParam, 
     @Permission(code = "export", name = "导出")
     @GaeaAuditLog(pageTitle = "报表导出")
     public ResponseBean exportExcel(@RequestBody ReportExcelDto reportExcelDto) {
-
         return ResponseBean.builder().code(ResponseCode.SUCCESS_CODE)
                 .data(reportExcelService.exportExcel(reportExcelDto))
                 .message("导出成功，请稍后在文件管理中查看").build();
     }
-
-//    @PostMapping("/exportPdf")
-//    public ResponseBean exportPdf(@RequestBody ReportExcelDto reportExcelDto) {
-//        reportExcelService.exportPdf(reportExcelDto);
-//        return ResponseBean.builder().code(ResponseCode.SUCCESS_CODE)
-//                .build();
-//    }
 }

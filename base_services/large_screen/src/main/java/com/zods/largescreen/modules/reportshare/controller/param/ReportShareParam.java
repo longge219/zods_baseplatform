@@ -4,8 +4,8 @@ import lombok.Data;
 import java.io.Serializable;
 /**
 * @desc ReportShare 报表分享查询输入类
-* @author Raod
-* @date 2021-08-18 13:37:26.663
+* @author jianglong
+* @date 2022-06-23
 **/
 @Data
 public class ReportShareParam extends PageParam implements Serializable{

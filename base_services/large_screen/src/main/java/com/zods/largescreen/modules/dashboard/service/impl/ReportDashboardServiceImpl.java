@@ -1,6 +1,4 @@
-
 package com.zods.largescreen.modules.dashboard.service.impl;
-
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -15,7 +13,7 @@ import com.zods.largescreen.modules.dashboard.controller.dto.ReportDashboardDto;
 import com.zods.largescreen.modules.dashboard.controller.dto.ReportDashboardObjectDto;
 import com.zods.largescreen.modules.dashboard.dao.ReportDashboardMapper;
 import com.zods.largescreen.modules.dashboard.dao.entity.ReportDashboard;
-import com.zods.largescreen.modules.dashboard.service.ChartStrategy;
+import com.zods.largescreen.modules.dashboard.service.ChartStrategyService;
 import com.zods.largescreen.modules.dashboard.service.ReportDashboardService;
 import com.zods.largescreen.modules.dashboardwidget.controller.dto.ReportDashboardWidgetDto;
 import com.zods.largescreen.modules.dashboardwidget.controller.dto.ReportDashboardWidgetValueDto;
@@ -26,12 +24,8 @@ import com.zods.largescreen.modules.dataset.controller.dto.OriginalDataDto;
 import com.zods.largescreen.modules.dataset.service.DataSetService;
 import com.zods.largescreen.modules.file.entity.GaeaFile;
 import com.zods.largescreen.modules.file.service.GaeaFileService;
-import com.zods.largescreen.modules.file.util.FileUtils;
 import com.zods.largescreen.modules.report.service.ReportService;
-import com.zods.largescreen.util.DateUtil;
-import com.zods.largescreen.util.FileUtil;
-import com.zods.largescreen.util.RequestUtil;
-import com.zods.largescreen.util.UuidUtil;
+import com.zods.largescreen.util.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -46,22 +40,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-
 /**
- * @author Raod
+ * @author jianglong
  * @desc ReportDashboard 大屏设计服务实现
- * @date 2021-04-12 14:52:21.761
+ * @date 2022-06-23
  **/
 @Service
 @Slf4j
-//@RequiredArgsConstructor
 public class ReportDashboardServiceImpl implements ReportDashboardService, InitializingBean, ApplicationContextAware {
 
     @Autowired
@@ -86,9 +77,12 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
     private String dictPath;
 
     private final static String ZIP_PATH = "/zip/";
+
     private final static String JSON_PATH = "dashboard.json";
 
-    private Map<String, ChartStrategy> queryServiceImplMap = new HashMap<>();
+    //图表类型接口实现的service
+    private Map<String, ChartStrategyService> queryServiceImplMap = new HashMap<>();
+
     private ApplicationContext applicationContext;
 
     @Override
@@ -97,7 +91,27 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
     }
 
     @Override
+    public void afterPropertiesSet() {
+        Map<String, ChartStrategyService> beanMap = applicationContext.getBeansOfType(ChartStrategyService.class);
+        //遍历该接口的所有实现，将其放入map中
+        for (ChartStrategyService serviceImpl : beanMap.values()) {
+            queryServiceImplMap.put(serviceImpl.type(), serviceImpl);
+        }
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    /**
+     * 预览、查询大屏详情
+     * @param reportCode 报表编码
+     * @return ReportDashboardObjectDto 报表DTO
+     */
+    @Override
     public ReportDashboardObjectDto getDetail(String reportCode) {
+        //查询报表记录
         ReportDashboardObjectDto result = new ReportDashboardObjectDto();
         ReportDashboardDto reportDashboardDto = new ReportDashboardDto();
         ReportDashboard reportDashboard = this.selectOne("report_code", reportCode);
@@ -105,7 +119,7 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
             return new ReportDashboardObjectDto();
         }
         GaeaBeanUtils.copyAndFormatter(reportDashboard, reportDashboardDto);
-
+        //根据报表查询组件
         List<ReportDashboardWidget> list = reportDashboardWidgetService.list(
                 new QueryWrapper<ReportDashboardWidget>().lambda()
                         .eq(ReportDashboardWidget::getReportCode, reportCode)
@@ -119,9 +133,7 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
             value.setData(StringUtils.isNotBlank(reportDashboardWidget.getData()) ? JSONObject.parseObject(reportDashboardWidget.getData()) : new JSONObject());
             value.setPosition(StringUtils.isNotBlank(reportDashboardWidget.getPosition()) ? JSONObject.parseObject(reportDashboardWidget.getPosition()) : new JSONObject());
             value.setCollapse(StringUtils.isNotBlank(reportDashboardWidget.getCollapse()) ? JSONObject.parseObject(reportDashboardWidget.getCollapse()) : new JSONObject());
-
-            //实时数据的替换
-            analysisData(value);
+            //数据封装
             reportDashboardWidgetDto.setType(reportDashboardWidget.getType());
             reportDashboardWidgetDto.setValue(value);
             reportDashboardWidgetDto.setOptions(JSONObject.parseObject(reportDashboardWidget.getOptions()));
@@ -135,8 +147,7 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
 
     /***
      * 保存大屏设计
-     *
-     * @param dto
+     * @param dto 大屏设计dto
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -158,13 +169,11 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
             dashboard.setVersion(null);
             this.update(dashboard);
         }
-
         //删除reportDashboardWidget
         reportDashboardWidgetService.delete(new QueryWrapper<ReportDashboardWidget>()
                 .lambda().eq(ReportDashboardWidget::getReportCode, reportCode));
         List<ReportDashboardWidgetDto> widgets = dto.getWidgets();
-
-//        List<ReportDashboardWidget> reportDashboardWidgetList = new ArrayList<>();
+        //插入大屏的组件
         for (int i = 0; i < widgets.size(); i++) {
             ReportDashboardWidget reportDashboardWidget = new ReportDashboardWidget();
             ReportDashboardWidgetDto reportDashboardWidgetDto = widgets.get(i);
@@ -180,16 +189,16 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
             reportDashboardWidget.setEnableFlag(1);
             reportDashboardWidget.setDeleteFlag(0);
             reportDashboardWidget.setSort((long) (i + 1));
-
             //兼容底层，不采用批量插入
             reportDashboardWidgetService.insert(reportDashboardWidget);
-
-//            reportDashboardWidgetList.add(reportDashboardWidget);
         }
-//        reportDashboardWidgetService.insertBatch(reportDashboardWidgetList);
-
     }
 
+    /**
+     * 获取单个图表数据
+     * @param dto 图表dto
+     * @return 返回结果集对象
+     */
     @Override
     public Object getChartData(ChartDto dto) {
 //        String chartType = dto.getChartType();
@@ -201,12 +210,11 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
         //处理时间轴
         List<JSONObject> resultData = buildTimeLine(data, dto);
         return resultData;
-//        return getTarget(chartType).transform(dto, result.getData());
+       //return getTarget(chartType).transform(dto, result.getData());
     }
 
     /**
      * 导出大屏，zip文件
-     *
      * @param request
      * @param response
      * @param reportCode
@@ -216,16 +224,12 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
     public ResponseEntity<byte[]> exportDashboard(HttpServletRequest request, HttpServletResponse response, String reportCode, Integer showDataSet) {
         String userAgent = request.getHeader("User-Agent");
         boolean isIeBrowser = userAgent.indexOf("MSIE") > 0;
-
         ReportDashboardObjectDto detail = getDetail(reportCode);
         List<ReportDashboardWidgetDto> widgets = detail.getDashboard().getWidgets();
         detail.setWidgets(widgets);
         detail.getDashboard().setWidgets(null);
-
-
         //1.组装临时目录,/app/disk/upload/zip/临时文件夹
         String path = dictPath + ZIP_PATH + UuidUtil.generateShortUuid();
-
         //将涉及到的图片保存下来（1.背景图，2.组件为图片的）
         String backgroundImage = detail.getDashboard().getBackgroundImage();
         zipLoadImage(backgroundImage, path);
@@ -235,7 +239,6 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
                     String imageAddress = reportDashboardWidgetDto.getValue().getSetup().getString("imageAdress");
                     zipLoadImage(imageAddress, path);
                 });
-
         //showDataSet == 0 代表不包含数据集
         if (0 == showDataSet) {
             detail.getWidgets().forEach(reportDashboardWidgetDto -> {
@@ -246,18 +249,13 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
                 }
             });
         }
-
-
         //2.将大屏设计到的json文件保存
         String jsonPath = path + "/" + JSON_PATH;
         FileUtil.WriteStringToFile(jsonPath, JSONObject.toJSONString(detail));
-
-
         //将path文件夹打包zip
         String zipPath = path + ".zip";
         FileUtil.compress(path, zipPath);
-
-
+        //创建zip文件
         File file = new File(zipPath);
         ResponseEntity.BodyBuilder builder = ResponseEntity.ok();
         builder.contentLength(file.length());
@@ -268,28 +266,22 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
         } else {
             builder.header("Content-Disposition", "attacher; filename*=UTF-8''" + reportCode + ".zip");
         }
-
         ResponseEntity<byte[]> body = builder.body(FileUtils.readFileToByteArray(file));
-
         //删除zip文件
         file.delete();
         //删除path临时文件夹
         FileUtil.delete(path);
         log.info("删除临时文件：{}，{}", zipPath, path);
-
         //异步统计下载次数
         CompletableFuture.runAsync(() -> {
             log.info("=======>ip:{} 下载模板：{}", RequestUtil.getIpAddr(request), reportCode);
             reportService.downloadStatistics(reportCode);
         });
-
-
         return body;
     }
 
     /**
      * 导入大屏zip
-     *
      * @param file
      * @param reportCode
      * @return
@@ -306,9 +298,7 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
         File parentPath = new File(path);
         //获取打包的第一层目录
         File firstFile = parentPath.listFiles()[0];
-
         File[] files = firstFile.listFiles();
-
         //定义map
         Map<String, String> fileMap = new HashMap<>();
         String content = "";
@@ -339,10 +329,7 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
                     fileMap.put(fileName, uploadPath);
                 }
             }
-
         }
-
-
         //解析cotent
         ReportDashboardObjectDto detail = JSONObject.parseObject(content, ReportDashboardObjectDto.class);
         //将涉及到的图片路径替换（1.背景图，2.组件为图片的）
@@ -358,12 +345,117 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
                 });
         //将新的大屏编码赋值
         detail.setReportCode(reportCode);
-
         //解析结束，删除临时文件夹
         FileUtil.delete(path);
-
         log.info("解析成功，开始存入数据库...");
         insertDashboard(detail);
+    }
+
+
+
+    /**
+     * 处理时间轴
+     * @param data 数据源数据结果
+     * @return dto 图标dto
+     */
+    private List<JSONObject> buildTimeLine(List<JSONObject> data, ChartDto dto) {
+        Map<String, String> chartProperties = dto.getChartProperties();
+        if (null == chartProperties || chartProperties.size() < 1) {
+            return data;
+        }
+        Map<String, Object> contextData = dto.getContextData();
+        if (null == contextData || contextData.size() < 1) {
+            return data;
+        }
+        if (contextData.containsKey("startTime") && contextData.containsKey("endTime")) {
+            dto.setStartTime(contextData.get("startTime").toString());
+            dto.setEndTime(contextData.get("endTime").toString());
+        }
+        if (StringUtils.isBlank(dto.getStartTime()) || StringUtils.isBlank(dto.getEndTime())) {
+            return data;
+        }
+        //获取时间轴字段和解析时间颗粒度
+        for (Map.Entry<String, String> entry : chartProperties.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            dto.setParticles(value);
+            setTimeLineFormat(dto);
+            if (StringUtils.isNotBlank(dto.getDataTimeFormat())) {
+                dto.setTimeLineFiled(key);
+                break;
+            }
+        }
+        if (StringUtils.isBlank(dto.getDataTimeFormat())) {
+            return data;
+        }
+        Date beginTime = DateUtil.parseHmsTime(dto.getStartTime());
+        Date endTime = DateUtil.parseHmsTime(dto.getEndTime());
+        SimpleDateFormat showFormat = new SimpleDateFormat(dto.getTimeLineFormat());
+        SimpleDateFormat dataFormat = new SimpleDateFormat(dto.getDataTimeFormat());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(beginTime);
+        Calendar calendarEnd = Calendar.getInstance();
+        calendarEnd.setTime(endTime);
+        List<String> timeLine = new ArrayList<>();
+        List<String> dataTimeline = new ArrayList<>();
+        timeLine.add(showFormat.format(calendar.getTime()));
+        dataTimeline.add(dataFormat.format(calendar.getTime()));
+        //添加时间轴数据
+        while (true) {
+            calendar.add(dto.getTimeUnit(), 1);
+            timeLine.add(showFormat.format(calendar.getTime()));
+            dataTimeline.add(dataFormat.format(calendar.getTime()));
+            if (showFormat.format(calendar.getTime()).equals(showFormat.format(calendarEnd.getTime()))) {
+                break;
+            }
+        }
+        //根据时间轴生成对应的时间线，数据不存在，补数据
+        List<JSONObject> result = new ArrayList<>();
+        JSONObject jsonDemo = data.get(0);
+        String timeLineFiled = dto.getTimeLineFiled();
+        for (String dateFormat : dataTimeline) {
+            boolean flag = true;
+            for (JSONObject datum : data) {
+                if (datum.containsKey(timeLineFiled) && datum.getString(timeLineFiled).equals(dateFormat)) {
+                    result.add(datum);
+                    flag = false;
+                }
+            }
+            if (flag) {
+                //补数据
+                JSONObject json = new JSONObject();
+                jsonDemo.forEach((s, o) -> {
+                    if (s.equals(timeLineFiled)) {
+                        json.put(timeLineFiled, dateFormat);
+                    } else {
+                        json.put(s, 0);
+                    }
+                });
+                result.add(json);
+            }
+        }
+        return result;
+    }
+    //设置时间格式
+    private void setTimeLineFormat(ChartDto dto) {
+        String particles = dto.getParticles();
+        if ("xAxis-hour".equals(particles)) {
+            dto.setDataTimeFormat("yyyy-MM-dd HH");
+            dto.setTimeLineFormat("MM-dd HH");
+            dto.setTimeUnit(Calendar.HOUR);
+        } else if ("xAxis-day".equals(particles)) {
+            dto.setDataTimeFormat("yyyy-MM-dd");
+            dto.setTimeLineFormat("yyyy-MM-dd");
+            dto.setTimeUnit(Calendar.DATE);
+        } else if ("xAxis-month".equals(particles)) {
+            dto.setDataTimeFormat("yyyy-MM");
+            dto.setTimeLineFormat("yyyy-MM");
+            dto.setTimeUnit(Calendar.MONTH);
+        } else if ("xAxis-year".equals(particles)) {
+            dto.setDataTimeFormat("yyyy");
+            dto.setTimeLineFormat("yyyy");
+            dto.setTimeUnit(Calendar.YEAR);
+        }
     }
 
 
@@ -397,16 +489,14 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
                 String fileType = gaeaFile.getFileType();
                 path = path + "/image/" + fileName + "." + fileType;
                 //path = /app/disk/upload/zip/UUID/image
-
                 //原始文件的路径
                 String filePath = gaeaFile.getFilePath();
                 FileUtil.copyFileUsingFileChannels(filePath, path);
             }
         }
-
     }
 
-    public ChartStrategy getTarget(String type) {
+    private ChartStrategyService getTarget(String type) {
         for (String s : queryServiceImplMap.keySet()) {
             if (s.contains(type)) {
                 return queryServiceImplMap.get(s);
@@ -415,150 +505,4 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
         throw BusinessExceptionBuilder.build(ResponseCode.RULE_CONTENT_NOT_EXIST);
     }
 
-    @Override
-    public void afterPropertiesSet() {
-        Map<String, ChartStrategy> beanMap = applicationContext.getBeansOfType(ChartStrategy.class);
-        //遍历该接口的所有实现，将其放入map中
-        for (ChartStrategy serviceImpl : beanMap.values()) {
-            queryServiceImplMap.put(serviceImpl.type(), serviceImpl);
-        }
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
-
-
-    /**
-     * 解析图层数据
-     *
-     * @param dto
-     */
-    public void analysisData(ReportDashboardWidgetValueDto dto) {
-//        if (StringUtils.isBlank(reportDashboardWidgetDto.getSetCode())) {
-//            return;
-//        }
-//        DataSetDto dto = new DataSetDto();
-//        dto.setSetCode(reportDashboardWidgetDto.getSetCode());
-//        if (reportDashboardWidgetDto.getContextData() != null && reportDashboardWidgetDto.getContextData().size() > 0) {
-//            dto.setContextData(reportDashboardWidgetDto.getContextData());
-//        }
-//        OriginalDataDto data = dataSetService.getData(dto);
-//        reportDashboardWidgetDto.setData(JSONObject.toJSONString(data.getData()));
-    }
-
-
-    public List<JSONObject> buildTimeLine(List<JSONObject> data, ChartDto dto) {
-        Map<String, String> chartProperties = dto.getChartProperties();
-        if (null == chartProperties || chartProperties.size() < 1) {
-            return data;
-        }
-        Map<String, Object> contextData = dto.getContextData();
-        if (null == contextData || contextData.size() < 1) {
-            return data;
-        }
-        if (contextData.containsKey("startTime") && contextData.containsKey("endTime")) {
-            dto.setStartTime(contextData.get("startTime").toString());
-            dto.setEndTime(contextData.get("endTime").toString());
-        }
-        if (StringUtils.isBlank(dto.getStartTime()) || StringUtils.isBlank(dto.getEndTime())) {
-            return data;
-        }
-        //获取时间轴字段和解析时间颗粒度
-
-        for (Map.Entry<String, String> entry : chartProperties.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            dto.setParticles(value);
-            setTimeLineFormat(dto);
-            if (StringUtils.isNotBlank(dto.getDataTimeFormat())) {
-                dto.setTimeLineFiled(key);
-                break;
-            }
-
-        }
-
-
-        if (StringUtils.isBlank(dto.getDataTimeFormat())) {
-            return data;
-        }
-
-        Date beginTime = DateUtil.parseHmsTime(dto.getStartTime());
-        Date endTime = DateUtil.parseHmsTime(dto.getEndTime());
-        SimpleDateFormat showFormat = new SimpleDateFormat(dto.getTimeLineFormat());
-        SimpleDateFormat dataFormat = new SimpleDateFormat(dto.getDataTimeFormat());
-
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(beginTime);
-
-        Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.setTime(endTime);
-
-        List<String> timeLine = new ArrayList<>();
-        List<String> dataTimeline = new ArrayList<>();
-        timeLine.add(showFormat.format(calendar.getTime()));
-        dataTimeline.add(dataFormat.format(calendar.getTime()));
-
-        //添加时间轴数据
-        while (true) {
-            calendar.add(dto.getTimeUnit(), 1);
-            timeLine.add(showFormat.format(calendar.getTime()));
-            dataTimeline.add(dataFormat.format(calendar.getTime()));
-            if (showFormat.format(calendar.getTime()).equals(showFormat.format(calendarEnd.getTime()))) {
-                break;
-            }
-        }
-
-        //根据时间轴生成对应的时间线，数据不存在，补数据
-        List<JSONObject> result = new ArrayList<>();
-        JSONObject jsonDemo = data.get(0);
-        String timeLineFiled = dto.getTimeLineFiled();
-        for (String dateFormat : dataTimeline) {
-            boolean flag = true;
-            for (JSONObject datum : data) {
-                if (datum.containsKey(timeLineFiled) && datum.getString(timeLineFiled).equals(dateFormat)) {
-                    result.add(datum);
-                    flag = false;
-                }
-            }
-            if (flag) {
-                //补数据
-                JSONObject json = new JSONObject();
-                jsonDemo.forEach((s, o) -> {
-                    if (s.equals(timeLineFiled)) {
-                        json.put(timeLineFiled, dateFormat);
-                    } else {
-                        json.put(s, 0);
-                    }
-                });
-                result.add(json);
-            }
-
-        }
-        return result;
-    }
-
-    //设置时间格式
-    private void setTimeLineFormat(ChartDto dto) {
-        String particles = dto.getParticles();
-        if ("xAxis-hour".equals(particles)) {
-            dto.setDataTimeFormat("yyyy-MM-dd HH");
-            dto.setTimeLineFormat("MM-dd HH");
-            dto.setTimeUnit(Calendar.HOUR);
-        } else if ("xAxis-day".equals(particles)) {
-            dto.setDataTimeFormat("yyyy-MM-dd");
-            dto.setTimeLineFormat("yyyy-MM-dd");
-            dto.setTimeUnit(Calendar.DATE);
-        } else if ("xAxis-month".equals(particles)) {
-            dto.setDataTimeFormat("yyyy-MM");
-            dto.setTimeLineFormat("yyyy-MM");
-            dto.setTimeUnit(Calendar.MONTH);
-        } else if ("xAxis-year".equals(particles)) {
-            dto.setDataTimeFormat("yyyy");
-            dto.setTimeLineFormat("yyyy");
-            dto.setTimeUnit(Calendar.YEAR);
-        }
-    }
 }

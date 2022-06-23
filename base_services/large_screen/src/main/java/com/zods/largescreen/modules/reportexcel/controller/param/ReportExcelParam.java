@@ -3,9 +3,10 @@ import com.zods.largescreen.common.curd.params.PageParam;
 import lombok.Data;
 import java.io.Serializable;
 /**
- * @author chenkening
- * @date 2021/4/13 15:12
- */
+ * @desc Excel报表查询参数对象
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Data
 public class ReportExcelParam extends PageParam implements Serializable {
 

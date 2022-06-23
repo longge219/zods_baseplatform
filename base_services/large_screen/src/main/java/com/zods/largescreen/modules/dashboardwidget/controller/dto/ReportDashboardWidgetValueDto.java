@@ -3,7 +3,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 import java.io.Serializable;
 /**
- * @description 大屏组件 dto
+ * @description 大屏组件存储内容 dto
  * @author jianglong
  * @date 2022-06-22
  **/

@@ -4,10 +4,11 @@ import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 /**
- * @author chenkening
- * @date 2021/4/13 15:11
- */
-@TableName(value = "gaea_report_excel")
+ * @desc ReportExcel Excel报表实体类
+ * @author jianglong
+ * @date 2022-06-23
+ **/
+@TableName(value = "large_scrren_report_excel")
 @Data
 public class ReportExcel extends GaeaBaseEntity {
 

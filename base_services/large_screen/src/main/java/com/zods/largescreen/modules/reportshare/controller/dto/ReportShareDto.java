@@ -6,15 +6,14 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-
 /**
-*
-* @description 报表分享 dto
-* @author Raod
-* @date 2021-08-18 13:37:26.663
-**/
+ * @description 报表分享 dto
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Data
 public class ReportShareDto extends GaeaBaseDTO implements Serializable {
+
     /** 分享编码，系统生成，默认UUID */
     @ApiModelProperty(value = "分享编码，系统生成，默认UUID")
     private String shareCode;

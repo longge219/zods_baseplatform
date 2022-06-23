@@ -3,10 +3,10 @@ import com.zods.largescreen.common.curd.mapper.GaeaBaseMapper;
 import com.zods.largescreen.modules.reportshare.dao.entity.ReportShare;
 import org.apache.ibatis.annotations.Mapper;
 /**
-* ReportShare Mapper
-* @author Raod
-* @date 2021-08-18 13:37:26.663
-**/
+ * @description 报表分享-Dao
+ * @author jianglong
+ * @date 2022-06-23
+ **/
 @Mapper
 public interface ReportShareMapper extends GaeaBaseMapper<ReportShare> {
 

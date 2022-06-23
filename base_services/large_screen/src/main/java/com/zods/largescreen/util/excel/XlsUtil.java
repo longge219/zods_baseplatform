@@ -1,4 +1,5 @@
-package com.zods.largescreen.modules.reportexcel.util;
+package com.zods.largescreen.util.excel;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zods.largescreen.enums.ExcelCenterStyleEnum;
@@ -14,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.io.OutputStream;

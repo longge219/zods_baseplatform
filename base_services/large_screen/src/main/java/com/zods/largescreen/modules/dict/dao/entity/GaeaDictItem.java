@@ -5,16 +5,13 @@ import com.zods.largescreen.common.annotation.UnionUnique;
 import com.zods.largescreen.common.annotation.UnionUniqueCode;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
 import com.zods.largescreen.constant.BusinessConstant;
-
 import java.io.Serializable;
-
 /**
- * 数据字典项(GaeaDictItem)实体类
- *
- * @author lirui
- * @since 2021-03-09 15:52:41
- */
-@TableName(keepGlobalPrefix=true,value = "gaea_dict_item")
+ * @desc 数据字典项(GaeaDictItem)实体类
+ * @author jianglong
+ * @date 2022-06-23
+ **/
+@TableName(keepGlobalPrefix=true,value = "large_scrren_dict_item")
 @UnionUniqueCode(group = BusinessConstant.DICT_ITEM_EXIST_GROUP, code = ResponseCode.DICT_ITEM_REPEAT)
 public class GaeaDictItem extends GaeaBaseEntity implements Serializable {
 
