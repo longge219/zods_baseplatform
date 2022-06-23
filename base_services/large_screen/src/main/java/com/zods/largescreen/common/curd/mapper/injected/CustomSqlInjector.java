@@ -1,11 +1,14 @@
 package com.zods.largescreen.common.curd.mapper.injected;
+
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
 import com.zods.largescreen.common.curd.mapper.methods.CustomInsertBatch;
 import com.zods.largescreen.common.curd.mapper.methods.UpdateFieldsBatch;
 import com.zods.largescreen.common.curd.mapper.methods.UpdateFieldsBatchById;
 import com.zods.largescreen.common.curd.mapper.methods.UpdateFieldsById;
+
 import java.util.List;
+
 /**
  * @author jianglong
  * @version 1.0

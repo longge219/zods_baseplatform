@@ -1,5 +1,4 @@
 package com.zods.largescreen.modules.dashboard.controller;
-import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.annotation.log.GaeaAuditLog;
 import com.zods.largescreen.common.bean.ResponseBean;
 import com.zods.largescreen.modules.dashboard.controller.dto.ChartDto;
@@ -22,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
  **/
 @RestController
 @Api(tags = "大屏设计管理")
-@Permission(code = "bigScreenManage", name = "大屏报表")
 @RequestMapping("/reportDashboard")
 public class ReportDashboardController {
 
@@ -38,7 +36,6 @@ public class ReportDashboardController {
      * @return ResponseBean 返回封装对象
      */
     @GetMapping({"/{reportCode}"})
-    @Permission(code = "view", name = "查看大屏")
     public ResponseBean detail(@PathVariable("reportCode") String reportCode) {
         return ResponseBean.builder().data(reportDashboardService.getDetail(reportCode)).build();
     }
@@ -49,7 +46,6 @@ public class ReportDashboardController {
      * @return ResponseBean 返回封装对象
      */
     @PostMapping
-    @Permission(code = "design", name = "设计大屏")
     @GaeaAuditLog(pageTitle = "新增")
     public ResponseBean insert(@RequestBody ReportDashboardObjectDto dto) {
         reportDashboardService.insertDashboard(dto);
@@ -63,7 +59,6 @@ public class ReportDashboardController {
      * @return ResponseBean 返回封装对象
      */
     @PostMapping("/getData")
-    @Permission(code = "view", name = "查看大屏")
     public ResponseBean getData(@RequestBody ChartDto dto) {
         return ResponseBean.builder().data(reportDashboardService.getChartData(dto)).build();
     }
@@ -75,7 +70,6 @@ public class ReportDashboardController {
      * @return
      */
     @GetMapping("/export")
-    @Permission(code = "export", name = "导出大屏")
     public ResponseEntity<byte[]> exportDashboard(HttpServletRequest request, HttpServletResponse response,
                                                   @RequestParam("reportCode") String reportCode, @RequestParam(value = "showDataSet",required = false, defaultValue = "1") Integer showDataSet) {
         return reportDashboardService.exportDashboard(request, response, reportCode, showDataSet);
@@ -88,7 +82,6 @@ public class ReportDashboardController {
      * @return
      */
     @PostMapping("/import/{reportCode}")
-    @Permission(code = "import", name = "导入大屏")
     public ResponseBean importDashboard(@RequestParam("file") MultipartFile file, @PathVariable("reportCode") String reportCode) {
         reportDashboardService.importDashboard(file, reportCode);
         return ResponseBean.builder().build();

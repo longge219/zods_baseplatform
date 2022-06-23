@@ -1,7 +1,7 @@
 package com.zods.largescreen.modules.datasource.dao.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zods.largescreen.code.ResponseCode;
 import com.zods.largescreen.common.annotation.Unique;
+import com.zods.largescreen.common.code.ResponseCode;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

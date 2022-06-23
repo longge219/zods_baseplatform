@@ -3,7 +3,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.zods.largescreen.code.ResponseCode;
+import com.zods.largescreen.common.code.ResponseCode;
 import com.zods.largescreen.common.curd.mapper.GaeaBaseMapper;
 import com.zods.largescreen.common.exception.BusinessExceptionBuilder;
 import com.zods.largescreen.common.utils.GaeaAssert;

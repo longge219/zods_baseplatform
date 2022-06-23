@@ -2,7 +2,6 @@ package com.zods.largescreen.common.curd.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zods.largescreen.common.annotation.AccessKey;
-import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.annotation.log.GaeaAuditLog;
 import com.zods.largescreen.common.bean.ResponseBean;
 import com.zods.largescreen.common.curd.dto.BaseDTO;
@@ -47,7 +46,6 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
     }
 
     @GetMapping({"/pageList"})
-    @Permission(code = "query", name = "查询")
     @GaeaAuditLog(pageTitle = "分页查询")
     public ResponseBean pageList(P param) {
         IPage<T> iPage = this.getService().page(param);
@@ -76,7 +74,6 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
 
 
     @PostMapping
-    @Permission(code = "insert", name = "新增")
     @GaeaAuditLog(pageTitle = "新增")
     public ResponseBean insert(@Validated @RequestBody D dto) {
         this.logger.info("{}新增服务开始，参数：{}", this.getClass().getSimpleName(), GaeaUtils.toJSONString(dto));
@@ -89,7 +86,6 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
     }
 
     @PutMapping
-    @Permission(code = "update", name = "更新")
     @GaeaAuditLog(pageTitle = "修改")
     public ResponseBean update(@Validated @RequestBody D dto) {
         String username = UserContentHolder.getContext().getUsername();
@@ -102,7 +98,6 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
     }
 
     @DeleteMapping({"/{id}"})
-    @Permission(code = "delete", name = "删除")
     @GaeaAuditLog(pageTitle = "删除")
     public ResponseBean deleteById(@PathVariable("id") Long id) {
         this.logger.info("{}删除服务开始，参数ID：{}", this.getClass().getSimpleName(), id);
@@ -112,7 +107,6 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
     }
 
     @PostMapping({"/delete/batch"})
-    @Permission(code = "delete", name = "删除")
     @GaeaAuditLog(pageTitle = "批量删除")
     public ResponseBean deleteBatchIds(@RequestBody List<Serializable> ids) {
         this.logger.info("{}批量删除服务开始，批量参数Ids：{}", this.getClass().getSimpleName(), GaeaUtils.toJSONString(ids));

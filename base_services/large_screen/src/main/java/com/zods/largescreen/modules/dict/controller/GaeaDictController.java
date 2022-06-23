@@ -1,5 +1,4 @@
 package com.zods.largescreen.modules.dict.controller;
-import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.bean.KeyValue;
 import com.zods.largescreen.common.bean.ResponseBean;
 import com.zods.largescreen.common.curd.controller.GaeaBaseController;
@@ -51,7 +50,6 @@ public class GaeaDictController extends GaeaBaseController<GaeaDictParam, GaeaDi
 
     /**刷新指定字典项*/
     @PostMapping("/freshDict")
-    @Permission(code = "fresh",name = "刷新")
     public ResponseBean refreshDict(@RequestBody List<String> dictCodes) {
         //刷新
         gaeaDictService.refreshCache(dictCodes);
@@ -60,7 +58,6 @@ public class GaeaDictController extends GaeaBaseController<GaeaDictParam, GaeaDi
 
     /**下拉菜单*/
     @GetMapping("/select/{dictCode}")
-    @Permission(code = "query",name = "下拉")
     public ResponseBean select(@PathVariable("dictCode") String dictName){
         Locale locale = LocaleContextHolder.getLocale();
         //语言

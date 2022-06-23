@@ -1,5 +1,4 @@
 package com.zods.largescreen.modules.report.controller;
-import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.annotation.log.GaeaAuditLog;
 import com.zods.largescreen.common.bean.ResponseBean;
 import com.zods.largescreen.common.curd.controller.GaeaBaseController;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @Api(tags = "报表数据管理")
-@Permission(code = "reportManage", name = "报表管理")
 @RequestMapping("/report")
 public class ReportController extends GaeaBaseController<ReportParam, Report, ReportDto> {
 
@@ -44,7 +42,6 @@ public class ReportController extends GaeaBaseController<ReportParam, Report, Re
     }
 
     @DeleteMapping("/delReport")
-    @Permission(code = "delete", name = "删除")
     @GaeaAuditLog(pageTitle = "删除")
     public ResponseBean delReport(@RequestBody ReportDto reportDto) {
         reportService.delReport(reportDto);

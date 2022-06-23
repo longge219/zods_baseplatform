@@ -1,6 +1,5 @@
 package com.zods.largescreen.modules.reportshare.controller;
 import com.zods.largescreen.common.annotation.AccessKey;
-import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.bean.ResponseBean;
 import com.zods.largescreen.common.curd.controller.GaeaBaseController;
 import com.zods.largescreen.common.curd.service.GaeaBaseService;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Api(tags = "报表分享管理")
 @RequestMapping("/reportShare")
-@Permission(code = "reportShareManage", name = "报表分享管理")
 public class ReportShareController extends GaeaBaseController<ReportShareParam, ReportShare, ReportShareDto> {
 
     @Autowired
@@ -46,7 +44,6 @@ public class ReportShareController extends GaeaBaseController<ReportShareParam, 
     @GetMapping({"/{id}"})
     @AccessKey
     @Override
-    @Permission(code = "detail", name = "明细")
     public ResponseBean detail(@PathVariable("id") Long id) {
         this.logger.info("{}根据ID查询服务开始，id为：{}", this.getClass().getSimpleName(), id);
         ReportShare result = reportShareService.getDetail(id);
@@ -58,7 +55,6 @@ public class ReportShareController extends GaeaBaseController<ReportShareParam, 
     }
 
     @GetMapping({"/detailByCode"})
-    @Permission(code = "detail", name = "明细")
     public ResponseBean detailByCode(@RequestParam("shareCode") String shareCode) {
         return ResponseBean.builder().data(reportShareService.detailByCode(shareCode)).build();
     }

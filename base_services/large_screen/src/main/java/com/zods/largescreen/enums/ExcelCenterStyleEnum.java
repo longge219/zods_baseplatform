@@ -2,7 +2,7 @@ package com.zods.largescreen.enums;
 /**
  * @author jianglong
  * @version 1.0
- * @Description EXCEL居中方式
+ * @Description EXCEL对齐方式枚举类型
  * @createDate 2022-06-20
  */
 public enum ExcelCenterStyleEnum {

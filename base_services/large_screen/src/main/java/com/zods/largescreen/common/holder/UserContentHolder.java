@@ -8,6 +8,7 @@ import java.util.Locale;
  * @createDate 2022-06-20
  */
 public class UserContentHolder {
+
     private static final ThreadLocal<UserContext> userContextThreadLocal = new InheritableThreadLocal();
 
     public UserContentHolder() {

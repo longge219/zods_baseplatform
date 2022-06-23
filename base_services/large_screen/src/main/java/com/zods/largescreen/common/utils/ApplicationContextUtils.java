@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description ApplicationContext工具类
  * @createDate 2022-06-20
  */
 public class ApplicationContextUtils implements ApplicationContextAware {

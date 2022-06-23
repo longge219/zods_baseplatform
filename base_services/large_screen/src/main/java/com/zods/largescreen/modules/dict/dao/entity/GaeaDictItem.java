@@ -1,10 +1,10 @@
 package com.zods.largescreen.modules.dict.dao.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zods.largescreen.code.ResponseCode;
 import com.zods.largescreen.common.annotation.UnionUnique;
 import com.zods.largescreen.common.annotation.UnionUniqueCode;
+import com.zods.largescreen.common.code.ResponseCode;
+import com.zods.largescreen.common.constant.SymbolConstant;
 import com.zods.largescreen.common.curd.entity.GaeaBaseEntity;
-import com.zods.largescreen.constant.BusinessConstant;
 import java.io.Serializable;
 /**
  * @desc 数据字典项(GaeaDictItem)实体类
@@ -12,13 +12,13 @@ import java.io.Serializable;
  * @date 2022-06-23
  **/
 @TableName(keepGlobalPrefix=true,value = "large_scrren_dict_item")
-@UnionUniqueCode(group = BusinessConstant.DICT_ITEM_EXIST_GROUP, code = ResponseCode.DICT_ITEM_REPEAT)
+@UnionUniqueCode(group = SymbolConstant.DICT_ITEM_EXIST_GROUP, code = ResponseCode.DICT_ITEM_REPEAT)
 public class GaeaDictItem extends GaeaBaseEntity implements Serializable {
 
     /**
      * 数据字典编码
      */
-    @UnionUnique(group = BusinessConstant.DICT_ITEM_EXIST_GROUP)
+    @UnionUnique(group = SymbolConstant.DICT_ITEM_EXIST_GROUP)
     private String dictCode;
     /**
      * 字典项名称
@@ -27,7 +27,7 @@ public class GaeaDictItem extends GaeaBaseEntity implements Serializable {
     /**
      * 字典项值
      */
-    @UnionUnique(group = BusinessConstant.DICT_ITEM_EXIST_GROUP)
+    @UnionUnique(group = SymbolConstant.DICT_ITEM_EXIST_GROUP)
     private String itemValue;
 
     /**
@@ -37,7 +37,7 @@ public class GaeaDictItem extends GaeaBaseEntity implements Serializable {
     /**
      * 语言标识
      */
-    @UnionUnique(group = BusinessConstant.DICT_ITEM_EXIST_GROUP)
+    @UnionUnique(group = SymbolConstant.DICT_ITEM_EXIST_GROUP)
     private String locale;
 
     /**

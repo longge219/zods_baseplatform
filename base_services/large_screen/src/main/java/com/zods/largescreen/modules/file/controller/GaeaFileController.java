@@ -1,7 +1,6 @@
 package com.zods.largescreen.modules.file.controller;
-import com.zods.largescreen.base.BaseController;
-import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.bean.ResponseBean;
+import com.zods.largescreen.common.curd.controller.GaeaBaseController;
 import com.zods.largescreen.common.curd.service.GaeaBaseService;
 import com.zods.largescreen.modules.file.controller.dto.GaeaFileDTO;
 import com.zods.largescreen.modules.file.controller.param.GaeaFileParam;
@@ -22,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/file")
 @Api(value = "/file", tags = "")
-public class GaeaFileController extends BaseController<GaeaFileParam, GaeaFile, GaeaFileDTO> {
+public class GaeaFileController extends GaeaBaseController<GaeaFileParam, GaeaFile, GaeaFileDTO> {
     @Autowired
     private GaeaFileService gaeaFileService;
 
@@ -45,7 +44,6 @@ public class GaeaFileController extends BaseController<GaeaFileParam, GaeaFile, 
     }
 
     @PostMapping("/upload")
-    @Permission(code = "upload", name = "文件上传")
     public ResponseBean upload(@RequestParam("file") MultipartFile file) {
         return ResponseBean.builder().message("success").data((gaeaFileService.upload(file))).build();
     }

@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 跨域设置
  * @createDate 2022-06-20
  */
 @Component

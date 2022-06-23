@@ -2,15 +2,17 @@ package com.zods.largescreen.enums;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 是否启用枚举类型
  * @createDate 2022-06-20
  */
 public enum EnableFlagEnum {
+
     ENABLE(1,"启用"),
-    DISABLE(0,"禁用"),
-    ;
+
+    DISABLE(0,"禁用");
 
     private int codeValue;
+
     private String codeDesc;
 
     private EnableFlagEnum(int  codeValue, String codeDesc) {

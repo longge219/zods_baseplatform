@@ -2,15 +2,17 @@ package com.zods.largescreen.enums;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 数据源枚举类型
  * @createDate 2022-06-20
  */
 public enum SetTypeEnum {
+
     SQL("sql", "sql"),
-    HTTP("http", "http"),
-    ;
+
+    HTTP("http", "http");
 
     private String codeValue;
+
     private String codeDesc;
 
     private SetTypeEnum(String codeValue, String codeDesc) {

@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description URL编码过滤
  * @createDate 2022-06-20
  */
 @Component
@@ -43,9 +43,7 @@ public class UrlDecodeFilter implements Filter {
         filterChain.doFilter(wrapper, servletResponse);
     }
 
-    /**
-     * 参数
-     */
+    /**参数*/
     class ParamHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
         private ParameterMap<String, String[]> parameterMap;

@@ -24,7 +24,7 @@
         就算有访问，也只会存活600秒。
      -->
     <!--<defaultCache maxElementsInMemory="10000" eternal="false"
-                  timeToIdleSeconds="600" timeToLiveSeconds="600" overflowToDisk="true" />
+         timeToIdleSeconds="600" timeToLiveSeconds="600" overflowToDisk="true" />
     -->
     <cache name="reportCache" maxElementsInMemory="10000" eternal="true"
            maxElementsOnDisk="0" diskPersistent="true"

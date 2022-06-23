@@ -2,13 +2,14 @@ package com.zods.largescreen.enums;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 导出格式枚举类型
  * @createDate 2022-06-20
  */
 public enum ExportTypeEnum {
 
     /**gaea_excel*/
     GAEA_TEMPLATE_EXCEL("gaea_template_excel", "gaea_template_excel"),
+
     /**gaea_pdf*/
     GAEA_TEMPLATE_PDF("gaea_template_pdf", "gaea_template_pdf"),
     ;

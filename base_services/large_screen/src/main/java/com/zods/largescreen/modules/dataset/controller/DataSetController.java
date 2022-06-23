@@ -1,6 +1,5 @@
 package com.zods.largescreen.modules.dataset.controller;
 import com.zods.largescreen.common.annotation.AccessKey;
-import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.annotation.log.GaeaAuditLog;
 import com.zods.largescreen.common.bean.ResponseBean;
 import com.zods.largescreen.common.curd.controller.GaeaBaseController;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @Api(tags = "数据集管理")
-@Permission(code = "resultsetManage", name = "数据集管理")
 @RequestMapping("/dataSet")
 public class DataSetController extends GaeaBaseController<DataSetParam, DataSet, DataSetDto> {
 
@@ -48,7 +46,6 @@ public class DataSetController extends GaeaBaseController<DataSetParam, DataSet,
 
 
     @GetMapping("/detailBysetId/{id}")
-    @Permission( code = "query", name = "明细" )
     public ResponseBean detailBysetId(@PathVariable("id") Long id) {
         this.logger.info("{}根据ID查询服务开始，id为：{}", this.getClass().getSimpleName(), id);
         ResponseBean responseBean = this.responseSuccessWithData(dataSetService.detailSet(id));
@@ -57,7 +54,6 @@ public class DataSetController extends GaeaBaseController<DataSetParam, DataSet,
     }
 
     @GetMapping({"/detailBysetCode/{setCode}"})
-    @Permission( code = "query", name = "明细" )
     @AccessKey
     public ResponseBean detailBysetCode(@PathVariable("setCode") String setCode) {
         this.logger.info("{}根据setCode查询服务开始，setCode为：{}", this.getClass().getSimpleName(), setCode);
@@ -68,7 +64,6 @@ public class DataSetController extends GaeaBaseController<DataSetParam, DataSet,
 
 
     @PostMapping
-    @Permission(code = "insert", name = "新增")
     @GaeaAuditLog(pageTitle = "新增")
     @Override
     public ResponseBean insert(@RequestBody DataSetDto dto) {
@@ -79,7 +74,6 @@ public class DataSetController extends GaeaBaseController<DataSetParam, DataSet,
     }
 
     @PutMapping
-    @Permission(code = "update", name = "更新")
     @GaeaAuditLog(pageTitle = "修改")
     @Override
     public ResponseBean update(@RequestBody DataSetDto dto) {
@@ -92,7 +86,6 @@ public class DataSetController extends GaeaBaseController<DataSetParam, DataSet,
     }
 
     @DeleteMapping({"/{id}"})
-    @Permission(code = "delete", name = "删除")
     @GaeaAuditLog(pageTitle = "删除")
     @Override
     public ResponseBean deleteById(@PathVariable("id") Long id) {
@@ -104,7 +97,6 @@ public class DataSetController extends GaeaBaseController<DataSetParam, DataSet,
 
     /**测试预览 数据转换是否正确*/
     @PostMapping("/testTransform")
-    @Permission( code = "query", name = "明细" )
     public ResponseBean testTransform(@Validated @RequestBody DataSetTestTransformParam param) {
         DataSetDto dto = new DataSetDto();
         BeanUtils.copyProperties(param, dto);

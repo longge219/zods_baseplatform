@@ -1,8 +1,8 @@
 package com.zods.largescreen.modules.datasource.service.impl;
 import com.alibaba.druid.pool.DruidDataSource;
-import com.zods.largescreen.config.DruidProperties;
 import com.zods.largescreen.modules.datasource.controller.dto.DataSourceDto;
 import com.zods.largescreen.modules.datasource.service.JdbcService;
+import com.zods.largescreen.properties.DruidProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

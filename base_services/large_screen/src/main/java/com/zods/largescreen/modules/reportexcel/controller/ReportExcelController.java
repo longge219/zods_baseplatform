@@ -1,5 +1,4 @@
 package com.zods.largescreen.modules.reportexcel.controller;
-import com.zods.largescreen.common.annotation.Permission;
 import com.zods.largescreen.common.annotation.log.GaeaAuditLog;
 import com.zods.largescreen.common.bean.ResponseBean;
 import com.zods.largescreen.common.code.ResponseCode;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @Api(tags = "报表表格管理")
-@Permission(code = "excelManage", name = "报表管理")
 @RequestMapping("/reportExcel")
 public class ReportExcelController extends GaeaBaseController<ReportExcelParam, ReportExcel, ReportExcelDto> {
 
@@ -43,7 +41,6 @@ public class ReportExcelController extends GaeaBaseController<ReportExcelParam, 
 
 
     @GetMapping("/detailByReportCode/{reportCode}")
-    @Permission(code = "query", name = "详情")
     @GaeaAuditLog(pageTitle = "详情")
     public ResponseBean detailByReportCode(@PathVariable String reportCode) {
         ReportExcelDto reportExcelDto = reportExcelService.detailByReportCode(reportCode);
@@ -51,7 +48,6 @@ public class ReportExcelController extends GaeaBaseController<ReportExcelParam, 
     }
 
     @PostMapping("/preview")
-    @Permission(code = "view", name = "预览")
     @GaeaAuditLog(pageTitle = "预览")
     public ResponseBean preview(@RequestBody ReportExcelDto reportExcelDto) {
         ReportExcelDto result = reportExcelService.preview(reportExcelDto);
@@ -60,7 +56,6 @@ public class ReportExcelController extends GaeaBaseController<ReportExcelParam, 
 
 
     @PostMapping("/exportExcel")
-    @Permission(code = "export", name = "导出")
     @GaeaAuditLog(pageTitle = "报表导出")
     public ResponseBean exportExcel(@RequestBody ReportExcelDto reportExcelDto) {
         return ResponseBean.builder().code(ResponseCode.SUCCESS_CODE)

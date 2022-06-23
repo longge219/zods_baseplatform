@@ -2,15 +2,17 @@ package com.zods.largescreen.enums;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 删除枚举类型
  * @createDate 2022-06-20
  */
 public enum DeleteFlagEnum {
+
     DELETED(1,"已删除"),
-    UNDELETED(0,"未删除"),
-    ;
+
+    UNDELETED(0,"未删除");
 
     private int codeValue;
+
     private String codeDesc;
 
     private DeleteFlagEnum(int  codeValue, String codeDesc) {

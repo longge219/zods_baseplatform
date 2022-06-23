@@ -1,6 +1,6 @@
 package com.zods.largescreen.config;
-
 import com.alibaba.fastjson.JSON;
+import com.zods.largescreen.properties.HttpClientPoolProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
@@ -32,7 +32,6 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
-
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import java.nio.charset.Charset;
@@ -40,53 +39,48 @@ import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
-
 /**
- * Created by raodeming on 2021/3/24.
+ * @author jianglong
+ * @version 1.0
+ * @Description HTTP客户端配置
+ * @createDate 2022-06-20
  */
 @Configuration
 @Slf4j
 public class HttpClientConfig {
-    @Autowired
-    private HttpClientPoolConfig httpClientPoolConfig;
 
-    /**
-     * 创建HTTP客户端工厂
-     */
+    @Autowired
+    private HttpClientPoolProperties httpClientPoolProperties;
+
+    /**创建HTTP客户端工厂*/
     @Bean(name = "clientHttpRequestFactory")
     public ClientHttpRequestFactory clientHttpRequestFactory() {
         /**
          *  maxTotalConnection 和 maxConnectionPerRoute 必须要配
          */
-        if (httpClientPoolConfig.getMaxTotalConnect() <= 0) {
-            throw new IllegalArgumentException("invalid maxTotalConnection: " + httpClientPoolConfig.getMaxTotalConnect());
+        if (httpClientPoolProperties.getMaxTotalConnect() <= 0) {
+            throw new IllegalArgumentException("invalid maxTotalConnection: " + httpClientPoolProperties.getMaxTotalConnect());
         }
-        if (httpClientPoolConfig.getMaxConnectPerRoute() <= 0) {
-            throw new IllegalArgumentException("invalid maxConnectionPerRoute: " + httpClientPoolConfig.getMaxConnectPerRoute());
+        if (httpClientPoolProperties.getMaxConnectPerRoute() <= 0) {
+            throw new IllegalArgumentException("invalid maxConnectionPerRoute: " + httpClientPoolProperties.getMaxConnectPerRoute());
         }
         HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(httpClient());
         // 连接超时
-        clientHttpRequestFactory.setConnectTimeout(httpClientPoolConfig.getConnectTimeout());
+        clientHttpRequestFactory.setConnectTimeout(httpClientPoolProperties.getConnectTimeout());
         // 数据读取超时时间，即SocketTimeout
-        clientHttpRequestFactory.setReadTimeout(httpClientPoolConfig.getReadTimeout());
+        clientHttpRequestFactory.setReadTimeout(httpClientPoolProperties.getReadTimeout());
         // 从连接池获取请求连接的超时时间，不宜过长，必须设置，比如连接不够用时，时间过长将是灾难性的
-        clientHttpRequestFactory.setConnectionRequestTimeout(httpClientPoolConfig.getConnectionRequestTimout());
+        clientHttpRequestFactory.setConnectionRequestTimeout(httpClientPoolProperties.getConnectionRequestTimout());
         return clientHttpRequestFactory;
     }
 
-    /**
-     * 初始化RestTemplate,并加入spring的Bean工厂，由spring统一管理
-     */
+    /**初始化RestTemplate,并加入spring的Bean工厂，由spring统一管理*/
     @Bean(name = "dataSourceRestTemplate")
     public RestTemplate restTemplate(@Qualifier("clientHttpRequestFactory") ClientHttpRequestFactory factory) {
         return createRestTemplate(factory);
     }
 
-    /**
-     * 配置httpClient
-     *
-     * @return
-     */
+    /**配置httpClient*/
     @Bean
     public HttpClient httpClient() {
         HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
@@ -105,13 +99,13 @@ public class HttpClientConfig {
             //使用Httpclient连接池的方式配置(推荐)，同时支持netty，okHttp以及其他http框架
             PoolingHttpClientConnectionManager poolingHttpClientConnectionManager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
             // 最大连接数
-            poolingHttpClientConnectionManager.setMaxTotal(httpClientPoolConfig.getMaxTotalConnect());
+            poolingHttpClientConnectionManager.setMaxTotal(httpClientPoolProperties.getMaxTotalConnect());
             // 同路由并发数
-            poolingHttpClientConnectionManager.setDefaultMaxPerRoute(httpClientPoolConfig.getMaxConnectPerRoute());
+            poolingHttpClientConnectionManager.setDefaultMaxPerRoute(httpClientPoolProperties.getMaxConnectPerRoute());
             //配置连接池
             httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
             // 重试次数
-            httpClientBuilder.setRetryHandler(new DefaultHttpRequestRetryHandler(httpClientPoolConfig.getRetryTimes(), true));
+            httpClientBuilder.setRetryHandler(new DefaultHttpRequestRetryHandler(httpClientPoolProperties.getRetryTimes(), true));
 
             //设置默认请求头
             List<Header> headers = getDefaultHeaders();
@@ -126,11 +120,7 @@ public class HttpClientConfig {
     }
 
 
-    /**
-     * 配置长连接保持策略
-     *
-     * @return
-     */
+    /**配置长连接保持策略*/
     public ConnectionKeepAliveStrategy connectionKeepAliveStrategy() {
         return (response, context) -> {
             // Honor 'keep-alive' header
@@ -152,20 +142,16 @@ public class HttpClientConfig {
             HttpHost target = (HttpHost) context.getAttribute(
                     HttpClientContext.HTTP_TARGET_HOST);
             //如果请求目标地址,单独配置了长连接保持时间,使用该配置
-            Optional<Map.Entry<String, Integer>> any = Optional.ofNullable(httpClientPoolConfig.getKeepAliveTargetHost()).orElseGet(HashMap::new)
+            Optional<Map.Entry<String, Integer>> any = Optional.ofNullable(httpClientPoolProperties.getKeepAliveTargetHost()).orElseGet(HashMap::new)
                     .entrySet().stream().filter(
                             e -> e.getKey().equalsIgnoreCase(target.getHostName())).findAny();
             //否则使用默认长连接保持时间
-            return any.map(en -> en.getValue() * 1000L).orElse(httpClientPoolConfig.getKeepAliveTime() * 1000L);
+            return any.map(en -> en.getValue() * 1000L).orElse(httpClientPoolProperties.getKeepAliveTime() * 1000L);
         };
     }
 
 
-    /**
-     * 设置请求头
-     *
-     * @return
-     */
+    /**设置请求头*/
     private List<Header> getDefaultHeaders() {
         List<Header> headers = new ArrayList<>();
         headers.add(new BasicHeader("User-Agent",
@@ -190,11 +176,7 @@ public class HttpClientConfig {
         return restTemplate;
     }
 
-    /**
-     * 修改默认的字符集类型为utf-8
-     *
-     * @param restTemplate
-     */
+    /**修改默认的字符集类型为utf-8*/
     private void modifyDefaultCharset(RestTemplate restTemplate) {
         List<HttpMessageConverter<?>> converterList = restTemplate.getMessageConverters();
         HttpMessageConverter<?> converterTarget = null;
@@ -207,7 +189,7 @@ public class HttpClientConfig {
         if (null != converterTarget) {
             converterList.remove(converterTarget);
         }
-        Charset defaultCharset = Charset.forName(httpClientPoolConfig.getCharset());
+        Charset defaultCharset = Charset.forName(httpClientPoolProperties.getCharset());
         converterList.add(1, new StringHttpMessageConverter(defaultCharset));
     }
 }

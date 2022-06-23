@@ -3,15 +3,15 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.zods.largescreen.code.ResponseCode;
+import com.zods.largescreen.common.code.ResponseCode;
 import com.zods.largescreen.common.constant.BaseOperationEnum;
 import com.zods.largescreen.common.constant.Deleted;
 import com.zods.largescreen.common.constant.Enabled;
+import com.zods.largescreen.common.constant.SymbolConstant;
 import com.zods.largescreen.common.curd.mapper.GaeaBaseMapper;
 import com.zods.largescreen.common.exception.BusinessException;
 import com.zods.largescreen.common.exception.BusinessExceptionBuilder;
 import com.zods.largescreen.common.utils.GaeaAssert;
-import com.zods.largescreen.constant.BusinessConstant;
 import com.zods.largescreen.modules.dataset.controller.dto.DataSetDto;
 import com.zods.largescreen.modules.datasetparam.service.DataSetParamService;
 import com.zods.largescreen.modules.datasource.controller.dto.DataSourceDto;
@@ -320,10 +320,10 @@ public class DataSourceServiceImpl implements DataSourceService {
         Object body = exchange.getBody();
         String jsonStr = JSONObject.toJSONString(body);
         List<JSONObject> result = new ArrayList<>();
-        if (jsonStr.trim().startsWith(BusinessConstant.LEFT_BIG_BOAST) && jsonStr.trim().endsWith(BusinessConstant.RIGTH_BIG_BOAST)) {
+        if (jsonStr.trim().startsWith(SymbolConstant.LEFT_BIG_BOAST) && jsonStr.trim().endsWith(SymbolConstant.RIGTH_BIG_BOAST)) {
             //JSONObject
             result.add(JSONObject.parseObject(jsonStr));
-        } else if (jsonStr.trim().startsWith(BusinessConstant.LEFT_MIDDLE_BOAST) && jsonStr.trim().endsWith(BusinessConstant.RIGHT_MIDDLE_BOAST)) {
+        } else if (jsonStr.trim().startsWith(SymbolConstant.LEFT_MIDDLE_BOAST) && jsonStr.trim().endsWith(SymbolConstant.RIGHT_MIDDLE_BOAST)) {
             //List
             result = JSONArray.parseArray(jsonStr, JSONObject.class);
         } else {

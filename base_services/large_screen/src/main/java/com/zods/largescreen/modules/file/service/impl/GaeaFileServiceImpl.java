@@ -1,7 +1,7 @@
 package com.zods.largescreen.modules.file.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.zods.largescreen.code.ResponseCode;
+import com.zods.largescreen.common.code.ResponseCode;
 import com.zods.largescreen.common.constant.BaseOperationEnum;
 import com.zods.largescreen.common.curd.mapper.GaeaBaseMapper;
 import com.zods.largescreen.common.exception.BusinessException;
