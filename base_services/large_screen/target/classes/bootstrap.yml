@@ -33,13 +33,20 @@ management:
 logging:
   config: classpath:logback.xml
 
+#swagger配置
+swagger:
+  host:
+  service:
+    url: http://swagger.io/
+    title: 智能平台api文档
+    des: 智能平台api文档
+
 # 本应用自定义参数
 customer:
   # 开发测试用本地文件，如果是生产，请考虑使用对象存储
   file:
     #上传对应本地全路径，路径必须是真实存在的
-    dist-path: /app/disk/upload/
+    dist-path: D:\IdeaProjects\report\report-core\upload
     white-list: .png|.jpg|.gif|.icon|.pdf|.xlsx|.xls|.csv|.mp4|.avi|.json|.geojson
     excelSuffix: .xlsx|.xls|.csv
-    #上传对应下载的下载链接路径 http://serverip:9095/file/download
-    downloadPath: http://127.0.0.1:9095/file/download
+    downloadPath: ./api/file/download

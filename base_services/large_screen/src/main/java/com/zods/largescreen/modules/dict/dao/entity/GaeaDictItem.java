@@ -15,42 +15,31 @@ import java.io.Serializable;
 @UnionUniqueCode(group = SymbolConstant.DICT_ITEM_EXIST_GROUP, code = ResponseCode.DICT_ITEM_REPEAT)
 public class GaeaDictItem extends GaeaBaseEntity implements Serializable {
 
-    /**
-     * 数据字典编码
-     */
+    /**数据字典编码*/
     @UnionUnique(group = SymbolConstant.DICT_ITEM_EXIST_GROUP)
     private String dictCode;
-    /**
-     * 字典项名称
-     */
+
+    /**字典项名称*/
     private String itemName;
-    /**
-     * 字典项值
-     */
+
+    /**字典项值*/
     @UnionUnique(group = SymbolConstant.DICT_ITEM_EXIST_GROUP)
     private String itemValue;
 
-    /**
-     * 字典项扩展
-     */
+    /**字典项扩展*/
     private String itemExtend;
-    /**
-     * 语言标识
-     */
+
+    /**语言标识*/
     @UnionUnique(group = SymbolConstant.DICT_ITEM_EXIST_GROUP)
     private String locale;
 
-    /**
-     * 1：启用，0:禁用
-     */
+    /**1：启用，0:禁用*/
     private Integer enabled;
-    /**
-     * 描述
-     */
+
+    /**描述*/
     private String remark;
-    /**
-     * 排序
-     */
+
+    /**排序*/
     private Integer sort;
 
     public String getDictCode() {

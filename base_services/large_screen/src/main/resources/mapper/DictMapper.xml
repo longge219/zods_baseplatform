@@ -1,0 +1,23 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zods.largescreen.modules.dict.dao.GaeaDictMapper">
+
+    <resultMap type="com.zods.largescreen.modules.dict.dao.entity.GaeaDict" id="FileMap">
+        <!--jdbcType="{column.columnType}"-->
+        <result property="id" column="id"  />
+        <result property="dictName" column="dict_name"  />
+        <result property="dictCode" column="dict_code"  />
+        <result property="remark" column="remark"  />
+        <result property="createBy" column="create_by"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateBy" column="update_by"  />
+        <result property="updateTime" column="update_time"  />
+        <result property="version" column="version"  />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,dict_name,dict_code,remark,create_by,create_time,update_by,update_time,version
+    </sql>
+
+    <!--自定义sql -->
+
+</mapper>

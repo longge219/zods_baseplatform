@@ -11,5 +11,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface FormatterType {
+    /**默认为object对象*/
     FormatterEnum type() default FormatterEnum.OBJECT;
 }

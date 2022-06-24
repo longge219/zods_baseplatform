@@ -12,19 +12,14 @@ import java.io.Serializable;
 @TableName(keepGlobalPrefix=true, value = "large_scrren_dict")
 public class GaeaDict extends GaeaBaseEntity implements Serializable {
 
-    /**
-     * 字典名称
-     */
+    /**字典名称*/
     private String dictName;
-    /**
-     * 字典编码
-     */
+
+    /**字典编码*/
     @Unique(code = ResponseCode.DICCODE_ISEXIST)
     private String dictCode;
 
-    /**
-     * 字典描述
-     */
+    /**字典描述*/
     private String remark;
 
     public String getDictName() {

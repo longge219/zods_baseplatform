@@ -1,13 +1,13 @@
 package com.zods.largescreen.common.curd.entity;
-
 import com.baomidou.mybatisplus.annotation.*;
-
+import lombok.Data;
 import java.util.Date;
 /**
  * @description 实体类公共属性
  * @author jianglong
  * @date 2022-06-14
  **/
+@Data
 public class GaeaBaseEntity extends BaseEntity {
 
     /**主键ID*/
@@ -35,54 +35,4 @@ public class GaeaBaseEntity extends BaseEntity {
     @Version
     private Integer version;
 
-    public GaeaBaseEntity() {
-    }
-
-    public String getCreateBy() {
-        return this.createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public Date getCreateTime() {
-        return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateBy() {
-        return this.updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Date getUpdateTime() {
-        return this.updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getVersion() {
-        return this.version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

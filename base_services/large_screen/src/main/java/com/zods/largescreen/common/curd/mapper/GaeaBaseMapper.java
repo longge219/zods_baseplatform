@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 /**
- * @description 数据源实体类DAO层公共方法
+ * @description Dao基础接口
  * @author jianglong
  * @date 2022-06-14
  **/

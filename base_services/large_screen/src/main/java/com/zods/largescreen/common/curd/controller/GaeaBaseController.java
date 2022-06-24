@@ -14,16 +14,16 @@ import com.zods.largescreen.common.utils.GaeaUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.Serializable;
 import java.util.List;
 /**
  * @author jianglong
  * @version 1.0
- * @Description 基础controller
+ * @Description 封装了基础公共方法的controller
  * @createDate 2022-06-20
  */
 public abstract class GaeaBaseController<P extends PageParam, T extends BaseEntity, D extends BaseDTO> extends BaseController {
+
     public GaeaBaseController() {
     }
 
@@ -57,7 +57,6 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
         return this.responseSuccessWithData(pageDto);
     }
 
-
     @GetMapping({"/{id}"})
     @AccessKey
     public ResponseBean detail(@PathVariable("id") Long id) {
@@ -70,8 +69,6 @@ public abstract class GaeaBaseController<P extends PageParam, T extends BaseEnti
         this.logger.info("{}根据ID查询结束，结果：{}", this.getClass().getSimpleName(), GaeaUtils.toJSONString(responseBean));
         return responseBean;
     }
-
-
 
     @PostMapping
     @GaeaAuditLog(pageTitle = "新增")

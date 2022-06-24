@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author jianglong
  * @version 1.0
- * @Description
+ * @Description 基础Controller--提供基础的请求放回封装方法
  * @createDate 2022-06-20
  */
 public abstract class BaseController {

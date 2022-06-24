@@ -1,0 +1,26 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zods.largescreen.modules.layer.dao.LayerMapper">
+
+    <resultMap type="com.zods.largescreen.modules.layer.dao.entity.Layer" id="LayerMap">
+        <!--jdbcType="{column.columnType}"-->
+        <result property="id" column="id"  />
+        <result property="layerName" column="layer_name"  />
+        <result property="layertUrl" column="layert_url"  />
+        <result property="deviceLayout" column="device_layout"  />
+        <result property="hotzonLayout" column="hotzon_layout"  />
+        <result property="attachId" column="attach_id"  />
+        <result property="isDelete" column="is_delete"  />
+        <result property="createBy" column="create_by"  />
+        <result property="createTime" column="create_time"  />
+        <result property="updateBy" column="update_by"  />
+        <result property="updateTime" column="update_time"  />
+        <result property="version" column="version"  />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,layer_name,layert_url,device_layout,hotzon_layout,attach_id,is_delete,create_by,create_time,update_by,update_time,version
+    </sql>
+
+    <!--自定义sql -->
+
+</mapper>

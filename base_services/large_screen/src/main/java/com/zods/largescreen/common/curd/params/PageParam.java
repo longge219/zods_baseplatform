@@ -12,13 +12,13 @@ public class PageParam {
     /**分页条数*/
     private Integer pageSize = 10;
 
-    /**排序模式*/
+    /**排序模式-多个排序可通过,号分隔*/
     private String order;
 
-    /**检索*/
+    /**排序字段-多个排序字段可通过,号分隔*/
     private String sort;
 
-
+    /**当前页第一条序号*/
     private Integer offset;
 
     public PageParam() {

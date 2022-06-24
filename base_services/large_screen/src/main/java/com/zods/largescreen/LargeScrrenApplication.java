@@ -3,6 +3,7 @@ import com.zods.largescreen.common.annotation.enabled.EnabledGaeaConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 /**
  * @author jianglong
  * @version 1.0
@@ -15,8 +16,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         "com.zods.largescreen.modules.*.dao",
         "com.zods.largescreen.modules.*.**.dao",
         "com.zods.largescreen.*.module.*.dao"})
-public class ReportApplication {
+@EnableAsync
+public class LargeScrrenApplication {
     public static void main( String[] args ) {
-        SpringApplication.run(ReportApplication.class);
+        SpringApplication.run(LargeScrrenApplication.class);
     }
 }

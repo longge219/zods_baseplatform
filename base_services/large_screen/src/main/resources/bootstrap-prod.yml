@@ -40,7 +40,3 @@ http:
       retryTimes: 2 #重试次数,默认2次
       connectionRequestTimout: 200 #从连接池获取连接的超时时间,不宜过长,单位ms
       keepAliveTime: 60 #针对不同的地址,特别设置不同的长连接保持时间,单位 s
-customer:
-  file:
-    dist-path: D:\IdeaProjects\report\report-core\upload
-    downloadPath: http://127.0.0.1:9095/file/download

@@ -98,16 +98,6 @@ public abstract class GaeaUtils {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        Map<String, Object> map = new HashMap();
-        map.put("one", 1);
-        map.put("two", 2);
-        String key = "hello ${one} ${two} ${three}";
-        String s = replaceFormatString(key, (Map)map);
-        System.out.println(s);
-        String demo = "/**/swgg.html/**";
-        System.out.println(antPathMatcher.match(demo, "/swgg.html"));
-    }
 
     public static String replaceFormatString(String source, Object param) {
         JSONObject jsonObject = JSONObject.parseObject(JSONObject.toJSONString(param));

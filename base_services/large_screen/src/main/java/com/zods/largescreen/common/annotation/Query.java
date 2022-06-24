@@ -14,7 +14,7 @@ public @interface Query {
     //查询判断条件
     QueryEnum value() default QueryEnum.EQ;
 
-    //查询条件
+    //查询条件默认为true
     boolean where() default true;
 
     //列
