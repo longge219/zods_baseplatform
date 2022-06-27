@@ -23,7 +23,7 @@ import java.util.Map;
  **/
 @RestController
 @RequestMapping("/gaeaDict")
-@Api(value = "/gaeaDict", tags = "")
+@Api(tags = "数据字典管理")
 public class GaeaDictController extends GaeaBaseController<GaeaDictParam, GaeaDict, GaeaDictDTO> {
 
     @Autowired

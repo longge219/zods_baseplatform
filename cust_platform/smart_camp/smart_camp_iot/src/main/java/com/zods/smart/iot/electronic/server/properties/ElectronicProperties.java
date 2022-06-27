@@ -32,4 +32,6 @@ public class ElectronicProperties {
 
     private int workThread; //用于处理与各个客户端连接的IO操作
 
+    private String protocolType;
+
 }

@@ -19,11 +19,11 @@ public abstract class AbstractBootstrapElectronicServer implements BootstrapElec
      */
     protected  void initHandler(ChannelPipeline channelPipeline, ElectronicProperties electronicProperties)throws Exception{
         /**设置协议---编解码*/
-        channelPipeline.addLast("decoder", new MyMessageDecoder());
+        channelPipeline.addLast("decoder", new MyMessageDecoder(electronicProperties.getProtocolType()));
         channelPipeline.addLast("encoder", new MyMessageEncoder());
         //设置空闲心跳空闲检测--channel
         channelPipeline.addLast(new IdleStateHandler(electronicProperties.getRead(), electronicProperties.getWrite(), electronicProperties.getReadAndWrite()));
-        //设置MQTT默认处理--channel
+        //设置处理--channel
         channelPipeline.addLast(new ElectronicServerHandler());
     }
 }

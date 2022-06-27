@@ -1,11 +1,14 @@
 package com.zods.smart.iot.electronic.server.handler;
 import com.zods.smart.iot.electronic.server.protocal.PacketHead;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.socket.DatagramPacket;
 import io.netty.handler.codec.mqtt.*;
 import io.netty.handler.timeout.IdleStateEvent;
+import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 /**
@@ -17,12 +20,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class ElectronicServerHandler extends SimpleChannelInboundHandler<PacketHead> {
-    /**
-     * 服务端业务接收到数据
-     */
+
+    /**服务端业务接收到数据*/
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, PacketHead packetHead) throws Exception {
-        log.info("MqttServerAddr【" + ctx.channel().localAddress() + "】,:" + packetHead.getEquipAddress() + ">>>>>>>> id: " + ctx.channel().id() + " , active: " + ctx.channel().isActive() + ", open: " + ctx.channel().isOpen() + ", remoteAddr: " + ctx.channel().remoteAddress());
+    protected void channelRead0(ChannelHandlerContext ctx, PacketHead packetHead) throws Exception {
+        // 解译完协议
+
     }
 
     /**客户端关闭连接*/
@@ -42,10 +45,13 @@ public class ElectronicServerHandler extends SimpleChannelInboundHandler<PacketH
             Channel channel = ctx.channel();
             switch (idleStateEvent.state()) {
                 case READER_IDLE:
+                    log.warn("读超时");
                     channel.close();
                 case WRITER_IDLE:
+                    log.warn("写超时");
                     channel.close();
                 case ALL_IDLE:
+                    log.warn("读写超时");
                     channel.close();
             }
         }
@@ -62,10 +68,8 @@ public class ElectronicServerHandler extends SimpleChannelInboundHandler<PacketH
         }
     }
 
-    /**
-     * 处理消息
-     */
-    private void doMessage(ChannelHandlerContext channelHandlerContext, MqttMessage mqttMessage) {
+    /**处理消息*/
+    private void doMessage(ChannelHandlerContext channelHandlerContext, PacketHead message) {
         
     }
 }

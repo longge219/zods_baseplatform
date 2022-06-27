@@ -11,7 +11,6 @@ import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
-import java.util.Arrays;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 /**
@@ -36,16 +35,17 @@ public class BootstrapElectronicServerImpl extends AbstractBootstrapElectronicSe
         bootstrap.group(workGroup)
                 /**bossGroup线程池设置*/
                 .channel(NioDatagramChannel.class) //服务类型
+                .option(ChannelOption.SO_BROADCAST, true)
                 .option(ChannelOption.SO_REUSEADDR, electronicProperties.isReuseaddr()) //地址复用
                 .option(ChannelOption.SO_BACKLOG, electronicProperties.getBacklog()) //服务端接受连接的队列长度
                 .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
-                .option(ChannelOption.SO_RCVBUF, electronicProperties.getRevbuf()) //TCP数据接收缓冲区大小
+                .option(ChannelOption.SO_RCVBUF, electronicProperties.getRevbuf()) //数据接收缓冲区大小
                 .handler(new LoggingHandler(LogLevel.WARN))
                 /**workGroup线程池设置*/
                 .handler(new ChannelInitializer<NioDatagramChannel>() {
                     @Override
-                    protected void initChannel(NioDatagramChannel ch) throws Exception {
-                        initHandler(ch.pipeline(), electronicProperties);
+                    protected void initChannel(NioDatagramChannel nioCh) throws Exception {
+                        initHandler(nioCh.pipeline(), electronicProperties);
                     }
                 });
                 try{
@@ -56,10 +56,12 @@ public class BootstrapElectronicServerImpl extends AbstractBootstrapElectronicSe
                             log.error("电子围栏红外震动服务端启动失败【" + IpUtils.getHost() + ":" + electronicProperties.getPort() + "】,堆栈信息如下：");
                             channelFuture.cause().printStackTrace();
                         }
-                    }).sync().channel();
+                    }).sync().channel().closeFuture().await();
                 }catch (InterruptedException e){
                     log.error("电子围栏红外震动服务端启动失败");
                     e.printStackTrace();
+                }finally {
+                    workGroup.shutdownGracefully();
                 }
     }
 
@@ -84,10 +86,8 @@ public class BootstrapElectronicServerImpl extends AbstractBootstrapElectronicSe
     /**初始化EnentPool*/
     private void initEventPool() throws Exception {
         bootstrap = new Bootstrap();
-
         workGroup = new NioEventLoopGroup(electronicProperties.getWorkThread(), new ThreadFactory() {
             private AtomicInteger index = new AtomicInteger(0);
-
             @Override
             public Thread newThread(Runnable r) {
                 return new Thread(r, "WORK_" + index.incrementAndGet());

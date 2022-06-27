@@ -6,23 +6,33 @@ import com.zods.smart.iot.electronic.server.protocal.PacketHead;
 import com.zods.smart.iot.electronic.server.reflect.ClassProcessImpl;
 import com.zods.smart.iot.electronic.server.reflect.SubAnnotation;
 import com.zods.smart.iot.electronic.utils.UnsignedNumber;
+import io.netty.channel.socket.DatagramPacket;
+import io.netty.handler.codec.MessageToMessageDecoder;
 import lombok.extern.slf4j.Slf4j;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
 /**
  * @description 自定义解码器
  * @author jianglong
  * @create 2022-06-11
  **/
 @Slf4j
-public class MyMessageDecoder extends ByteToMessageDecoder {
+public class MyMessageDecoder extends MessageToMessageDecoder<DatagramPacket> {
+
+	/**协议类型*/
+	private String protocolType;
+
+	public MyMessageDecoder(String protocolType) {
+		this.protocolType=protocolType;
+	}
 
 	/**报文最小长度*/
 	private static Integer packetHeadSize = 8;
 
 	@Override
-	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+	protected void decode(ChannelHandlerContext ctx, DatagramPacket datagramPacket, List<Object> out) throws Exception {
+		/**获取接收到的数据流*/
+		ByteBuf in = datagramPacket.content();
 		/**消息体长度判断*/
 		if (in.readableBytes() < packetHeadSize) {
 			/**报文长度小于报头最小长度(25字节) 内容不够，需要下一批发过来的内容*/
@@ -35,9 +45,7 @@ public class MyMessageDecoder extends ByteToMessageDecoder {
 		int hostAddress = UnsignedNumber.getUnsignedByte(in.readByte());
 		//设备地址
 		int equipAddress = UnsignedNumber.getUnsignedByte(in.readByte());
-		if(equipAddress ==1){
-			log.info("设备编号："+hostAddress+equipAddress);
-		}
+
 		log.info("设备编号："+hostAddress+equipAddress);
 		//用户组编号
 		byte userGroupH  = in.readByte();
@@ -68,12 +76,9 @@ public class MyMessageDecoder extends ByteToMessageDecoder {
 			log.error("现在识别在线和状态监控数据");
 			return;
 		}
-
 	}
 
-
 	public Object getObjectByBuffer(Class<?> clazz, ByteBuf in,int msgLength) throws Exception {
-
 		// 实例化类
 		Object obj = clazz.newInstance();
 		// 得到类中private 的属性
@@ -91,12 +96,10 @@ public class MyMessageDecoder extends ByteToMessageDecoder {
 				} else {
 					field.set(obj, v);// 得到此属性设值
 				}
-
 			}
 		}
 		return obj;
 	}
-
 
 	/**
 	 * @Title: getValues
@@ -121,7 +124,6 @@ public class MyMessageDecoder extends ByteToMessageDecoder {
 			}else{
 				return (byte)0;
 			}
-
 		}
 		/** 解码成short属性 */
 		else if (type.equalsIgnoreCase("short")) {

@@ -19,6 +19,11 @@
       "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties"
     },
     {
+      "name": "com.zods.electronic.server.protocol-type",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties"
+    },
+    {
       "name": "com.zods.electronic.server.read",
       "type": "java.lang.Integer",
       "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",

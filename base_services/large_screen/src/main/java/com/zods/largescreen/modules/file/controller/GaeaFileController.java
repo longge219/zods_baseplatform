@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  **/
 @RestController
 @RequestMapping("/file")
-@Api(value = "/file", tags = "")
+@Api(tags = "文件管理")
 public class GaeaFileController extends GaeaBaseController<GaeaFileParam, GaeaFile, GaeaFileDTO> {
     @Autowired
     private GaeaFileService gaeaFileService;

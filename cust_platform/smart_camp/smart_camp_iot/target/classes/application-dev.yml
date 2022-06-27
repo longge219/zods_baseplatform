@@ -16,3 +16,4 @@ com:
         readAndWrite: 180 # 读写超时时间
         bossThread: 1  #用于处理客户端的连接请求
         workThread: 2  #用于处理与各个客户端连接的IO操作
+        protocolType: udp-elec #协议类型

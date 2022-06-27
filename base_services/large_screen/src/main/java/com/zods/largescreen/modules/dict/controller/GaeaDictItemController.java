@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 数据字典项(GaeaDictItem)实体类
- *
- * @author lirui
- * @since 2021-03-10 13:05:59
+ * @author jianglong
+ * @since 2022-06-22
  */
 @RestController
 @RequestMapping("/gaeaDictItem")
-@Api(value = "/gaeaDictItem", tags = "数据字典项")
+@Api(tags = "数据字典属性管理")
 public class GaeaDictItemController extends GaeaBaseController<GaeaDictItemParam, GaeaDictItem, GaeaDictItemDTO> {
     @Autowired
     private GaeaDictItemService gaeaDictItemService;
