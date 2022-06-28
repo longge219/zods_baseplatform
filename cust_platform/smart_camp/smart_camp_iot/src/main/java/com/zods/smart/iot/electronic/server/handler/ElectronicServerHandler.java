@@ -1,30 +1,35 @@
 package com.zods.smart.iot.electronic.server.handler;
 import com.zods.smart.iot.electronic.server.protocal.PacketHead;
-import io.netty.buffer.Unpooled;
+import com.zods.smart.iot.electronic.service.ElectronicServerService;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.channel.socket.DatagramPacket;
-import io.netty.handler.codec.mqtt.*;
 import io.netty.handler.timeout.IdleStateEvent;
-import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import javax.annotation.Resource;
 /**
  * @description 消息解码后处理中心
  * @author jianglong
  * @create 2022-06-11
  **/
 @ChannelHandler.Sharable
-@Component
+@Component("electronicServerHandler")
 @Slf4j
 public class ElectronicServerHandler extends SimpleChannelInboundHandler<PacketHead> {
+
+    //业务处理模块
+    @Resource
+    private ElectronicServerService elecServerServiceImpl;
 
     /**服务端业务接收到数据*/
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, PacketHead packetHead) throws Exception {
-        // 解译完协议
+        //数据包协议处理
+        if(!this.elecServerServiceImpl.successBusiness(ctx,packetHead)) {
+            log.error("接收报文处理模块ElectronicServerHandler处理异常");
+        }
 
     }
 
@@ -68,8 +73,4 @@ public class ElectronicServerHandler extends SimpleChannelInboundHandler<PacketH
         }
     }
 
-    /**处理消息*/
-    private void doMessage(ChannelHandlerContext channelHandlerContext, PacketHead message) {
-        
-    }
 }

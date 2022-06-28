@@ -5,6 +5,7 @@ import java.util.List;
 import com.zods.smart.iot.electronic.server.protocal.PacketHead;
 import com.zods.smart.iot.electronic.server.reflect.ClassProcessImpl;
 import com.zods.smart.iot.electronic.server.reflect.SubAnnotation;
+import com.zods.smart.iot.electronic.utils.CheckSumUtil;
 import com.zods.smart.iot.electronic.utils.UnsignedNumber;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -32,53 +33,56 @@ public class MyMessageDecoder extends MessageToMessageDecoder<DatagramPacket> {
 	@Override
 	protected void decode(ChannelHandlerContext ctx, DatagramPacket datagramPacket, List<Object> out) throws Exception {
 		/**获取接收到的数据流*/
-		ByteBuf in = datagramPacket.content();
+		ByteBuf inByteBuf = datagramPacket.content();
 		/**消息体长度判断*/
-		if (in.readableBytes() < packetHeadSize) {
-			/**报文长度小于报头最小长度(25字节) 内容不够，需要下一批发过来的内容*/
-			return;
-		}
-		/**消息头开始解码*/
-		//消息长度
-		int msgLength = UnsignedNumber.getUnsignedByte(in.readByte());
-		//主机地址
-		int hostAddress = UnsignedNumber.getUnsignedByte(in.readByte());
-		//设备地址
-		int equipAddress = UnsignedNumber.getUnsignedByte(in.readByte());
-
-		log.info("设备编号："+hostAddress+equipAddress);
-		//用户组编号
-		byte userGroupH  = in.readByte();
-		byte userGroupL = in.readByte();
-		//扩展备用
-		byte extendedStandby = in.readByte();
-		//命令类型
-		int commandType = UnsignedNumber.getUnsignedByte(in.readByte());
-
-		/**消息体开始解码*/
-		ClassProcessImpl classProcessImpl = new ClassProcessImpl();
-		PacketHead message = null;
-		if (classProcessImpl.verifyTag(String.valueOf(commandType))){
-			Class<?> messageClass = classProcessImpl.getClassByTag(String.valueOf(commandType));
-			message = (PacketHead)getObjectByBuffer(messageClass,in,msgLength);
-			message.setPakcetLen(msgLength);
-			message.setHostAddress(hostAddress);
-			message.setHostAddress(1);//默认地址是0
-			message.setEquipAddress(equipAddress);
-			message.setUserGroupH(userGroupH);
-			message.setUserGroupL(userGroupL);
-			message.setExtendedStandby(extendedStandby);
-			out.add(message); // 输出
-			return;
-		} else {
-			byte[] otherPacket = new byte[msgLength - 7];
-			in.readBytes(otherPacket);
-			log.error("现在识别在线和状态监控数据");
-			return;
+		if (inByteBuf.readableBytes() >= packetHeadSize) {
+			/**消息头开始解码*/
+			//消息长度
+			int msgLength = UnsignedNumber.getUnsignedByte(inByteBuf.readByte());
+			//主机地址
+			int hostAddress = UnsignedNumber.getUnsignedByte(inByteBuf.readByte());
+			//设备地址
+			int equipAddress = UnsignedNumber.getUnsignedByte(inByteBuf.readByte());
+			//用户组编号
+			byte userGroupH  = inByteBuf.readByte();
+			byte userGroupL = inByteBuf.readByte();
+			//扩展备用
+			byte extendedStandby = inByteBuf.readByte();
+			//命令类型
+			int commandType = UnsignedNumber.getUnsignedByte(inByteBuf.readByte());
+			/**消息体开始解码*/
+			ClassProcessImpl classProcessImpl = new ClassProcessImpl();
+			PacketHead message = null;
+			if (classProcessImpl.verifyTag(String.valueOf(commandType))){
+				Class<?> messageClass = classProcessImpl.getClassByTag(String.valueOf(commandType));
+				message = (PacketHead)getObjectByBuffer(messageClass,inByteBuf,msgLength);
+				message.setPakcetLen(msgLength);
+				message.setHostAddress(hostAddress);
+				message.setEquipAddress(equipAddress);
+				message.setUserGroupH(userGroupH);
+				message.setUserGroupL(userGroupL);
+				message.setExtendedStandby(extendedStandby);
+			} else {
+				log.warn("接收到未定义协议编码："+ String.valueOf(commandType));
+				inByteBuf.release();
+			}
+			/**校验码校验*/
+			 ByteBuf checkBuf = inByteBuf.copy(0,inByteBuf.readerIndex());
+			 byte[] checkData = new byte[checkBuf.readableBytes()];
+			 checkBuf.readBytes(checkData);
+			 if(CheckSumUtil.isCheckSumValid(checkData,inByteBuf.readByte())){
+			 out.add(message);
+			 }else{
+				 log.error("接收到数据包的校验码不匹配");
+				 inByteBuf.release();
+			 }
+		}else{
+			/**包长度不够*/
+			inByteBuf.release();
 		}
 	}
 
-	public Object getObjectByBuffer(Class<?> clazz, ByteBuf in,int msgLength) throws Exception {
+	public Object getObjectByBuffer(Class<?> clazz, ByteBuf inByteBuf,int msgLength) throws Exception {
 		// 实例化类
 		Object obj = clazz.newInstance();
 		// 得到类中private 的属性
@@ -90,7 +94,7 @@ public class MyMessageDecoder extends MessageToMessageDecoder<DatagramPacket> {
 			if (ano != null) {
 				SubAnnotation sub = (SubAnnotation) ano;
 				field.setAccessible(true);
-				Object v = getValues(sub.type(), sub.len(),sub.mark(), msgLength,in);
+				Object v = getValues(sub.type(), sub.len(),sub.mark(), msgLength,inByteBuf);
 				if (v == null) {
 					log.error("属性值为空NULL");
 				} else {
@@ -113,17 +117,11 @@ public class MyMessageDecoder extends MessageToMessageDecoder<DatagramPacket> {
 	 * @throws Exception
 	 */
 	public Object getValues(String type, String len, String mark,int msgLength,ByteBuf ioBuffer) throws Exception {
+		//数组长度
 		int v = Integer.parseInt(len);
 		/** 解码成byte属性 */
 		if (type.equalsIgnoreCase("byte")) {
-			if(mark.equals("")){
-				return ioBuffer.readByte();
-			}
-			else if(mark.equals("byLeangth") && msgLength == 12){
-				return ioBuffer.readByte();
-			}else{
-				return (byte)0;
-			}
+			return ioBuffer.readByte();
 		}
 		/** 解码成short属性 */
 		else if (type.equalsIgnoreCase("short")) {

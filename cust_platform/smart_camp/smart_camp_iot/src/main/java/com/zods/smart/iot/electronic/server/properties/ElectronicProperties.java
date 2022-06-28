@@ -18,8 +18,6 @@ public class ElectronicProperties {
 
     private boolean tcpNodelay ; //TCP参数，立即发送数据，默认值为True（Netty默认为True而操作系统默认为False）。该值设置Nagle算法的启用，改算法将小的碎片数据连接成更大的报文来最小化所发送的报文的数量，如果需要发送一些较小的报文，则需要禁用该算法。Netty默认禁用该算法，从而最小化报文传输延时。
 
-    private int backlog ; //Socket参数，服务端接受连接的队列长度，如果队列已满，客户端连接将被拒绝
-
     private  int  sndbuf ; //Socket参数，TCP数据发送缓冲区大小。
 
     private int revbuf ; //Socket参数，TCP数据接收缓冲区大小。

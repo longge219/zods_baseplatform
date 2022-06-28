@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author jianglong
  * @create 2022-06-11
  **/
-@SpringBootApplication(scanBasePackages = {"com.zods.smart.iot.electronic.server"})
+@SpringBootApplication(scanBasePackages = {"com.zods.smart.iot","com.zods.kafka"})
 public class SmartCampIotServerLauncher {
     public static void main(String[] args) {
         SpringApplication.run(SmartCampIotServerLauncher.class, args);

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zods.smart.iot.modules.device.dao.DeviceMapper">
+
+    <resultMap type="com.zods.smart.iot.modules.device.entity.Device" id="DeviceMap">
+        <!--jdbcType="{column.columnType}"-->
+        <result property="id" column="id"  />
+        <result property="deviceName" column="device_name"  />
+        <result property="deviceCode" column="device_code"  />
+        <result property="deviceType" column="device_type"  />
+        <result property="deviceModel" column="device_model"  />
+        <result property="deviceManu" column="device_manu"  />
+        <result property="storeroomCode" column="storeroom_code"  />
+        <result property="isOnline" column="is_online"  />
+        <result property="isDelete" column="is_delete"  />
+        <result property="deviceSn" column="device_sn"  />
+        <result property="createTime" column="create_time"  />
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,device_name,device_code,device_type,device_model,device_manu,storeroom_code,is_online,is_delete,device_sn,create_time
+    </sql>
+
+    <!--自定义sql -->
+</mapper>

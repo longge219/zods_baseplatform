@@ -37,7 +37,6 @@ public class BootstrapElectronicServerImpl extends AbstractBootstrapElectronicSe
                 .channel(NioDatagramChannel.class) //服务类型
                 .option(ChannelOption.SO_BROADCAST, true)
                 .option(ChannelOption.SO_REUSEADDR, electronicProperties.isReuseaddr()) //地址复用
-                .option(ChannelOption.SO_BACKLOG, electronicProperties.getBacklog()) //服务端接受连接的队列长度
                 .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                 .option(ChannelOption.SO_RCVBUF, electronicProperties.getRevbuf()) //数据接收缓冲区大小
                 .handler(new LoggingHandler(LogLevel.WARN))

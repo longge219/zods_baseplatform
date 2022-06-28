@@ -24,6 +24,6 @@ public class EquipStatus extends PacketHead {
     @SubAnnotation(len = "1", name = "", type = "byte",mark="")
     private byte deploymentStatus;//防区撤布防(bit位(0-7) 0:布防1:撤防)
 
-    @SubAnnotation(len = "1", name = "", type = "byte",mark="byLeangth")
+    @SubAnnotation(len = "1", name = "", type = "byte",mark="")
     private byte timingStatus;//防区实时状态--未布防(bit位(0-7) 0:正常 1:触发)
 }

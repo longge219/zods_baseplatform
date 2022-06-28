@@ -1,11 +1,14 @@
 package com.zods.smart.iot.electronic.server.code;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.util.List;
 import com.zods.smart.iot.electronic.server.protocal.PacketHead;
 import com.zods.smart.iot.electronic.server.reflect.SubAnnotation;
+import com.zods.smart.iot.electronic.utils.CheckSumUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
+import io.netty.handler.codec.MessageToMessageEncoder;
 /**
  * @description 自定义编码器
  * @author jianglong
@@ -14,7 +17,7 @@ import io.netty.handler.codec.MessageToByteEncoder;
 public class MyMessageEncoder extends MessageToByteEncoder<PacketHead> {
 
 	@Override
-	protected void encode(ChannelHandlerContext ctx, PacketHead packetHead, ByteBuf out) throws Exception {
+	protected void encode(ChannelHandlerContext channelHandlerContext, PacketHead packetHead, ByteBuf out) throws Exception {
 		/**===========报文头start===============*/
 		out.writeByte((byte)packetHead.getPakcetLen());//包长度
 		out.writeByte((byte)packetHead.getHostAddress());//主机地址
@@ -38,18 +41,15 @@ public class MyMessageEncoder extends MessageToByteEncoder<PacketHead> {
 				fileldEncode(out, subAnnotation.type(), subAnnotation.len(), fileVaule);
 			}
 		}
+		//channelHandlerContext.write(out);
 		/**===========报文体编码区end===============*/
 		/**===========验证码start===============*/
-//		iobuffer.flip();
-//		byte[] packetBytes = new byte[iobuffer.limit()];
-//		iobuffer.get(packetBytes);
-//		//验证码
-//		byte chekCode =  CheckSumUtil.getCheckSum(packetBytes);
-//		byte[] packetBytesTemp= new byte[packetBytes.length+1];
-//		for(int i=0; i< packetBytes.length;i++){
-//			packetBytesTemp[i] = packetBytes[i];
-//		}
-//		packetBytesTemp[packetBytes.length] = chekCode;
+		ByteBuf checkBuf = out.copy(0,out.writerIndex());
+		byte[] checkData = new byte[checkBuf.readableBytes()];
+		checkBuf.readBytes(checkData);
+		//验证码
+		byte chekCode =  CheckSumUtil.getCheckSum(checkData);
+		out.writeByte(chekCode);
 		/**===========验证码end===============*/
 	}
 
@@ -65,7 +65,7 @@ public class MyMessageEncoder extends MessageToByteEncoder<PacketHead> {
 	 * @throws Exception
 	 */
 
-	public void fileldEncode(ByteBuf out, String type, String length, Object value) throws Exception {
+	public void fileldEncode( ByteBuf out, String type, String length, Object value) throws Exception {
 		int leng = Integer.parseInt(length);
 		if (type.equalsIgnoreCase("byte")) {
 			// 该属性为byte
@@ -84,4 +84,5 @@ public class MyMessageEncoder extends MessageToByteEncoder<PacketHead> {
 			out.writeBytes((byte[]) value);
 		}
 	}
+
 }

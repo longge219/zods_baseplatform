@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 /**
  * @description 获取 spring当前bean
  * @author jianglong
- * @create 2022-06-11
+ * @create 2019-09-09
  **/
 @Component
-public class SpringBeanUtils  implements ApplicationContextAware {
+public class SpringBeanUtils implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
 

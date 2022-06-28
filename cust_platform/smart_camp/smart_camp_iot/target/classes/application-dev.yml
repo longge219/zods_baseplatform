@@ -1,3 +1,84 @@
+spring:
+  #数据库#
+  datasource:
+    url: jdbc:mysql://10.10.254.51:3306/platform_smart_camp_prod?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2b8
+    username: root
+    password: root
+  #数据源连接池配置
+  druid:
+    initial-size: 10 # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+    min-idle: 10 # 最小连接池数量
+    maxActive: 200 # 最大连接池数量
+    maxWait: 3000 # 获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置
+    timeBetweenEvictionRunsMillis: 60000 # 关闭空闲连接的检测时间间隔.Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。
+    minEvictableIdleTimeMillis: 300000 # 连接的最小生存时间.连接保持空闲而不被驱逐的最小时间
+    testWhileIdle: true # 申请连接时检测空闲时间，根据空闲时间再检测连接是否有效.建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRun
+    poolPreparedStatements: true # 开启PSCache
+    maxPoolPreparedStatementPerConnectionSize: 20 #设置PSCache值
+    connectionErrorRetryAttempts: 3 # 连接出错后再尝试连接三次
+    breakAfterAcquireFailure: true # 数据库服务宕机自动重连机制
+    timeBetweenConnectErrorMillis: 300000 # 连接出错后重试时间间隔
+  #redis#
+  redis:
+    database: 1
+    host: 10.10.254.51
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  #kafka
+  kafka:
+    bootstrap-servers: 10.10.254.138:9092
+    consumer:
+      group-id: electornicGroup
+      max-poll-records: 100  #批量消费一次最大拉取的数据量
+      enable-auto-commit: false #是否开启自动提交
+      auto-commit-interval: 1S  #自动提交的时间间隔 在spring boot 2.X 版本中这里采用的是值的类型为Duration 需要符合特定的格式，如1S,1M,2H,5D
+      auto-offset-reset: earliest  #最早未被消费的offset
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer #键的反序列化方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer #com.orieange.platform.server.base.kafaka.seralizer.KafkaDeseralizer #值的反序列化方式
+    producer:
+      batch-size: 16384 #当有多个消息需要被发送到同一个分区时，生产者会把它们放在同一个批次里。该参数指定了一个批次可以使用的内存大小，按照字节数计算。
+      buffer-memory: 33554432 #设置生产者内存缓冲区的大小。
+      retries: 0 #发生错误后，消息重发的次数
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer #com.orieange.platform.server.base.kafaka.seralizer.KafkaSeralizer
+      #ack: 0 #生产者在成功写入消息之前不会等待任何来自服务器的响应。
+      # acks=1 ： 只要集群的首领节点收到消息，生产者就会收到一个来自服务器成功响应。
+      # acks=all ：只有当所有参与复制的节点全部收到消息时，生产者才会收到一个来自服务器的成功响应。
+      acks: 1
+      linger: 0
+    listener:
+      concurrency: 1 #设置消费的线程数
+      poll-timeout: 1500  #自动提交设置，如果消息队列中没有消息，等待timeout毫秒后，调用poll()方法。如果队列中有消息，立即消费消息，每次消费的消息的多少可以通过max.poll.records配置。
+      ack-mode: manual #listener负责ack，但是背后也是批量上去
+    template:
+      default-topic: REPORT_DATA_TEST
+  #热部署
+  devtools:
+    restart:
+      #热部署生效
+      enabled: true
+      #设置重启目录
+      additional-paths: src/main/java
+      #classpath目录下的WEB-INF文件夹内容修改不重启
+      exclude: WEB-INF/**
+  lifecycle:
+    timeout-per-shutdown-phase: 30s #设置缓冲期，最大等待时间
+#线程池参数
+thread:
+  pool:
+    corePoolSize: 3
+    maxPoolSize: 5
+    poolQueueCapacity: 5
+    threadNamePrefix: kafka_send
+    visiblePool: true
+    visibleLog: true
+    listenerQueueSize: 2
+#电子围栏红外震动UDP的服务配置#
 com:
   zods:
     electronic:
@@ -8,7 +89,6 @@ com:
         keepalive: true #Socket参数，连接保活，默认值为False。启用该功能时，TCP会主动探测空闲连接的有效性。可以将此功能视为TCP的心跳机制，需要注意的是：默认的心跳间隔是7200s即2小时。Netty默认关闭该功能
         reuseaddr: true #地址复用，默认值False。有四种情况可以使用：(1).当有一个有相同本地地址和端口的socket1处于TIME_WAIT状态时，而你希望启动的程序的socket2要占用该地址和端口，比如重启服务且保持先前端口。(2).有多块网卡或用IP Alias技术的机器在同一端口启动多个进程，但每个进程绑定的本地IP地址不能相同。(3).单个进程绑定相同的端口到多个socket上，但每个socket绑定的ip地址不同。(4).完全相同的地址和端口的重复绑定。但这只用于UDP的多播，不用于TCP。
         tcpNodelay: true #TCP参数，立即发送数据，默认值为True（Netty默认为True而操作系统默认为False）。该值设置Nagle算法的启用，改算法将小的碎片数据连接成更大的报文来最小化所发送的报文的数量，如果需要发送一些较小的报文，则需要禁用该算法。Netty默认禁用该算法，从而最小化报文传输延时。
-        backlog: 1024 # Socket参数，服务端接受连接的队列长度，如果队列已满，客户端连接将被拒绝
         sndbuf: 10485760 # Socket参数，TCP数据发送缓冲区大小。
         revbuf: 10485760 # Socket参数，TCP数据接收缓冲区大小。
         read: 180 # 读超时时间

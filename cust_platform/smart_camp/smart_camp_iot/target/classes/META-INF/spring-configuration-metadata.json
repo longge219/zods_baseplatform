@@ -8,12 +8,6 @@
   ],
   "properties": [
     {
-      "name": "com.zods.electronic.server.backlog",
-      "type": "java.lang.Integer",
-      "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
-      "defaultValue": 0
-    },
-    {
       "name": "com.zods.electronic.server.port",
       "type": "java.lang.String",
       "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties"
