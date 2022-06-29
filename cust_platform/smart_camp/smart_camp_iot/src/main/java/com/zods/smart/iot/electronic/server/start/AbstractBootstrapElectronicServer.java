@@ -1,9 +1,8 @@
 package com.zods.smart.iot.electronic.server.start;
-import com.zods.smart.iot.electronic.server.code.MyMessageDecoder;
-import com.zods.smart.iot.electronic.server.code.MyMessageEncoder;
-import com.zods.smart.iot.electronic.server.handler.ElectronicServerHandler;
+import com.zods.smart.iot.common.utils.SpringBeanUtils;
+import com.zods.smart.iot.electronic.server.code.ElectronicMessageDecoder;
+import com.zods.smart.iot.electronic.server.code.ElectronicMessageEncoder;
 import com.zods.smart.iot.electronic.server.properties.ElectronicProperties;
-import com.zods.smart.iot.electronic.utils.SpringBeanUtils;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -20,12 +19,13 @@ public abstract class AbstractBootstrapElectronicServer implements BootstrapElec
      */
     protected  void initHandler(ChannelPipeline channelPipeline, ElectronicProperties electronicProperties)throws Exception{
         /**设置协议---编解码*/
-        channelPipeline.addLast("decoder",  new MyMessageDecoder(electronicProperties.getProtocolType()));
-        channelPipeline.addLast("encoder", new MyMessageEncoder());
-        //设置空闲心跳空闲检测--channel
-        channelPipeline.addLast(new IdleStateHandler(electronicProperties.getRead(), electronicProperties.getWrite(), electronicProperties.getReadAndWrite()));
+        //channelPipeline.addLast("decoder",  new ElectronicMessageDecoder(electronicProperties.getProtocolType()));
+        //channelPipeline.addLast("encoder", new ElectronicMessageEncoder());
         //设置处理--channel
         channelPipeline.addLast((ChannelHandler) SpringBeanUtils.getBean("electronicServerHandler"));
+        //设置空闲心跳空闲检测--channel
+        channelPipeline.addLast(new IdleStateHandler(electronicProperties.getRead(), electronicProperties.getWrite(), electronicProperties.getReadAndWrite()));
+
 
     }
 }

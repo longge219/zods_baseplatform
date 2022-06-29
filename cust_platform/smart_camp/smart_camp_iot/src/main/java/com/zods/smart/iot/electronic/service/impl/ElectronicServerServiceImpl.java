@@ -5,12 +5,13 @@ import com.zods.smart.iot.common.constant.TopicConst;
 import com.zods.smart.iot.common.topic.ElecData;
 import com.zods.smart.iot.common.topic.InfReadData;
 import com.zods.smart.iot.common.topic.VibRationData;
+import com.zods.smart.iot.electronic.server.code.ElectronicMessageEncoderT;
 import com.zods.smart.iot.electronic.server.protocal.*;
 import com.zods.smart.iot.electronic.service.ElectronicServerService;
 import com.zods.smart.iot.modules.device.entity.Device;
 import com.zods.smart.iot.modules.device.service.DeviceService;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.socket.DatagramPacket;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -36,30 +37,30 @@ public class ElectronicServerServiceImpl implements ElectronicServerService {
      * @result: boolean
      */
     @Override
-    public boolean successBusiness(ChannelHandlerContext ctx, PacketHead packetHead) throws Exception {
+    public boolean successBusiness(ChannelHandlerContext ctx, DatagramPacket datagramPacket, ElectronicPacketHead packetHead) throws Exception {
         /**在线信息*/
-        if(packetHead instanceof Online){
-            Online online = (Online) packetHead;
+        if(packetHead instanceof ElectronicOnline){
+            ElectronicOnline online = (ElectronicOnline) packetHead;
             /**应答在线信息*/
-            OnlineReturn onlineReturn = new OnlineReturn();
+            ElectronicOnlineReturn onlineReturn = new ElectronicOnlineReturn();
             onlineReturn.setPakcetLen(8);
             onlineReturn.setHostAddress(online.getHostAddress());
             onlineReturn.setEquipAddress(online.getEquipAddress());
             onlineReturn.setUserGroupH(online.getUserGroupH());
             onlineReturn.setUserGroupL(online.getUserGroupL());
-            ctx.writeAndFlush(onlineReturn);
+            ElectronicMessageEncoderT.doEncode(ctx,datagramPacket,onlineReturn);
             return true;
-        } else if(packetHead instanceof EquipStatus){
+        } else if(packetHead instanceof ElectronicEquipStatus){
             /**设备状态*/
-            EquipStatus equipStatus = (EquipStatus) packetHead;
+            ElectronicEquipStatus equipStatus = (ElectronicEquipStatus) packetHead;
             /**设备状态应答*/
-            EquipStatusReturn equipStatusReturn = new EquipStatusReturn();
+            ElectronicEquipStatusReturn equipStatusReturn = new ElectronicEquipStatusReturn();
             equipStatusReturn.setPakcetLen(8);
             equipStatusReturn.setHostAddress(equipStatus.getHostAddress());
             equipStatusReturn.setEquipAddress(equipStatus.getEquipAddress());
             equipStatusReturn.setUserGroupH(equipStatus.getUserGroupH());
             equipStatusReturn.setUserGroupL(equipStatus.getUserGroupL());
-            ctx.writeAndFlush(equipStatusReturn);
+            ElectronicMessageEncoderT.doEncode(ctx,datagramPacket,equipStatusReturn);
             /**设备状态业务处理*/
             try{
                 if(equipStatus.getEquipAddress() <9){
@@ -85,7 +86,7 @@ public class ElectronicServerServiceImpl implements ElectronicServerService {
     }
 
     /**电子围栏报警处理*/
-    private void doFenceStatus(EquipStatus equipStatus) throws  Exception{
+    private void doFenceStatus(ElectronicEquipStatus equipStatus) throws  Exception{
         String deviceCode = "fence"+ String.valueOf(equipStatus.getHostAddress())+ String.valueOf(equipStatus.getEquipAddress());
         Device device = deviceService.selectElecDevice(deviceCode);
         if(device != null){
@@ -118,7 +119,7 @@ public class ElectronicServerServiceImpl implements ElectronicServerService {
      * equipStatus  设备状态数据
      * int  防区号
      * */
-    private void infraredVibration(EquipStatus equipStatus, int i) throws  Exception{
+    private void infraredVibration(ElectronicEquipStatus equipStatus, int i) throws  Exception{
         String deviceCode = "hwzd" + String.valueOf(equipStatus.getHostAddress())+ String.valueOf(equipStatus.getEquipAddress()) + String.valueOf(i);
         Device device = deviceService.selectElecDevice(deviceCode);
         if(device != null){
