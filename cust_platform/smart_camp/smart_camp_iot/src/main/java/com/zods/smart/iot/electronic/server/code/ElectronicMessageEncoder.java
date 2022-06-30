@@ -3,30 +3,35 @@ import com.zods.smart.iot.common.reflect.SubAnnotation;
 import com.zods.smart.iot.common.utils.CheckSumUtil;
 import com.zods.smart.iot.electronic.server.protocal.ElectronicPacketHead;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToByteEncoder;
+import io.netty.channel.socket.DatagramPacket;
+import io.netty.handler.codec.MessageToMessageEncoder;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.util.List;
 /**
  * @description 自定义编码器
  * @author jianglong
  * @create 2022-06-11
  **/
-public class ElectronicMessageEncoder extends MessageToByteEncoder<ElectronicPacketHead> {
+public class ElectronicMessageEncoder  extends MessageToMessageEncoder<ElectronicPacketHead> {
 
 	@Override
-	protected void encode(ChannelHandlerContext channelHandlerContext, ElectronicPacketHead packetHead, ByteBuf out) throws Exception {
+	protected void encode(ChannelHandlerContext channelHandlerContext, ElectronicPacketHead electronicPacketHead, List<Object> outList) throws Exception {
+		 /**返回-ByteBuf*/
+		ByteBuf outByteBuf = ByteBufAllocator.DEFAULT.buffer();
 		/**===========报文头start===============*/
-		out.writeByte((byte)packetHead.getPakcetLen());//包长度
-		out.writeByte((byte)packetHead.getHostAddress());//主机地址
-		out.writeByte((byte)packetHead.getEquipAddress());//设备地址
-		out.writeByte(packetHead.getUserGroupH());//用户组编号高字节
-		out.writeByte(packetHead.getUserGroupL()); //用户组编号高字节
-		out.writeByte(packetHead.getExtendedStandby());//扩展命令
-		out.writeByte((byte)packetHead.getCommandType());//命令类型
+		outByteBuf.writeByte((byte)electronicPacketHead.getPakcetLen());//包长度
+		outByteBuf.writeByte((byte)electronicPacketHead.getHostAddress());//主机地址
+		outByteBuf.writeByte((byte)electronicPacketHead.getEquipAddress());//设备地址
+		outByteBuf.writeByte(electronicPacketHead.getUserGroupH());//用户组编号高字节
+		outByteBuf.writeByte(electronicPacketHead.getUserGroupL()); //用户组编号高字节
+		outByteBuf.writeByte(electronicPacketHead.getExtendedStandby());//扩展命令
+		outByteBuf.writeByte((byte)electronicPacketHead.getCommandType());//命令类型
 		/**===========报文头end===============*/
 		/**===========报文体编码区start===============*/
-		Field[] fields =packetHead.getClass().getDeclaredFields();
+		Field[] fields =electronicPacketHead.getClass().getDeclaredFields();
 		for (Field field : fields) {
 			//获取该类成员变量的注释
 			Annotation annotation = field.getAnnotation(SubAnnotation.class);
@@ -35,20 +40,23 @@ public class ElectronicMessageEncoder extends MessageToByteEncoder<ElectronicPac
 				SubAnnotation subAnnotation = (SubAnnotation)annotation;
 				field.setAccessible(true);
 				// 得到此属性的值
-				Object fileVaule = field.get(packetHead);
-				fileldEncode(out, subAnnotation.type(), subAnnotation.len(), fileVaule);
+				Object fileVaule = field.get(electronicPacketHead);
+				fileldEncode(outByteBuf, subAnnotation.type(), subAnnotation.len(), fileVaule);
 			}
 		}
 		//channelHandlerContext.write(out);
 		/**===========报文体编码区end===============*/
 		/**===========验证码start===============*/
-		ByteBuf checkBuf = out.copy(0,out.writerIndex());
+		ByteBuf checkBuf = outByteBuf.copy(0,outByteBuf.writerIndex());
 		byte[] checkData = new byte[checkBuf.readableBytes()];
 		checkBuf.readBytes(checkData);
 		//验证码
 		byte chekCode =  CheckSumUtil.getCheckSum(checkData);
-		out.writeByte(chekCode);
+		outByteBuf.writeByte(chekCode);
 		/**===========验证码end===============*/
+		/**返回数据*/
+		DatagramPacket datagramPacket  = new DatagramPacket(outByteBuf, electronicPacketHead.getRemoteAddress());
+		outList.add(datagramPacket);
 	}
 
 	/**

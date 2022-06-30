@@ -11,6 +11,7 @@ import io.netty.handler.codec.MessageToMessageDecoder;
 import lombok.extern.slf4j.Slf4j;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.net.InetSocketAddress;
 import java.util.List;
 /**
  * @description 自定义解码器
@@ -34,6 +35,7 @@ public class ElectronicMessageDecoder extends MessageToMessageDecoder<DatagramPa
 	protected void decode(ChannelHandlerContext ctx, DatagramPacket datagramPacket, List<Object> out) throws Exception {
 		/**获取接收到的数据流*/
 		ByteBuf inByteBuf = datagramPacket.content();
+		InetSocketAddress remoteAddress = datagramPacket.sender();
 		/**消息体长度判断*/
 		if (inByteBuf.readableBytes() >= packetHeadSize) {
 			/**消息头开始解码*/
@@ -71,7 +73,9 @@ public class ElectronicMessageDecoder extends MessageToMessageDecoder<DatagramPa
 			 byte[] checkData = new byte[checkBuf.readableBytes()];
 			 checkBuf.readBytes(checkData);
 			 if(CheckSumUtil.isCheckSumValid(checkData,inByteBuf.readByte())){
-			 out.add(message);
+				 //远程地址
+				 message.setRemoteAddress(remoteAddress);
+			     out.add(message);
 			 }else{
 				 log.error("接收到数据包的校验码不匹配");
 				 inByteBuf.release();

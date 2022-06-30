@@ -5,13 +5,11 @@ import com.zods.smart.iot.common.constant.TopicConst;
 import com.zods.smart.iot.common.topic.ElecData;
 import com.zods.smart.iot.common.topic.InfReadData;
 import com.zods.smart.iot.common.topic.VibRationData;
-import com.zods.smart.iot.electronic.server.code.ElectronicMessageEncoderT;
 import com.zods.smart.iot.electronic.server.protocal.*;
 import com.zods.smart.iot.electronic.service.ElectronicServerService;
 import com.zods.smart.iot.modules.device.entity.Device;
 import com.zods.smart.iot.modules.device.service.DeviceService;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.socket.DatagramPacket;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -37,7 +35,7 @@ public class ElectronicServerServiceImpl implements ElectronicServerService {
      * @result: boolean
      */
     @Override
-    public boolean successBusiness(ChannelHandlerContext ctx, DatagramPacket datagramPacket, ElectronicPacketHead packetHead) throws Exception {
+    public boolean successBusiness(ChannelHandlerContext ctx, ElectronicPacketHead packetHead) throws Exception {
         /**在线信息*/
         if(packetHead instanceof ElectronicOnline){
             ElectronicOnline online = (ElectronicOnline) packetHead;
@@ -48,7 +46,9 @@ public class ElectronicServerServiceImpl implements ElectronicServerService {
             onlineReturn.setEquipAddress(online.getEquipAddress());
             onlineReturn.setUserGroupH(online.getUserGroupH());
             onlineReturn.setUserGroupL(online.getUserGroupL());
-            ElectronicMessageEncoderT.doEncode(ctx,datagramPacket,onlineReturn);
+            /**返回客户端在线-应答信息*/
+            onlineReturn.setRemoteAddress(online.getRemoteAddress());
+            ctx.channel().writeAndFlush(onlineReturn);
             return true;
         } else if(packetHead instanceof ElectronicEquipStatus){
             /**设备状态*/
@@ -60,7 +60,9 @@ public class ElectronicServerServiceImpl implements ElectronicServerService {
             equipStatusReturn.setEquipAddress(equipStatus.getEquipAddress());
             equipStatusReturn.setUserGroupH(equipStatus.getUserGroupH());
             equipStatusReturn.setUserGroupL(equipStatus.getUserGroupL());
-            ElectronicMessageEncoderT.doEncode(ctx,datagramPacket,equipStatusReturn);
+            /**返回客户端状态-应答信息*/
+            equipStatusReturn.setRemoteAddress(equipStatus.getRemoteAddress());
+            ctx.channel().writeAndFlush(equipStatusReturn);
             /**设备状态业务处理*/
             try{
                 if(equipStatus.getEquipAddress() <9){

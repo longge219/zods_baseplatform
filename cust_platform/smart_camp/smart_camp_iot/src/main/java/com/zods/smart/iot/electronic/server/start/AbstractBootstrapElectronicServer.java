@@ -19,13 +19,11 @@ public abstract class AbstractBootstrapElectronicServer implements BootstrapElec
      */
     protected  void initHandler(ChannelPipeline channelPipeline, ElectronicProperties electronicProperties)throws Exception{
         /**设置协议---编解码*/
-        //channelPipeline.addLast("decoder",  new ElectronicMessageDecoder(electronicProperties.getProtocolType()));
-        //channelPipeline.addLast("encoder", new ElectronicMessageEncoder());
-        //设置处理--channel
+        channelPipeline.addLast("encoder", new ElectronicMessageEncoder());
+        channelPipeline.addLast("decoder",  new ElectronicMessageDecoder(electronicProperties.getProtocolType()));
+        /**设置处理器*/
         channelPipeline.addLast((ChannelHandler) SpringBeanUtils.getBean("electronicServerHandler"));
-        //设置空闲心跳空闲检测--channel
+        /**设置空闲心跳空闲检测--channel*/
         channelPipeline.addLast(new IdleStateHandler(electronicProperties.getRead(), electronicProperties.getWrite(), electronicProperties.getReadAndWrite()));
-
-
     }
 }

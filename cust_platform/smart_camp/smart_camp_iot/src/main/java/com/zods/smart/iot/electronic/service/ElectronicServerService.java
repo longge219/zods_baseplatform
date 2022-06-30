@@ -1,8 +1,6 @@
 package com.zods.smart.iot.electronic.service;
 import com.zods.smart.iot.electronic.server.protocal.ElectronicPacketHead;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.socket.DatagramPacket;
-
 /**
  * @description 服务端报文业务处理接口
  * @author jianglong
@@ -15,7 +13,7 @@ public interface ElectronicServerService {
      * @param:packetHead 解译后数据包
      * @result: boolean
      */
-    public boolean successBusiness(ChannelHandlerContext ctx,DatagramPacket datagramPacket, ElectronicPacketHead packetHead) throws Exception;
+    public boolean successBusiness(ChannelHandlerContext ctx, ElectronicPacketHead packetHead) throws Exception;
 
 
 }

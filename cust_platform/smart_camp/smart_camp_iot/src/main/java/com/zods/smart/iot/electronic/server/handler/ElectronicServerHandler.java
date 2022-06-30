@@ -1,18 +1,11 @@
 package com.zods.smart.iot.electronic.server.handler;
-import com.zods.smart.iot.electronic.server.code.ElectronicMessageDecoderT;
 import com.zods.smart.iot.electronic.server.protocal.ElectronicPacketHead;
 import com.zods.smart.iot.electronic.service.ElectronicServerService;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
-import io.netty.channel.socket.DatagramPacket;
 import io.netty.handler.timeout.IdleStateEvent;
-import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
-import java.net.InetSocketAddress;
-
 /**
  * @description 消息解码后处理中心
  * @author jianglong
@@ -21,7 +14,7 @@ import java.net.InetSocketAddress;
 @ChannelHandler.Sharable
 @Component("electronicServerHandler")
 @Slf4j
-public class ElectronicServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
+public class ElectronicServerHandler extends SimpleChannelInboundHandler<ElectronicPacketHead> {
 
     //业务处理模块
     @Resource
@@ -29,11 +22,10 @@ public class ElectronicServerHandler extends SimpleChannelInboundHandler<Datagra
 
     /**服务端业务接收到数据*/
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket datagramPacket) throws Exception {
-        ElectronicPacketHead electronicPacketHead = ElectronicMessageDecoderT.doDecode(datagramPacket.content());
+    protected void channelRead0(ChannelHandlerContext ctx, ElectronicPacketHead electronicPacketHead) throws Exception {
         if(electronicPacketHead !=null){
             //数据包协议处理
-            if(!this.elecServerServiceImpl.successBusiness(ctx,datagramPacket,electronicPacketHead)) {
+            if(!this.elecServerServiceImpl.successBusiness(ctx,electronicPacketHead)) {
                 log.error("接收报文处理模块ElectronicServerHandler处理异常");
             }
         }
