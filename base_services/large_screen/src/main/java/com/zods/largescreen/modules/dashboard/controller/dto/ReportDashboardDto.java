@@ -44,6 +44,9 @@ public class ReportDashboardDto extends GaeaBaseDTO implements Serializable {
     /** 排序，降序 */
     private Integer sort;
 
+    /**是否自动适配屏幕*/
+    private Boolean autoScale;
+
     private List<ReportDashboardWidgetDto> widgets;
 
 }

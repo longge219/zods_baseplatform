@@ -149,6 +149,8 @@ public final class ResponseCode {
 
     public static final String CLASS_NOT_FOUND = "4010";
 
+    public static final String WIDGET_CODE_ISEXIST = "4011";
+
     public static final String REPORT_SHARE_LINK_INVALID = "report.share.link.invalid";
 
 

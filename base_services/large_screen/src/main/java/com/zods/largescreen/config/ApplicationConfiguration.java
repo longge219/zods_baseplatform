@@ -79,6 +79,7 @@ public class ApplicationConfiguration {
             return new PaginationInterceptor();
         }
 
+        /**添加修改拦截-设置创建修改人，创建修改时间*/
         @Bean
         @ConditionalOnMissingBean({MetaObjectHandler.class})
         public MybatisPlusMetaObjectHandler mybatisPlusMetaObjectHandler() {

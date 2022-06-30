@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2022-06-22
  **/
 @RestController
-@Api(tags = "组件管理")
+@Api(tags = "大屏组件管理")
 @RequestMapping("/reportDashboardWidget")
 public class ReportDashboardWidgetController {
 }

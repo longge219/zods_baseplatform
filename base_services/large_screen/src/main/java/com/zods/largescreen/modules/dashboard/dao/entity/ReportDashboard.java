@@ -47,5 +47,6 @@ public class ReportDashboard extends GaeaBaseEntity {
     @ApiModelProperty(value = "排序，降序")
     private Integer sort;
 
-
+    @ApiModelProperty(value = "是否自动适配屏幕")
+    private Boolean autoScale;
 }
