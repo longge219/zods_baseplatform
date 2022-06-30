@@ -1,6 +1,8 @@
 package com.zods.largescreen.config;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.zods.largescreen.common.cache.CacheHelper;
 import com.zods.largescreen.common.cache.RedisCacheHelper;
 import com.zods.largescreen.common.curd.mapper.handler.MybatisPlusMetaObjectHandler;
@@ -61,9 +63,20 @@ public class ApplicationConfiguration {
     public class GaeaMybatisPlusAutoConfiguration {
         public GaeaMybatisPlusAutoConfiguration() {
         }
+
+        @Bean
+        public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+            return new OptimisticLockerInterceptor();
+        }
+
         @Bean
         public CustomSqlInjector customSqlInjector() {
             return new CustomSqlInjector();
+        }
+
+        @Bean
+        public PaginationInterceptor paginationInterceptor() {
+            return new PaginationInterceptor();
         }
 
         @Bean

@@ -186,17 +186,22 @@ public interface GaeaBaseService<P extends PageParam, T extends BaseEntity> {
     /**更新*/
     @Transactional(rollbackFor = {Exception.class})
     default Integer update(T entity) throws BusinessException {
+        //更新前业务处理
         this.processBeforeOperation(entity, BaseOperationEnum.UPDATE);
+        //字段唯一性检查
         this.checkUniqueField(entity, true);
         if (entity instanceof GaeaBaseEntity) {
             GaeaBaseEntity gaeaBaseEntity = (GaeaBaseEntity)entity;
             T dbEntity = this.getById(gaeaBaseEntity.getId());
+            //删除历史缓存
             this.refreshCacheFields(dbEntity, BaseOperationEnum.DELETE);
         }
 
         Integer result = this.getMapper().updateById(entity);
         if (result != null && result >= 1) {
+            //更新缓存
             this.refreshCacheFields(entity, BaseOperationEnum.UPDATE);
+            //更新后业务处理
             this.processAfterOperation(entity, BaseOperationEnum.UPDATE);
             return result;
         } else {
@@ -473,7 +478,7 @@ public interface GaeaBaseService<P extends PageParam, T extends BaseEntity> {
         }
     }
 
-    /**添加刷新字段*/
+    /**添加刷新缓存字段*/
     default void refreshCacheFields(T entity, BaseOperationEnum operationEnum) {
         Class<? extends BaseEntity> entityClass = entity.getClass();
         Field[] declaredFields = entityClass.getDeclaredFields();

@@ -110,6 +110,8 @@ public class DataSetServiceImpl implements DataSetService {
         //1.更新数据集
         DataSet dataSet = new DataSet();
         BeanUtils.copyProperties(dto, dataSet);
+        dataSet.setCreateBy("admin");
+        dataSet.setUpdateBy("admin");
         update(dataSet);
         //2.更新查询参数
         dataSetParamBatch(dataSetParamDtoList, dto.getSetCode());
@@ -253,7 +255,7 @@ public class DataSetServiceImpl implements DataSetService {
     @Override
     public List<DataSet> queryAllDataSet() {
         LambdaQueryWrapper<DataSet> wrapper = Wrappers.lambdaQuery();
-        wrapper.select(DataSet::getSetCode, DataSet::getSetName, DataSet::getSetDesc, DataSet::getId)
+        wrapper.select(DataSet::getSetCode, DataSet::getSetName, DataSet::getSetDesc, DataSet::getId, DataSet::getSetType)
                 .eq(DataSet::getEnableFlag, Enabled.YES.getValue());
         wrapper.orderByDesc(DataSet::getUpdateTime);
         return dataSetMapper.selectList(wrapper);
