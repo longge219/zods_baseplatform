@@ -1,6 +1,7 @@
 package com.zods.smart.iot.common.reflect;
 import com.zods.smart.iot.electronic.server.protocal.ElectronicEquipStatus;
 import com.zods.smart.iot.electronic.server.protocal.ElectronicOnline;
+import com.zods.smart.iot.electronic.server.protocal.ElectronicSidedeFenseCmdReturn;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -16,5 +17,7 @@ public abstract class ClassMap implements ClassProcess {
 	    map.put("1", new ClassHandler(ElectronicOnline.class));
 		/**电子围栏红外震动-状态报文*/
 		map.put("2", new ClassHandler(ElectronicEquipStatus.class));
+		/**布防撤防命令应答报文*/
+		map.put("133", new ClassHandler(ElectronicSidedeFenseCmdReturn.class));
 	}
 }
