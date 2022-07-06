@@ -21,10 +21,10 @@ public class ElectronicCommandServiceImpl implements ElectronicCommandService {
         sidedeFenseCmd.setUserGroupH((byte)0);
         sidedeFenseCmd.setUserGroupL((byte)0);
         sidedeFenseCmd.setExtendedStandby((byte)0);
-        sidedeFenseCmd.setSecretOne();
-        sidedeFenseCmd.setSecretTwo();
-        sidedeFenseCmd.setSecretThree();
-        sidedeFenseCmd.setSidedeFenseCmd();
+//        sidedeFenseCmd.setSecretOne();
+//        sidedeFenseCmd.setSecretTwo();
+//        sidedeFenseCmd.setSecretThree();
+//        sidedeFenseCmd.setSidedeFenseCmd();
          return true;
     }
 }
