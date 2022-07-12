@@ -28,6 +28,14 @@ spring:
         max-active: 8
         max-idle: 8
         min-idle: 0
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 10.10.254.138:8848
+#        namespace: 7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+#        metadata:
+#          management:
+#            context-path: /${server.servlet.context-path}/actuator
 #HTTP-client连接池配置
 http:
   client:
@@ -40,3 +48,10 @@ http:
       retryTimes: 2 #重试次数,默认2次
       connectionRequestTimout: 200 #从连接池获取连接的超时时间,不宜过长,单位ms
       keepAliveTime: 60 #针对不同的地址,特别设置不同的长连接保持时间,单位 s
+#######################【资源服务器-配置鉴权认证中心】#########################
+#oauth2:
+#  client:
+#    clientId: client
+#    clientSecret: secret
+#    checkTokenUrl: api/auth/oauth/check_token
+#    serverApplicationName: platform-auth-server
