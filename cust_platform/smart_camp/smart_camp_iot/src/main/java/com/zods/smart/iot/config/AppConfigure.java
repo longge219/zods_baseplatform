@@ -1,6 +1,8 @@
 package com.zods.smart.iot.config;
 import com.zods.smart.iot.electronic.server.properties.ElectronicProperties;
 import com.zods.smart.iot.electronic.server.start.InitElectronicServer;
+import com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties;
+import com.zods.smart.iot.gunrfid.server.start.InitGunRfidServer;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,7 +18,7 @@ import org.springframework.core.annotation.Order;
  **/
 @Configuration
 @ConditionalOnClass
-@EnableConfigurationProperties({ElectronicProperties.class})
+@EnableConfigurationProperties({ElectronicProperties.class, GunRifdServerProperties.class})
 public class AppConfigure implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
@@ -25,11 +27,20 @@ public class AppConfigure implements ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
+
+    /**枪支RFID服务启动加载配置*/
+    @Bean(initMethod = "open", destroyMethod = "close")
+    @Order(1)
+    public InitGunRfidServer initGunRfidServer(GunRifdServerProperties gunRifdServerProperties) throws Exception {
+        return new InitGunRfidServer(gunRifdServerProperties);
+    }
+
     /**电子围栏红外震动服务启动加载配置*/
     @Bean(initMethod = "open", destroyMethod = "close")
     @Order(1)
-    public InitElectronicServer initServer(ElectronicProperties electronicProperties) throws Exception {
+    public InitElectronicServer initElectronicServer(ElectronicProperties electronicProperties) throws Exception {
         return new InitElectronicServer(electronicProperties);
     }
+
 
 }

@@ -4,6 +4,11 @@
       "name": "com.zods.electronic.server",
       "type": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
       "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties"
+    },
+    {
+      "name": "com.zods.gunrfid.server",
+      "type": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties"
     }
   ],
   "properties": [
@@ -68,6 +73,108 @@
       "name": "com.zods.electronic.server.write",
       "type": "java.lang.Integer",
       "sourceType": "com.zods.smart.iot.electronic.server.properties.ElectronicProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.gunrfid.server.backlog",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.gunrfid.server.boss-thread",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.gunrfid.server.jks-certificate-password",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties"
+    },
+    {
+      "name": "com.zods.gunrfid.server.jks-file",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties"
+    },
+    {
+      "name": "com.zods.gunrfid.server.jks-store-password",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties"
+    },
+    {
+      "name": "com.zods.gunrfid.server.keepalive",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "com.zods.gunrfid.server.port",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties"
+    },
+    {
+      "name": "com.zods.gunrfid.server.protocol",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties"
+    },
+    {
+      "name": "com.zods.gunrfid.server.read",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.gunrfid.server.read-and-write",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.gunrfid.server.reuseaddr",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "com.zods.gunrfid.server.revbuf",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.gunrfid.server.server-name",
+      "type": "java.lang.String",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties"
+    },
+    {
+      "name": "com.zods.gunrfid.server.sndbuf",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.gunrfid.server.ssl",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "com.zods.gunrfid.server.tcp-nodelay",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "com.zods.gunrfid.server.work-thread",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "com.zods.gunrfid.server.write",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
       "defaultValue": 0
     }
   ],
