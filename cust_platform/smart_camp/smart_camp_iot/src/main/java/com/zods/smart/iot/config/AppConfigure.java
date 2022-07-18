@@ -36,11 +36,11 @@ public class AppConfigure implements ApplicationContextAware {
     }
 
     /**电子围栏红外震动服务启动加载配置*/
-    @Bean(initMethod = "open", destroyMethod = "close")
-    @Order(1)
-    public InitElectronicServer initElectronicServer(ElectronicProperties electronicProperties) throws Exception {
-        return new InitElectronicServer(electronicProperties);
-    }
+//    @Bean(initMethod = "open", destroyMethod = "close")
+//    @Order(1)
+//    public InitElectronicServer initElectronicServer(ElectronicProperties electronicProperties) throws Exception {
+//        return new InitElectronicServer(electronicProperties);
+//    }
 
 
 }

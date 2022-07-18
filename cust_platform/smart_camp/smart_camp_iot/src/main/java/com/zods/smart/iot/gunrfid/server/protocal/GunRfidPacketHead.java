@@ -1,9 +1,5 @@
 package com.zods.smart.iot.gunrfid.server.protocal;
-
 import lombok.Data;
-
-import java.net.InetSocketAddress;
-
 /**
  * @Description:网络传输报文头封装
  * @create Author:jianglong
@@ -12,10 +8,10 @@ import java.net.InetSocketAddress;
  */
 @Data
 public abstract class GunRfidPacketHead {
-	//消息类型
+	/**消息类型*/
 	public abstract int getCommandType();
 
-	//开始符号(0xAA)
+	/**开始符号(0xAA)*/
 	public int header;
 
 	/**
@@ -26,6 +22,6 @@ public abstract class GunRfidPacketHead {
 	 */
 	private int type;
 
-	//指令代码
+	/**指令代码*/
 	private int command;
 }

@@ -57,7 +57,7 @@ public class ElectronicMessageDecoder extends MessageToMessageDecoder<DatagramPa
 			ElectronicPacketHead message = null;
 			if (classProcessImpl.verifyTag(String.valueOf(commandType))){
 				Class<?> messageClass = classProcessImpl.getClassByTag(String.valueOf(commandType));
-				message = (ElectronicPacketHead)getObjectByBuffer(messageClass,inByteBuf,msgLength);
+				message = (ElectronicPacketHead)getObjectByBuffer(messageClass,inByteBuf);
 				message.setPakcetLen(msgLength);
 				message.setHostAddress(hostAddress);
 				message.setEquipAddress(equipAddress);
@@ -86,7 +86,7 @@ public class ElectronicMessageDecoder extends MessageToMessageDecoder<DatagramPa
 		}
 	}
 
-	public Object getObjectByBuffer(Class<?> clazz, ByteBuf inByteBuf,int msgLength) throws Exception {
+	private Object getObjectByBuffer(Class<?> clazz, ByteBuf inByteBuf) throws Exception {
 		// 实例化类
 		Object obj = clazz.newInstance();
 		// 得到类中private 的属性
@@ -98,7 +98,7 @@ public class ElectronicMessageDecoder extends MessageToMessageDecoder<DatagramPa
 			if (ano != null) {
 				SubAnnotation sub = (SubAnnotation) ano;
 				field.setAccessible(true);
-				Object v = getValues(sub.type(), sub.len(),sub.mark(), msgLength,inByteBuf);
+				Object v = getValues(sub.type(), sub.len(),sub.mark(),inByteBuf);
 				if (v == null) {
 					log.error("属性值为空NULL");
 				} else {
@@ -120,7 +120,7 @@ public class ElectronicMessageDecoder extends MessageToMessageDecoder<DatagramPa
 	 * @return Object
 	 * @throws Exception
 	 */
-	public Object getValues(String type, String len, String mark,int msgLength,ByteBuf ioBuffer) throws Exception {
+	private Object getValues(String type, String len, String mark,ByteBuf ioBuffer) throws Exception {
 		//数组长度
 		int v = Integer.parseInt(len);
 		/** 解码成byte属性 */
