@@ -17,14 +17,14 @@ public class GunRfidMultiplePollingCommand extends GunRfidPacketHead {
     private short command = 0x03;//指令参数长度
 
     @SubAnnotation(len = "1", name = "", type = "byte",mark="")
-    private short reserved = 0x22;//保留位
+    private byte reserved = 0x22;//保留位
 
     @SubAnnotation(len = "2", name = "", type = "short",mark="")
-    private int cnt = 65535;//轮询次数 CNT(范围0-65535，当值为65535则为无限循环)
+    private short cnt = (short)0xffff;//轮询次数 CNT(范围0-65535，当值为65535则为无限循环)
 
     @SubAnnotation(len = "1", name = "", type = "byte",mark="")
-    private short checksum = 0x83; //校验位
+    private byte checksum = (byte)0x83; //校验位
 
     @SubAnnotation(len = "1", name = "", type = "byte",mark="")
-    private short end = 0xDD; //结束符
+    private byte end = (byte)0xDD; //结束符
 }

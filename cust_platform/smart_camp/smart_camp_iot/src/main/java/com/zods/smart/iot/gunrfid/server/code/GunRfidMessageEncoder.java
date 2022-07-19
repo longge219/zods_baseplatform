@@ -37,7 +37,6 @@ public class GunRfidMessageEncoder extends MessageToByteEncoder<GunRfidPacketHea
 		}
 		/**===========报文体编码区end===============*/
 		/**返回数据*/
-		ctx.write(outByteBuf);
 	}
 
 	/**

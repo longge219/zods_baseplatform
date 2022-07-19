@@ -1,10 +1,7 @@
 package com.zods.smart.iot.gunrfid.service.impl;
 import com.zods.kafka.producer.KafkaProducerService;
 import com.zods.smart.iot.gunrfid.server.channel.GunRfidChannelManager;
-import com.zods.smart.iot.gunrfid.server.protocal.GunRfidLogin;
-import com.zods.smart.iot.gunrfid.server.protocal.GunRfidMultiplePollingCommand;
-import com.zods.smart.iot.gunrfid.server.protocal.GunRfidOnline;
-import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
+import com.zods.smart.iot.gunrfid.server.protocal.*;
 import com.zods.smart.iot.gunrfid.service.GunRfidServerService;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
@@ -49,10 +46,20 @@ public class GunRfidServerServiceImpl implements GunRfidServerService {
                 mpCommand.setHeader(0xAA); //开始符号(0xAA)
                 mpCommand.setType(0x00); //指令帧类型
                 mpCommand.setCommand(0x27); //指令代码
-            }else{
-                log.info("设备IP:"+clientIp+"已登陆..........");
+                ctx.writeAndFlush(mpCommand);
+            } else {
+                log.info("设备IP:" + clientIp + "已登陆..........");
             }
-        }else{
+        }
+        else if(packetHead instanceof GunRfidMultiplePollingNotice){
+            GunRfidMultiplePollingNotice mpNotice = (GunRfidMultiplePollingNotice)packetHead;
+            log.info("接收到GUN-RFID多次轮询指令通知");
+        }
+        else if(packetHead instanceof GunRfidMultiplePollingResponse){
+            GunRfidMultiplePollingResponse mpResponse = (GunRfidMultiplePollingResponse) packetHead;
+            log.info("接收到GUN-RFID多次轮询指令响应");
+        }
+        else{
             log.info("GUN-RFID服务端暂不处理其他数据包协议");
         }
         return true;

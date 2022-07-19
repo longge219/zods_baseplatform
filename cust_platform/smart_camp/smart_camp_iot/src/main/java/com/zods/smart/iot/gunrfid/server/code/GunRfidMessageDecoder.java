@@ -29,7 +29,6 @@ public class GunRfidMessageDecoder extends ByteToMessageDecoder {
 			//开始符号(0xAA)
 			int header = UnsignedNumber.getUnsignedByte(in.readByte());
 			if(header != 0xAA){
-				in.release();
 				return;
 			}
 			/**
@@ -39,12 +38,12 @@ public class GunRfidMessageDecoder extends ByteToMessageDecoder {
 			 * 0x02 通知帧: 由 HZ9X 芯片发回给上位机
 			 */
 			int type = UnsignedNumber.getUnsignedByte(in.readByte());
-			if(type != 0x02){
-				in.release();
-				return;
-			}
+
 			//指令代码
             int command  = UnsignedNumber.getUnsignedByte(in.readByte());
+			if(command == 39){
+				log.info("收到通知消息");
+			}
 			/**消息体开始解码*/
 			ClassProcessImpl classProcessImpl = new ClassProcessImpl();
 			GunRfidPacketHead message = null;
@@ -56,14 +55,14 @@ public class GunRfidMessageDecoder extends ByteToMessageDecoder {
 				message.setCommand(command);
 			} else {
 				log.warn("接收到未定义协议编码："+ String.valueOf(command));
-				in.release();
 			}
 			/**校验码校验*/
 			out.add(message);
 		}else{
 			/**包长度不够*/
-			in.release();
+			return;
 		}
+		return;
 	}
 
 
