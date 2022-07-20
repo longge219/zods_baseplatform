@@ -8,6 +8,7 @@ import com.zods.smart.iot.gunrfid.server.protocal.base.GunRfidOnline;
 import com.zods.smart.iot.gunrfid.server.protocal.command.GunRfidMultiplePollingCommand;
 import com.zods.smart.iot.gunrfid.server.protocal.notice.GunRfidMultiplePollingNotice;
 import com.zods.smart.iot.gunrfid.server.protocal.response.GunRfidMultiplePollingResponse;
+import com.zods.smart.iot.gunrfid.server.protocal.response.GunRfidSetAntResponse;
 import com.zods.smart.iot.gunrfid.service.GunRfidServerService;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,7 @@ public class GunRfidServerServiceImpl implements GunRfidServerService {
             GunRfidOnline gunRfidOnline = (GunRfidOnline) packetHead;
             log.info("GUN-RFID收到心跳信息");
         } else if(packetHead instanceof GunRfidLogin){
+            log.info("GUN-RFID收到登陆信息");
             /**登陆信息*/
             GunRfidLogin gunRfidLogin = (GunRfidLogin) packetHead;
             /**获取客户端IP*/
@@ -49,10 +51,7 @@ public class GunRfidServerServiceImpl implements GunRfidServerService {
                 GunRfidChannelManager.getInstance().addChannel(clientIp,ctx.channel());
                 //发送多次轮询指令
                 GunRfidMultiplePollingCommand mpCommand = new GunRfidMultiplePollingCommand();
-                mpCommand.setHeader(0xAA); //开始符号(0xAA)
-                mpCommand.setType(0x00); //指令帧类型
-                mpCommand.setCommand(0x27); //指令代码
-                ctx.writeAndFlush(mpCommand);
+                //ctx.writeAndFlush(mpCommand);
             } else {
                 log.info("设备IP:" + clientIp + "已登陆..........");
             }
@@ -66,6 +65,10 @@ public class GunRfidServerServiceImpl implements GunRfidServerService {
         else if(packetHead instanceof GunRfidMultiplePollingResponse){
             GunRfidMultiplePollingResponse mpResponse = (GunRfidMultiplePollingResponse) packetHead;
             log.info("接收到GUN-RFID多次轮询指令响应");
+        }
+        else if(packetHead instanceof GunRfidSetAntResponse){
+            GunRfidSetAntResponse mpResponse = (GunRfidSetAntResponse) packetHead;
+            log.info("接收到GUN-RFID设置天线响应.......");
         }
         else{
             log.info("GUN-RFID服务端暂不处理其他数据包协议");

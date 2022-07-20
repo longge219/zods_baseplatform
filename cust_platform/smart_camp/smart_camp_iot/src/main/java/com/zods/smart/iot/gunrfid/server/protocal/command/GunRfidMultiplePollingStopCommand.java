@@ -11,16 +11,16 @@ import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
 public class GunRfidMultiplePollingStopCommand extends GunRfidPacketHead {
 
     //命令编码
-    public int getCommandType() {
+    public int getCommand() {
         return 0x28;
+    }
+
+    //命令编码类型
+    public int getCommandType() {
+        return 0x00;
     }
 
     @SubAnnotation(len = "2", name = "", type = "short",mark="")
     private short command = 0x00;//指令参数长度
 
-    @SubAnnotation(len = "1", name = "", type = "byte",mark="")
-    private short checksum = 0x28; //校验位
-
-    @SubAnnotation(len = "1", name = "", type = "byte",mark="")
-    private short end = 0xDD; //结束符
 }

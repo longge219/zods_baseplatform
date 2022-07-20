@@ -11,7 +11,12 @@ import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
 public class GunRfidOnline extends GunRfidPacketHead {
 
     //命令编码
-    public int getCommandType() {
+    public int getCommand() {
         return 0x33;
+    }
+
+    //命令编码类型
+    public int getCommandType() {
+        return 0x02;
     }
 }

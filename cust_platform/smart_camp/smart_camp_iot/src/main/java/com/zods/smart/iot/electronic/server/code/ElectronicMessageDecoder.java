@@ -72,7 +72,7 @@ public class ElectronicMessageDecoder extends MessageToMessageDecoder<DatagramPa
 			 ByteBuf checkBuf = inByteBuf.copy(0,inByteBuf.readerIndex());
 			 byte[] checkData = new byte[checkBuf.readableBytes()];
 			 checkBuf.readBytes(checkData);
-			 if(CheckSumUtil.isCheckSumValid(checkData,inByteBuf.readByte())){
+			 if(CheckSumUtil.isCheckElcSumValid(checkData,inByteBuf.readByte())){
 				 //远程地址
 				 message.setRemoteAddress(remoteAddress);
 			     out.add(message);

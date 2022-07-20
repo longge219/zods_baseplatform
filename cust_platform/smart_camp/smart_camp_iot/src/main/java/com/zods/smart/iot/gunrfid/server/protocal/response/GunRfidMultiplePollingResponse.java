@@ -12,10 +12,14 @@ import lombok.Data;
 @Data
 public class GunRfidMultiplePollingResponse extends GunRfidPacketHead {
     //命令编码
-    public int getCommandType() {
+    public int getCommand() {
         return 0xFF;
     }
 
+    //命令编码类型
+    public int getCommandType() {
+        return 0x01;
+    }
 
     @SubAnnotation(len = "1", name = "", type = "byte",mark="")
     private byte ant;//天线号 ANT

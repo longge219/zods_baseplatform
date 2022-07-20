@@ -57,9 +57,6 @@ public class GunRfidMessageDecoder extends ByteToMessageDecoder {
 			if (classProcessImpl.verifyTag(String.valueOf(command))){
 				Class<?> messageClass = classProcessImpl.getClassByTag(String.valueOf(command));
 				message = (GunRfidPacketHead)getObjectByBuffer(messageClass,in);
-				message.setHeader(header);
-				message.setType(type);
-				message.setCommand(command);
 			} else {
 				log.warn("接收到未定义协议编码："+ String.valueOf(command));
 			}

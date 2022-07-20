@@ -12,13 +12,17 @@ import lombok.Data;
 public class GunRfidMultiplePollingStopCommandResponse extends GunRfidPacketHead {
 
     //命令编码
-    public int getCommandType() {
+    public int getCommand() {
         return 0x28;
+    }
+
+    //命令编码类型
+    public int getCommandType() {
+        return 0x01;
     }
 
     @SubAnnotation(len = "2", name = "", type = "short",mark="")
     private short command; //指令参数长度
-
 
     @SubAnnotation(len = "1", name = "", type = "byte",mark="")
     private byte parameter;//指令参数 Parameter 0x00

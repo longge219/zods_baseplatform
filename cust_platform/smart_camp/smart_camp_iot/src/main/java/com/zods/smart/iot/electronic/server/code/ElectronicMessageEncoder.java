@@ -51,7 +51,7 @@ public class ElectronicMessageEncoder  extends MessageToMessageEncoder<Electroni
 		byte[] checkData = new byte[checkBuf.readableBytes()];
 		checkBuf.readBytes(checkData);
 		//验证码
-		byte chekCode =  CheckSumUtil.getCheckSum(checkData);
+		byte chekCode =  CheckSumUtil.getElcCheckSum(checkData);
 		outByteBuf.writeByte(chekCode);
 		/**===========验证码end===============*/
 		/**返回数据*/

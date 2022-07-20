@@ -11,8 +11,13 @@ import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
 public class GunRfidMultiplePollingCommand extends GunRfidPacketHead {
 
     //命令编码
-    public int getCommandType() {
+    public int getCommand() {
         return 0x27;
+    }
+
+    //命令编码类型
+    public int getCommandType() {
+        return 0x00;
     }
 
     @SubAnnotation(len = "2", name = "", type = "short",mark="")
@@ -23,10 +28,4 @@ public class GunRfidMultiplePollingCommand extends GunRfidPacketHead {
 
     @SubAnnotation(len = "2", name = "", type = "short",mark="")
     private short cnt = (short)0xffff;//轮询次数 CNT(范围0-65535，当值为65535则为无限循环)
-
-    @SubAnnotation(len = "1", name = "", type = "byte",mark="")
-    private byte checksum = (byte)0x83; //校验位
-
-    @SubAnnotation(len = "1", name = "", type = "byte",mark="")
-    private byte end = (byte)0xDD; //结束符
 }

@@ -1,5 +1,6 @@
 package com.zods.smart.iot.gunrfid.server.code;
 import com.zods.smart.iot.common.reflect.SubAnnotation;
+import com.zods.smart.iot.common.utils.CheckSumUtil;
 import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -17,8 +18,8 @@ public class GunRfidMessageEncoder extends MessageToByteEncoder<GunRfidPacketHea
 	@Override
 	protected void encode(ChannelHandlerContext ctx, GunRfidPacketHead gunRfidPacketHead, ByteBuf outByteBuf) throws Exception {
 		/**===========报文头start===============*/
-		outByteBuf.writeByte((byte)gunRfidPacketHead.getHeader());//开始符号(0xAA)
-		outByteBuf.writeByte((byte)gunRfidPacketHead.getType());//指令帧类型
+		outByteBuf.writeByte((byte)0xAA);//开始符号(0xAA)
+		outByteBuf.writeByte((byte)gunRfidPacketHead.getCommandType());//指令帧类型
 		outByteBuf.writeByte((byte)gunRfidPacketHead.getCommand());//指令代码
 		/**===========报文头end===============*/
 		/**===========报文体编码区start===============*/
@@ -36,7 +37,16 @@ public class GunRfidMessageEncoder extends MessageToByteEncoder<GunRfidPacketHea
 			}
 		}
 		/**===========报文体编码区end===============*/
-		/**返回数据*/
+		/**===========校验位start===============*/
+		ByteBuf checkBuf = outByteBuf.copy(1,outByteBuf.writerIndex());
+		byte[] checkData = new byte[checkBuf.readableBytes()];
+		checkBuf.readBytes(checkData);
+		//验证码
+		byte chekCode =  CheckSumUtil.getGunRfidCheckSum(checkData);
+		outByteBuf.writeByte(chekCode);
+		/**===========校验位结束===============*/
+		/**===========结束符===============*/
+		outByteBuf.writeByte((byte)0xDD);
 	}
 
 	/**

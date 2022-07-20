@@ -15,3 +15,10 @@ mybatis-plus:
   mapperLocations:
     - classpath*:/mapper/**/*.xml
     - classpath*:/modeler-mybatis-mappings/**/*.xml
+#swagger配置
+swagger:
+  host:
+  service:
+    url: http://swagger.io/
+    title: 智能设备控制接口
+    des: 智能设备控制api文档

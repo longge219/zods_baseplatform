@@ -142,6 +142,7 @@ public class Bits {
 		}
 		return res;
 	}
+
 	
 	/**char转bit*/
 	public static  boolean charToBit(char a){

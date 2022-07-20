@@ -6,12 +6,10 @@ package com.zods.smart.iot.common.utils;
  */
 public class CheckSumUtil {
 	/**
-	 * @Description: 生成GPRS报文校验
-	 * @create Author:蒋龙
-	 * @create 2016-4-14
+	 * @Description:生成电子围栏校验码
 	 * @return byte
 	 */
-	public static byte getCheckSum(byte[] checkSumBytes) {
+	public static byte getElcCheckSum(byte[] checkSumBytes) {
 		int byteRet = 0;
         if ((checkSumBytes != null) && (checkSumBytes.length > 0)) {
 			for (int i = 0; i < checkSumBytes.length; i++) {
@@ -23,10 +21,10 @@ public class CheckSumUtil {
 	}
 
 	/**
-	 * @Description: 校验位校验
+	 * @Description: 判断电子围栏校验位校验
 	 * @return boolean
 	 */
-	public static boolean isCheckSumValid(byte[] checkSumBytes, byte checkSum) {
+	public static boolean isCheckElcSumValid(byte[] checkSumBytes, byte checkSum) {
 		boolean isValid = false;
 		int newCheckSum = 0;
 		if ((checkSumBytes != null) && (checkSumBytes.length > 0)) {
@@ -39,5 +37,32 @@ public class CheckSumUtil {
 			isValid = true;
 		}
 		return isValid;
+	}
+
+	/**
+	 * @Description:生成GUN-RFID校验码
+	 * @return byte
+	 */
+	public static byte getGunRfidCheckSum(byte[] checkSumBytes) {
+		int byteRet = 0;
+		if ((checkSumBytes != null) && (checkSumBytes.length > 0)) {
+			for (int i = 0; i < checkSumBytes.length; i++) {
+				byteRet = byteRet + checkSumBytes[i];
+			}
+			//最低一个字节
+			boolean[]  res = Bits.intToBits(byteRet,4);
+			Bits.bitsToInt(res);
+		}
+		return (byte)byteRet;
+	}
+
+	public static void main(String[] args){
+//		byte[] checkSumBytes  = new byte[4];
+//		checkSumBytes[0] = (byte)0x00;
+//		checkSumBytes[1] = (byte)0xA7;
+//		checkSumBytes[2] = (byte)0x00;
+//		checkSumBytes[3] = (byte)0x00;
+//		System.out.print(UnsignedNumber.getUnsignedByte(getGunRfidCheckSum(checkSumBytes)));
+
 	}
 }
