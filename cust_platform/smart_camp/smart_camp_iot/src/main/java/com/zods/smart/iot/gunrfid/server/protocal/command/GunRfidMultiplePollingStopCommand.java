@@ -1,5 +1,6 @@
-package com.zods.smart.iot.gunrfid.server.protocal;
+package com.zods.smart.iot.gunrfid.server.protocal.command;
 import com.zods.smart.iot.common.reflect.SubAnnotation;
+import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
 
 /**
  * @Description:GUN-RFID多次轮询停止指令

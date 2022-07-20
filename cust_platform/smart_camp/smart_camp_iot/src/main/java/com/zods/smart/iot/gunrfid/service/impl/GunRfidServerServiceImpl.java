@@ -1,7 +1,13 @@
 package com.zods.smart.iot.gunrfid.service.impl;
 import com.zods.kafka.producer.KafkaProducerService;
+import com.zods.smart.iot.common.utils.Bits;
 import com.zods.smart.iot.gunrfid.server.channel.GunRfidChannelManager;
 import com.zods.smart.iot.gunrfid.server.protocal.*;
+import com.zods.smart.iot.gunrfid.server.protocal.base.GunRfidLogin;
+import com.zods.smart.iot.gunrfid.server.protocal.base.GunRfidOnline;
+import com.zods.smart.iot.gunrfid.server.protocal.command.GunRfidMultiplePollingCommand;
+import com.zods.smart.iot.gunrfid.server.protocal.notice.GunRfidMultiplePollingNotice;
+import com.zods.smart.iot.gunrfid.server.protocal.response.GunRfidMultiplePollingResponse;
 import com.zods.smart.iot.gunrfid.service.GunRfidServerService;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
@@ -52,8 +58,10 @@ public class GunRfidServerServiceImpl implements GunRfidServerService {
             }
         }
         else if(packetHead instanceof GunRfidMultiplePollingNotice){
-            GunRfidMultiplePollingNotice mpNotice = (GunRfidMultiplePollingNotice)packetHead;
             log.info("接收到GUN-RFID多次轮询指令通知");
+            GunRfidMultiplePollingNotice mpNotice = (GunRfidMultiplePollingNotice)packetHead;
+            log.info("天线号：" + mpNotice.getAnt() + "识别到的EPC码：" + Bits.toHexString(mpNotice.getEpc(),mpNotice.getEpc().length));
+
         }
         else if(packetHead instanceof GunRfidMultiplePollingResponse){
             GunRfidMultiplePollingResponse mpResponse = (GunRfidMultiplePollingResponse) packetHead;

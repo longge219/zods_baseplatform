@@ -1,4 +1,7 @@
-package com.zods.smart.iot.gunrfid.server.protocal;
+package com.zods.smart.iot.gunrfid.server.protocal.base;
+
+import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
+
 /**
  * @Description:GUN-RFID设备在线信息报文
  * @create Author:jianglong

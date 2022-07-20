@@ -67,7 +67,7 @@
       <module name="sso_gateway" options="-parameters" />
       <module name="sso_server" options="" />
       <module name="workflow_engine" options="-parameters" />
-      <module name="zods_baseplatform" options="-parameters" />
+      <module name="zods_baseplatform" options="" />
     </option>
   </component>
 </project>

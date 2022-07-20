@@ -1,5 +1,7 @@
-package com.zods.smart.iot.gunrfid.server.protocal;
+package com.zods.smart.iot.gunrfid.server.protocal.response;
 import com.zods.smart.iot.common.reflect.SubAnnotation;
+import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
+import lombok.Data;
 
 /**
  * @Description:GUN-RFID多次轮询响应
@@ -7,6 +9,7 @@ import com.zods.smart.iot.common.reflect.SubAnnotation;
  * @create Date:2022-07-18
  * @version V1.0
  */
+@Data
 public class GunRfidMultiplePollingResponse extends GunRfidPacketHead {
     //命令编码
     public int getCommandType() {

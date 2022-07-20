@@ -41,8 +41,15 @@ public class GunRfidMessageDecoder extends ByteToMessageDecoder {
 
 			//指令代码
             int command  = UnsignedNumber.getUnsignedByte(in.readByte());
-			if(command == 39){
-				log.info("收到通知消息");
+			//GUN-RFID多次轮询指令通知
+			if(command == 34){
+				//轮训指令通知为分包发送，以结束符为准。
+				int end = UnsignedNumber.getUnsignedByte(in.getByte(in.readableBytes()));
+				if(end != 0xDD){
+					//报文不是以0xDD结束， 内容不够，需要下一批发过来的内容
+					in.readerIndex(in.readerIndex() - 3);
+					return;
+				}
 			}
 			/**消息体开始解码*/
 			ClassProcessImpl classProcessImpl = new ClassProcessImpl();

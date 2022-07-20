@@ -2,7 +2,10 @@ package com.zods.smart.iot.common.reflect;
 import com.zods.smart.iot.electronic.server.protocal.ElectronicEquipStatus;
 import com.zods.smart.iot.electronic.server.protocal.ElectronicOnline;
 import com.zods.smart.iot.electronic.server.protocal.ElectronicSidedeFenseCmdReturn;
-import com.zods.smart.iot.gunrfid.server.protocal.*;
+import com.zods.smart.iot.gunrfid.server.protocal.base.GunRfidLogin;
+import com.zods.smart.iot.gunrfid.server.protocal.base.GunRfidOnline;
+import com.zods.smart.iot.gunrfid.server.protocal.notice.GunRfidMultiplePollingNotice;
+import com.zods.smart.iot.gunrfid.server.protocal.response.GunRfidMultiplePollingResponse;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -27,7 +30,7 @@ public abstract class ClassMap implements ClassProcess {
         /**GUN-RFID-登陆信息*/
 		map.put("68", new ClassHandler(GunRfidLogin.class));
 		/**GUN-RFID多次轮询指令通知*/
-		map.put("39", new ClassHandler(GunRfidMultiplePollingNotice.class));
+		map.put("34", new ClassHandler(GunRfidMultiplePollingNotice.class));
 		/**GUN-RFID多次轮询指令响应*/
 		map.put("255", new ClassHandler(GunRfidMultiplePollingResponse.class));
 	}
