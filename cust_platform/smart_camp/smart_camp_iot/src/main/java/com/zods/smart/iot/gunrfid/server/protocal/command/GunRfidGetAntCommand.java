@@ -12,14 +12,14 @@ import lombok.Data;
 @Data
 public class GunRfidGetAntCommand extends GunRfidPacketHead {
 
-    //命令编码
-    public int getCommand() {
-        return 0xA7;
-    }
-
     //命令编码类型
     public int getCommandType() {
         return 0x00;
+    }
+
+    //命令编码
+    public int getCommand() {
+        return 0xA7;
     }
 
     @SubAnnotation(len = "2", name = "", type = "short",mark="")

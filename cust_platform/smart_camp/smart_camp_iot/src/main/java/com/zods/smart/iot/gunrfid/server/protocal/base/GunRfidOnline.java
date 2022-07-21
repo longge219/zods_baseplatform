@@ -1,5 +1,6 @@
 package com.zods.smart.iot.gunrfid.server.protocal.base;
 
+import com.zods.smart.iot.common.reflect.SubAnnotation;
 import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
 
 /**

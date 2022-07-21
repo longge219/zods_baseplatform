@@ -1,12 +1,15 @@
 package com.zods.smart.iot.gunrfid.service.impl;
 import com.zods.kafka.producer.KafkaProducerService;
 import com.zods.smart.iot.common.utils.Bits;
+import com.zods.smart.iot.common.utils.UnsignedNumber;
 import com.zods.smart.iot.gunrfid.server.channel.GunRfidChannelManager;
 import com.zods.smart.iot.gunrfid.server.protocal.*;
 import com.zods.smart.iot.gunrfid.server.protocal.base.GunRfidLogin;
 import com.zods.smart.iot.gunrfid.server.protocal.base.GunRfidOnline;
 import com.zods.smart.iot.gunrfid.server.protocal.command.GunRfidMultiplePollingCommand;
+import com.zods.smart.iot.gunrfid.server.protocal.command.GunRfidMultiplePollingStopCommand;
 import com.zods.smart.iot.gunrfid.server.protocal.notice.GunRfidMultiplePollingNotice;
+import com.zods.smart.iot.gunrfid.server.protocal.response.GunRfidGetAntResponse;
 import com.zods.smart.iot.gunrfid.server.protocal.response.GunRfidMultiplePollingResponse;
 import com.zods.smart.iot.gunrfid.server.protocal.response.GunRfidSetAntResponse;
 import com.zods.smart.iot.gunrfid.service.GunRfidServerService;
@@ -56,6 +59,15 @@ public class GunRfidServerServiceImpl implements GunRfidServerService {
                 log.info("设备IP:" + clientIp + "已登陆..........");
             }
         }
+        else if(packetHead instanceof GunRfidSetAntResponse){
+            GunRfidSetAntResponse setAntResponse = (GunRfidSetAntResponse) packetHead;
+            log.info("接收到GUN-RFID设置天线响应.......");
+        }
+        else if(packetHead instanceof GunRfidGetAntResponse){
+            GunRfidGetAntResponse getAntResponse = (GunRfidGetAntResponse) packetHead;
+            boolean[] aa = Bits.intToBits(UnsignedNumber.getUnsignedShort(getAntResponse.getAnts()),16);
+            log.info("接收到GUN-RFID查询天线响应.......");
+        }
         else if(packetHead instanceof GunRfidMultiplePollingNotice){
             log.info("接收到GUN-RFID多次轮询指令通知");
             GunRfidMultiplePollingNotice mpNotice = (GunRfidMultiplePollingNotice)packetHead;
@@ -66,9 +78,9 @@ public class GunRfidServerServiceImpl implements GunRfidServerService {
             GunRfidMultiplePollingResponse mpResponse = (GunRfidMultiplePollingResponse) packetHead;
             log.info("接收到GUN-RFID多次轮询指令响应");
         }
-        else if(packetHead instanceof GunRfidSetAntResponse){
-            GunRfidSetAntResponse mpResponse = (GunRfidSetAntResponse) packetHead;
-            log.info("接收到GUN-RFID设置天线响应.......");
+        else if(packetHead instanceof GunRfidMultiplePollingStopCommand){
+            GunRfidMultiplePollingStopCommand stopMpResponse = (GunRfidMultiplePollingStopCommand) packetHead;
+            log.info("接收到GUN-RFID停止多次轮询指令响应");
         }
         else{
             log.info("GUN-RFID服务端暂不处理其他数据包协议");

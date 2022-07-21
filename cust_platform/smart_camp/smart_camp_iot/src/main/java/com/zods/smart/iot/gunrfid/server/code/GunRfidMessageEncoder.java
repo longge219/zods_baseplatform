@@ -2,9 +2,12 @@ package com.zods.smart.iot.gunrfid.server.code;
 import com.zods.smart.iot.common.reflect.SubAnnotation;
 import com.zods.smart.iot.common.utils.CheckSumUtil;
 import com.zods.smart.iot.gunrfid.server.protocal.GunRfidPacketHead;
+import com.zods.smart.iot.gunrfid.server.protocal.base.GunRfidOnline;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 /**
@@ -13,6 +16,7 @@ import java.lang.reflect.Field;
  * @create Date:2022-07-18
  * @version V1.0
  */
+@Slf4j
 public class GunRfidMessageEncoder extends MessageToByteEncoder<GunRfidPacketHead> {
 
 	@Override
@@ -38,7 +42,7 @@ public class GunRfidMessageEncoder extends MessageToByteEncoder<GunRfidPacketHea
 		}
 		/**===========报文体编码区end===============*/
 		/**===========校验位start===============*/
-		ByteBuf checkBuf = outByteBuf.copy(1,outByteBuf.writerIndex());
+		ByteBuf checkBuf = outByteBuf.copy(1,outByteBuf.writerIndex()-1);
 		byte[] checkData = new byte[checkBuf.readableBytes()];
 		checkBuf.readBytes(checkData);
 		//验证码
