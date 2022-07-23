@@ -46,5 +46,4 @@ public class GunRifdServerProperties {
     private int bossThread;
 
     private int workThread;
-
 }

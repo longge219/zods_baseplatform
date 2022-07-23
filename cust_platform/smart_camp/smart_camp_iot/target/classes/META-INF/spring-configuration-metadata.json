@@ -9,6 +9,11 @@
       "name": "com.zods.gunrfid.server",
       "type": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
       "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties"
+    },
+    {
+      "name": "quartz.param",
+      "type": "com.zods.smart.iot.gunrfid.server.job.QuartzBean",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.job.QuartzBean"
     }
   ],
   "properties": [
@@ -175,6 +180,13 @@
       "name": "com.zods.gunrfid.server.write",
       "type": "java.lang.Integer",
       "sourceType": "com.zods.smart.iot.gunrfid.server.properties.GunRifdServerProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "quartz.param.gun-rfid-epc-scan",
+      "type": "java.lang.Integer",
+      "description": "海康设备-配置参数",
+      "sourceType": "com.zods.smart.iot.gunrfid.server.job.QuartzBean",
       "defaultValue": 0
     }
   ],

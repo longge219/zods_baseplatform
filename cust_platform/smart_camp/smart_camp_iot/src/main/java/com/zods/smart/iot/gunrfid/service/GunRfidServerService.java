@@ -13,7 +13,15 @@ public interface GunRfidServerService {
      * @param:packetHead 解译后数据包
      * @result: boolean
      */
-    public boolean successBusiness(ChannelHandlerContext ctx, GunRfidPacketHead packetHead) throws Exception;
+     boolean successBusiness(ChannelHandlerContext ctx, GunRfidPacketHead packetHead) throws Exception;
+
+
+    /**
+     * @method:心跳超时离线处理
+     * @param:ctx 通道
+     * @result: boolean
+     */
+     boolean doOverTime(ChannelHandlerContext ctx) throws Exception;
 
 
 }

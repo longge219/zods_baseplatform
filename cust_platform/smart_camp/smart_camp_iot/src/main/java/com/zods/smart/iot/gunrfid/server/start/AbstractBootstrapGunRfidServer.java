@@ -14,6 +14,8 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import java.security.KeyStore;
+import java.util.concurrent.TimeUnit;
+
 /**
  * @description 抽象类 负责加载--编解码器---业务处理器
  * @author jianglong
@@ -36,7 +38,7 @@ public abstract class AbstractBootstrapGunRfidServer implements BootstrapGunRfid
         //设置协议处理器--channel
         intProtocolHandler(channelPipeline,gunRifdServerProperties);
         //设置空闲心跳空闲检测--channel
-        channelPipeline.addLast(new IdleStateHandler(gunRifdServerProperties.getRead(), gunRifdServerProperties.getWrite(), gunRifdServerProperties.getReadAndWrite()));
+        channelPipeline.addLast(new IdleStateHandler(gunRifdServerProperties.getRead(), gunRifdServerProperties.getWrite(), gunRifdServerProperties.getReadAndWrite(), TimeUnit.SECONDS));
         //设置MQTT默认处理--channel
         channelPipeline.addLast(SpringBeanUtils.getBean(GunRfidServerHandler.class));
     }

@@ -23,6 +23,9 @@ public class GunRfidServerHandler extends SimpleChannelInboundHandler<GunRfidPac
     @Resource
     private GunRfidServerService gunRfidServerServiceImpl;
 
+    //读空闲计数
+    private int readIdleTimes = 0;
+
     /**服务端业务接收到数据*/
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, GunRfidPacketHead gunRfidPacketHead) throws Exception {
@@ -48,20 +51,29 @@ public class GunRfidServerHandler extends SimpleChannelInboundHandler<GunRfidPac
         log.info("userEventTriggered >>>>> id: " + ctx.channel().id() + " ,heartBeat is overtime..............");
         if (evt instanceof IdleStateEvent) {
             IdleStateEvent idleStateEvent = (IdleStateEvent) evt;
-            Channel channel = ctx.channel();
             switch (idleStateEvent.state()) {
                 case READER_IDLE:
                     log.warn("读超时");
-                    //channel.close();
+                    readIdleTimes ++; // 读空闲的计数加1
+                    break;
                 case WRITER_IDLE:
-                    log.warn("写超时");
-                    //channel.close();
+                    log.warn("写超时，暂不处理");
+                    break;
                 case ALL_IDLE:
-                    log.warn("读写超时");
-                    //channel.close();
+                    log.warn("读写超时，暂不处理");
+                    break;
             }
         }
-        super.userEventTriggered(ctx, evt);
+        if(readIdleTimes > 3){
+            log.warn("GUN-RFID 读空闲超过3次，关闭连接,更新设备在线状态");
+            /**更新离线状态*/
+            gunRfidServerServiceImpl.doOverTime(ctx);
+            /**关闭连接*/
+            ctx.channel().close();
+
+
+        }
+        //super.userEventTriggered(ctx, evt);
     }
 
 
