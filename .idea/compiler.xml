@@ -57,7 +57,7 @@
       <module name="large_screen" options="-parameters" />
       <module name="mqtt_server" options="-parameters" />
       <module name="rule_engine" options="-parameters" />
-      <module name="smart_camp" options="-parameters" />
+      <module name="smart_camp" options="" />
       <module name="smart_camp_dataprocess" options="-parameters" />
       <module name="smart_camp_iot" options="-parameters" />
       <module name="smart_camp_platform" options="-parameters" />

@@ -1,0 +1,86 @@
+server:
+  port: 20001 #服务器的HTTP端口，默认为80
+  servlet:
+    context-path: / #应用的访问路径
+  tomcat:
+    uri-encoding: UTF-8 #tomcat的URI编码
+    accept-count: 1000 #连接数满后的排队数，默认为100
+    threads:
+      max: 800 #tomcat最大线程数，默认为200
+      min-spare: 100 #Tomcat启动初始化的线程数，默认值10
+# spring配置
+spring:
+  application:
+    name: workflow-manager
+  profiles:
+    active: dev
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      connection-timeout: 30000
+      idle-timeout: 180000
+      max-lifetime: 1800000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      pool-name: MyHikariCP
+  #热部署
+  devtools:
+    restart:
+      #热部署生效
+      enabled: true
+      #设置重启目录
+      additional-paths: src/main/java
+      #classpath目录下的WEB-INF文件夹内容修改不重启
+      exclude: WEB-INF/**
+  lifecycle:
+    timeout-per-shutdown-phase: 30s #设置缓冲期，最大等待时间
+  jackson:
+    #日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone:  GMT+8
+    serialization:
+      #格式化输出
+      indent_output: true
+      #忽略无法转换的对象
+      fail_on_empty_beans: false
+    #设置空如何序列化
+    defaultPropertyInclusion: USE_DEFAULTS
+    deserialization:
+      #允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
+    parser:
+      #允许出现特殊字符和转义符
+      allow_unquoted_control_chars: true
+      #允许出现单引号
+      allow_single_quotes: true
+  servlet:
+    multipart:
+      max-file-size: 5120MB #tomcat单个文件最大上传大小
+      max-request-size: 5120MB #tomcat多个文件最大上传大小
+  logging:
+    #  方便Spring Boot Admin页面上实时查看日志
+    config: classpath:logback-spring.xml
+    file: ${user.dir}/logs/${spring.application.name}/${spring.application.name}.log
+  activiti:
+    database-schema-update: true   # 对所有表更新操作,如不存在则创建
+    db-history-used: true   # 使用历史表
+    history-level: full   # 保存历史数据的最高级别
+    check-process-definitions: true  # 校验流程文件
+# mybatis 配置
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+#swagger
+swagger:
+  enabled: true
+  host: 127.0.0.1
+  service:
+    url: http://swagger.io/
+    title: 规则引擎接口
+    des: 规则引擎api文档

@@ -1,0 +1,36 @@
+server:
+  port: 6620
+
+spring:
+  application:
+    name: platform-admin
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.10.254.138:8848
+        namespace: 7147c5f4-48d7-4ed8-a67a-42ed6966b40c
+        metadata:
+          user.name: admin
+          user.password: 123456
+  security:
+    user:
+      name: admin
+      password: 123456
+  boot:
+    admin:
+      context-path: platform-admin
+      ui:
+        title: 监测云服务监控中心
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+# 日志
+logging:
+  file: ${user.dir}/platform-logs/${spring.application.name}/${spring.application.name}.log

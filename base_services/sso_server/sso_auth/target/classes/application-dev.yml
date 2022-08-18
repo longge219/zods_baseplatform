@@ -1,0 +1,80 @@
+server:
+  port: 6623
+  servlet:
+    context-path: /api/auth
+spring:
+  security:
+    # 登陆所需的账号密码
+    user:
+      name: admin
+      password: 123456
+  application:
+    name: platform-auth-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.109.38.28:8848
+#        namespace: 1b79215b-f4c2-4caf-998b-9131c12aa24f
+        metadata:
+          management:
+            context-path: /${server.servlet.context-path}/actuator
+          user.name: admin
+          user.password: 123456
+  redis:
+    database: 0
+    host: 10.10.254.51
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://47.109.38.28:6446/poststation?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2b8
+    username: root
+    password: YZ^!123456
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+mybatis:
+  type-aliases-package: com.orieange.common.entity
+  mapper-locations: classpath:mapper/*.xml
+swagger:
+  service:
+    url: http://swagger.io/
+    title: 鉴权服务器api文档
+    des: 鉴权服务器api文档
+##################短信###########################
+sms:
+  baseUrl: http://sms.api.ums86.com:8899/sms/Api #手机短信运营商接口地址
+  spCode: 245287  #手机短信运营商客户企业编号
+  loginName: cd_xincheng #手机短信运营商登录名
+  password: clzbbhZ123 #手机短信运营商密码
+  codeTime: 300 #输入短信验证码等待时间(秒)
+#是否单点登录
+isSSO: false
+###############服务健康健康######################
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  logfile:
+    enabled: true         #可在线查看日志
+########################################################
+logging:
+  #  方便Spring Boot Admin页面上实时查看日志
+  config: classpath:logback-spring.xml
+  file: ${user.dir}/platform-logs/${spring.application.name}/${spring.application.name}.log
